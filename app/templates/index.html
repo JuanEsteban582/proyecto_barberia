@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <title>Inicio_sesion</title>
+</head>
+<body>
+    <main id="inicio">
+        
+        <main id="inicio">
+        
+            <section id="lado_izq"></section>
+                
+            <section id="lado_dere">
+
+            <form  action="/login"   id="forma_acceso" name="forma_prueba" method="post">
+
+                        <h1 id="titulo">Inicio de sesión</h1>
+                    <label for="email">Usuario</label>
+                    <input type="text" name="email" id="cliente_correo" placeholder="tu email" class="campo" class="ancho-full">
+                
+
+                
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" name="contrasena" id="cliente_palabra" placeholder="contraseña" class="campo" class="ancho-full">
+            
+                    <div id="container_boton">
+                        <button id="btn_accion" class="btn-accion" type="submit">Ingresar</button>
+                </div>
+                
+
+            </form>
+           
+            <a href="/registro">¿No tienes cuenta? Registrate</a>
+            <a href="">¿Olvidaste tu contraseña?</a>
+
+            </section>
+    </main>
+
+</body>
+</html>

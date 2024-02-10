@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+} 
+
+body {
+    background-color: #2e2518;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+}
+
+img {
+    margin: 0 0 -4px 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* ---------- Etiquetas HTML ---------- */
+
+button {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    height: 3em;
+    width: 14em;
+    cursor: pointer;
+    padding: 0.5em 2em;
+    border: transparent;
+    background: #d35b22;
+    color: rgb(255, 246, 230);
+    border-radius: 4px;
+    margin-top: 4em;
+}
+    button:hover {
+        transform: translateY(-7px);
+    }
+    button:active {
+        transform: translateY(-1px);
+    }
+
+div#contenedor-logo {
+    margin-top: 85px;
+    height: 200px;
+    width: 200px;
+}
+
+div#volver {
+    height: 50px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 50px;
+}
+
+    div#volver i {
+        color: #EDA15B;
+        font-size: 2.5em;
+    }
+
+div#logo {
+    background: url(../img/logo2.png) center center / cover no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+div#txt {
+    color: #EDA15B;
+    display: flex;
+    flex-direction: column;
+    padding: 70px 20px 0 20px;
+    text-align: center;
+}
+
+form#datos-res {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    border-radius: 4px;
+    display: flex;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    height: 48.6px;
+    width: 236px;
+    color: rgb(255, 246, 230);
+    flex-direction: column;
+    outline: 2px solid #EDA15B;
+    border: 0;
+    background-color: #403422;
+    margin-top: 36px;
+    outline-offset: 3px;
+    padding: 10px 1rem;
+    text-align: center;
+    transition: 0.25s;
+}
+    input:focus {
+        outline-offset: 5px;
+    }
+    input::placeholder {
+        color: #c09f76;
+    }
+
+main {
+    align-items: center;
+    display: flex;
+    height: 90vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+
+/* ---------- Clases ---------- */
+
+/* ---------- Responsive ---------- */
+
+@media screen and (min-width: 700px) {
+    body {
+        font-size: 23px;
+    }
+    button {
+        font-size: 25px;
+    }
+    input {
+        font-size: 23px;
+        height: 2.7em;
+        width: 60vw;
+        margin-top: 2em;
+    }
+    div#contenedor-logo {
+        height: 300px;
+        width: 300px;
+    }
+    div#volver i {
+        font-size: 45px;
+    }
+    main {
+        height: 100vh;
+    }
+}
+@media screen and (min-width: 1000px) {
+    button {
+        height: 2.5em;
+        width: 14em;
+    }
+    main {
+        display: flex;
+        flex-direction: initial;
+    }
+    div#contenedor-logo {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        height: 100vh;
+        width: 50vw;
+    }
+    div#logo {
+        height: 400px;
+        width: 400px;
+        margin-bottom: 70px;
+    }
+    div#formulario {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50vw;
+    }
+        input {
+            font-size: 19px;
+            height: 2.8em;
+            width: 350px;
+        }
+    div#volver {
+        left: -100px;
+        top: -100px;
+    }
+    div#txt {
+        padding: 0 50px;
+    }
+    form#datos-res {
+        height: 80%;
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        font-size: 18px;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}

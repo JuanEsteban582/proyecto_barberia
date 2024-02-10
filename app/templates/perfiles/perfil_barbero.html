@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
+</head>
+<body>
+
+    <!-- Agrega aquí la estructura del cuerpo del perfil según tus necesidades -->
+    <h1>Datos del Perfil</h1>
+    <p>Cedula: {{ datos_barbero[0] }}</p>
+    <p>Nombre: {{ datos_barbero[1] }}</p>
+    <p>Apellidos: {{ datos_barbero[2] }}</p>
+    <p>Celular: {{ datos_barbero[4] }}</p>
+    <p>Ciudad: {{ datos_barbero[5] }}</p>
+    <p>Fecha de Nacimiento: {{ datos_barbero[6] }}</p>
+
+    <a href="/principal_barbero">Regresar</a>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registro.css') }}">
+
+</head>
+
+<style>
+    .horario {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .selects {
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<label for="hora">Selecciona una hora:</label>
+<select id="hora" name="hora"></select>
+:
+<label for="minutos">Selecciona minutos:</label>
+<select id="minutos" name="minutos"></select>
+
+
+
+<body>
+   
+    
+    <!--nombre, apellidos, celular, ciudad, f_nacimiento,correo,contraseña-->
+    <main id="inicio">
+        
+        <section id="lado_izq"></section>
+            
+        <section id="lado_dere">
+    
+    
+    
+        <form id="forma_acceso" name="forma_acceso" action="/registro" method="POST">
+
+            <h1 id="titulo"> Registra tú negocio</h1>
+            
+            <label >Nombre del negocio:</label>
+            <input type="text" id="nombre"  class="campo" name="nombre_barberia" class="ancho-full" 
+            place holder="Tu nombre"  required>
+
+            <label for="direccion_barberia">Dirección del negocio:</label>
+            <input type="text" id="direccion_barberia"  class="campo" name="direccion_barberia" class="ancho-full" 
+            place holder="Tu nombre"  required>
+
+            <label for="ciudad_negocio">Ciudad:</label>
+            <select id="ciudad_negocio" name="ciudad_negocio" class="campo" class="ancho-full">
+                <option value="Buga">Guadalajara de Buga</option>
+                <option value="Bugalagrande">Bugalagrande</option>
+                <option value="Santiago de cali">Santiago de cali</option>
+            </select>
+            
+            <label for="departamento_negocio">Departamento:</label>
+            <select id="departamento_negocio" name="departamento_negocio" class="campo" class="ancho-full">
+                <option value="Valle del Cauca">Valle del Cauca</option>
+            </select>
+
+            <label for="telefono_negocio">Telefono del negocio:</label>
+            <input type="tel" id="telefono_negocio" name="telefono_negocio" class="campo" class="ancho-full" 
+            place holder="Telefono del negocio " required>
+        
+            <label for="celular_usuario">Celular:</label>
+            <input type="tel" id="celular" name="celular_usuario" class="campo" class="ancho-full" 
+            place holder="Tu celular" required>
+
+
+
+        
+                <label for="f_nacimiento_U">Fecha de Nacimiento:</label>
+                <input type="date" id="f_nacimiento" class="campo" class="ancho-full" 
+                name="f_nacimiento_U"  required>
+
+                <label for="tipo_registro">Selecciona tu rol:</label>
+                <select id="tipo_registro" name="tipo_registro" class="campo" class="ancho-full" required>
+                <option value="cliente">Cliente</option>
+                <option value="barbero">Barbero</option>
+                <option value="propietario">Propietario</option>
+                </select>
+
+                
+                <label for="correo_negocio" class="horario">Correo Electrónico:</label>
+                <input type="email" id="correo_negocio"class="campo" class="ancho-full" 
+                name="correo_usuario" required>
+                <br>
+                
+                
+                <label for="hora">Ingresa una hora (HH:mm):</label>
+                <input type="text" id="hora" name="hora" pattern="[0-9]{2}:[0-9]{2}" placeholder="HH:mm" required class="campo" class="ancho-full" >
+
+                
+    
+        <div id="container_boton">
+            <br>
+            <a href="/" class="btn-atras"> X </a>
+            <button type="submit" class="btn-accion">Registrarse</button>
+        </div>
+        </form>
+
+        <h2>{{mensaje}}</h2>
+        <h2>{{msj}}</h2>
+        <h2>{{msjedad}}</h2>
+        <h2>{{t_msj}}</h2>
+        <h2>{{msjb}}</h2>
+
+        
+    </section>
+</main> 
+
+
+<script src="{{ url_for('static', filename='js/registros/principal_page.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos-restaurar.css') }}">
+    <title>Actualizar contraseña</title>
+</head>
+<body>
+    
+    <form action="/recuperar_contra" method="POST">
+        
+        <main>
+            <div id="volver">
+                <a href="../LOGIN/login.html">
+                    <i class="lni lni-arrow-left"></i>
+                </a>
+            </div>
+            <div id="contenedor-logo">
+                
+                <div id="logo"></div>
+    
+            </div>
+            
+            <div id="formulario">
+                <div id="txt">
+    
+                    <p>Ingresa los siguientes datos</p>
+    
+                </div>
+                <form action="" method="get" id="datos-res">
+                    <input type="number" name="cedula_user" id="cedula_user" placeholder="Tú número de identificación"required>
+                    <input type="date" name="nacimiento_user" placeholder="Tú fecha de nacimiento" required>
+                    <input type="password" name="nueva_contra" placeholder="Tú nueva contraseña" required>
+                    <input type="password" name="conf_nue_contra"  name="conf_nue_contra"  placeholder="Confirma la contraseña">
+                    <br> 
+                    <label for="rol_user">Selecciona tu rol:</label>
+                    <select id="tip_registro" name="rol_user"  required>
+                    <option value="cliente">Cliente</option>
+                    <option value="barbero">Barbero</option>
+                    <option value="propietario">Propietario</option>
+                    </select>
+                    
+                    <button type="submit" id="btn">Actualizar contraseña</button>
+                </form>
+            </div>
+    
+        </main>
+    
+
+        <h2>{{exito}}</h2>
+        <h2>{{invalidados}}</h2>
+</body>
+</html>

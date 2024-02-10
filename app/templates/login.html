@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos-login.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+</head>
+<body>
+    <main>
+        <div id="contenedor-logo">
+            <div id="logo"></div>
+        </div>
+        <div id="datos-form">
+            <form action="/login" method="POST" id="datos-log">
+                <div id="campos">
+                
+                <input type="email" name="correo_user" id="correo_user" placeholder="Usuario"><!--me toca cambiar el name y id y aque no pueden ser palabras reservadas-->
+                <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
+                
+                
+            </div>
+            <label for="tipo_registro">Selecciona tu rol:</label>
+                <select id="tipo_registro" name="tipo_registro" class="campo" class="ancho-full" required>
+                <option value="cliente">Cliente</option>
+                <option value="barbero">Barbero</option>
+                <option value="propietario">Propietario</option>
+                </select>
+
+                <button type="submit" id="btn">Entrar</button>
+            </form>
+            <div id="texto-cuenta">
+                <a href="/registro"><p>Crear cuenta</p></a>
+                
+            </div>
+            <div id="texto-contra">
+                <a href="/recuperar_contra"><p>Olvidé mi contraseña</p></a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
