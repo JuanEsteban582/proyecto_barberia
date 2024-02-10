@@ -309,6 +309,60 @@ def principal_barbero():
     return render_template('htmls_principal_page/principal_barbero.html')
 
 
+
+
+#<------------ EDICION DE PERFILES CLIENTE, BARBERO, PROPIETARIO  -------------------------->
+@app.route('/editar_user', methods=['GET', 'POST'])
+def editar_user():
+    if not session.get("logueado"):
+        return redirect('/login')
+
+    if request.method == 'POST':
+        edit_cedula = request.form['ced_U']
+        edit_nombre = request.form['nom_U']
+        edit_apellidos = request.form['apelli_U']
+        edit_celular = request.form['Tel_U']
+        edit_ciudad = request.form['ciudad_U']
+        edit_fecha_nacimiento = request.form['fech_n_U']
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        
+        # Consulta SQL para actualizar los datos del usuario
+        sql_act_U = f"UPDATE usuario SET  nombre='{edit_nombre}', apellidos='{edit_apellidos}', celular='{edit_celular}', ciudad='{edit_ciudad}', f_nacimiento='{edit_fecha_nacimiento}' WHERE fk_cedulaU='{edit_cedula}'"
+        
+        cursor.execute(sql_act_U)
+        conn.commit()
+
+        return redirect('/perfil_usuario')
+    else:
+        email_usuario = session.get("usuario_id")
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        sql_usuario = f"SELECT * FROM usuario WHERE correo='{email_usuario}'"
+        cursor.execute(sql_usuario)
+        datos_usuario = cursor.fetchone()
+        conn.commit()
+
+        if datos_usuario:
+            return render_template('Actualizacion_perfiles/editar_perfil_usuario.html', datos_usuario=datos_usuario)
+        else:
+            return "Usuario no encontrado", 404
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #----------------------------------BARBERIA REGISTRO--------------------_----#
 
 
@@ -318,11 +372,6 @@ def barberia_registro():
     return render_template('barberia/barberiaR.html')
 
 
-
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
         
 
