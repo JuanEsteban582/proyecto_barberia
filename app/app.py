@@ -351,11 +351,81 @@ def editar_user():
 
 
 
+@app.route('/editar_barbero', methods=['GET', 'POST'])
+def editar_barbero():
+    if not session.get("logueado"):
+        return redirect('/login')
+
+    if request.method == 'POST':
+        edit_cedula = request.form['ced_B']
+        edit_nombre = request.form['nom_B']
+        edit_apellidos = request.form['apelli_B']
+        edit_celular = request.form['Tel_B']
+        edit_ciudad = request.form['ciudad_B']
+        edit_fecha_nacimiento = request.form['fech_n_B']
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        
+        # Consulta SQL para actualizar los datos del usuario
+        sql_act_B = f"UPDATE barberos SET  bnombre='{edit_nombre}', apellido='{edit_apellidos}', bcelular='{edit_celular}', bciudad='{edit_ciudad}', bf_nacimiento='{edit_fecha_nacimiento}' WHERE fk_cedulaB='{edit_cedula}'"
+        
+        cursor.execute(sql_act_B)
+        conn.commit()
+
+        return redirect('/perfil_barbero')
+    else:
+        email_barbero = session.get("usuario_id")
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        select_b = f"SELECT * FROM barberos WHERE bcorreo='{email_barbero}'"
+        cursor.execute(select_b)
+        datos_barbero = cursor.fetchone()
+        conn.commit()
+
+        if datos_barbero:
+            return render_template('Actualizacion_perfiles/editar_perfil_barbero.html', datos_barbero=datos_barbero)
+        else:
+            return "Usuario no encontrado", 404
 
 
 
+@app.route('/editar_propietario', methods=['GET', 'POST'])
+def editar_propietario():
+    if not session.get("logueado"):
+        return redirect('/login')
 
+    if request.method == 'POST':
+        edit_cedula = request.form['ced_P']
+        edit_nombre = request.form['nom_P']
+        edit_apellidos = request.form['apelli_P']
+        edit_celular = request.form['Tel_P']
+        edit_ciudad = request.form['ciudad_P']
+        edit_fecha_nacimiento = request.form['fech_n_P']
 
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        
+        # Consulta SQL para actualizar los datos del usuario
+        sql_act_P = f"UPDATE propietario SET  nombre_P='{edit_nombre}', apellido_P='{edit_apellidos}', celular_P='{edit_celular}', Pciudad='{edit_ciudad}', Pf_nacimiento='{edit_fecha_nacimiento}' WHERE pk_cedulaP='{edit_cedula}'"
+        
+        cursor.execute(sql_act_P)
+        conn.commit()
+
+        return redirect('/perfil_propietario')
+    else:
+        email_propietario = session.get("usuario_id")
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        select_p = f"SELECT * FROM propietario WHERE correo_P='{email_propietario}'"
+        cursor.execute(select_p)
+        datos_propietario = cursor.fetchone()
+        conn.commit()
+
+        if datos_propietario:
+            return render_template('Actualizacion_perfiles/editar_perfil_propietario.html', datos_propietario=datos_propietario)
+        else:
+            return "Usuario no encontrado", 404
 
 
 
@@ -367,14 +437,52 @@ def editar_user():
 
 
 
-@app.route('/barberia_registro')
+@app.route('/barberia_registro',methods=['GET', 'POST'])
 def barberia_registro():
-    return render_template('barberia/barberiaR.html')
-
-
-
+    if request.method == 'POST':
+        nombre_barberia = request.form['nombre_barberia']
+        direccion_barberia = request.form['direccion_barberia']
+        ciudad_negocio = request.form['ciudad_negocio']
+        telefono_negocio = request.form['telefono_negocio']
+        pais_negocio = request.form['Pais_negocio']
+        departamento_negocio = request.form['departamento_negocio']
+        correo_propietario = request.form['correo_negocio']
+        hora_apertura = request.form['hora_A']
+        hora_cierre = request.form['hora_C']
         
+        # Consultar la base de datos para obtener la información del propietario
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT pk_cedulaP, Pf_nacimiento, correo_P FROM propietario WHERE correo_P = '{correo_propietario}'")
+        propietario_info = cursor.fetchone()
+        
+        if propietario_info:
+            cedula_propietario = propietario_info[0]
+            fecha_nacimiento_propietario = propietario_info[1]
+            correo_propietario = propietario_info[2]
+        else:
+            return "El propietario no está registrado.", 404
+        
+        # Crear el código único
+        codigo_unico = f"{nombre_barberia}-{cedula_propietario}-{fecha_nacimiento_propietario}-{correo_propietario}"
+        
+        # Verificar si el código único ya existe en la tabla barberias
+        cursor.execute(f"SELECT * FROM barberia WHERE pk_codigo_barberia = '{codigo_unico}'")
+        existencia = cursor.fetchone()
+        
+        if existencia:
+            mensaje = "La barbería ya está registrada."
+            return render_template('registro.html', mensaje=mensaje)
+        else:
+            # Registrar la barbería con el código único en la tabla barberias
+            cursor.execute("INSERT INTO barberia (nom_barberia, direccion, ciudad, telefono, pais, departamento, pk_codigo_barberia, h_apertura, h_cierre) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (nombre_barberia, direccion_barberia, ciudad_negocio, telefono_negocio, pais_negocio, departamento_negocio, codigo_unico, hora_apertura, hora_cierre))
+            conn.commit()
+            conn.close()
 
+            mensaje = "La barbería se registró exitosamente."
+            return render_template('htmls_principal_page/principal_propietario.html', mensaje=mensaje)
+    
+    return render_template('barberia/barberiaR.html')
 
 
 if __name__ == '__main__':
