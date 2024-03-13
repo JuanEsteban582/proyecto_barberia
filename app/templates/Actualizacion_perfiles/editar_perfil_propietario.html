@@ -10,18 +10,12 @@
 
     <!-- Formulario de edición de perfil -->
     <h1>Editar Perfil</h1>
-    <form action="/editar_propietario" method="post">
+    <form action="/editar_propietario" method="POST">
         <input type="hidden" name="ced_P" value="{{ datos_propietario[0] }}">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nom_P" name="nom_P" value="{{ datos_propietario[1] }}">
-        <label for="apelli_U">Apellidos:</label>
-        <input type="text" id="apelli_P" name="apelli_P" value="{{ datos_propietario[2] }}">
         <label for="Tel_U">Celular:</label>
-        <input type="text" id="Tel_U" name="Tel_P" value="{{ datos_propietario[4] }}">
+        <input type="text" id="Tel_U" name="Celular_P" value="{{ datos_propietario[4] }}">
         <label for="ciudad_U">Ciudad:</label>
-        <input type="text" id="ciudad_U" name="ciudad_P" value="{{ datos_propietario[8] }}">
-        <label for="fech_n_U">Fecha de Nacimiento:</label>
-        <input type="text" id="fech_n_U" name="fech_n_P" value="{{ datos_propietario[9] }}">
+        <input type="text" id="ciudad_U" name="Ciudad_P" value="{{ datos_propietario[8] }}">
         <button type="submit">Guardar Cambios</button>
     </form>
 

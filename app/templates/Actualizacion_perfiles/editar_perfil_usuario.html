@@ -12,16 +12,10 @@
     <h1>Editar Perfil</h1>
     <form action="/editar_user" method="post">
         <input type="hidden" name="ced_U" value="{{ datos_usuario[0] }}">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nom_U" name="nom_U" value="{{ datos_usuario[1] }}">
-        <label for="apelli_U">Apellidos:</label>
-        <input type="text" id="apelli_U" name="apelli_U" value="{{ datos_usuario[2] }}">
         <label for="Tel_U">Celular:</label>
         <input type="text" id="Tel_U" name="Tel_U" value="{{ datos_usuario[3] }}">
         <label for="ciudad_U">Ciudad:</label>
         <input type="text" id="ciudad_U" name="ciudad_U" value="{{ datos_usuario[4] }}">
-        <label for="fech_n_U">Fecha de Nacimiento:</label>
-        <input type="text" id="fech_n_U" name="fech_n_U" value="{{ datos_usuario[5] }}">
         <button type="submit">Guardar Cambios</button>
     </form>
 

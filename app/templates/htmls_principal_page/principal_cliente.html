@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_page.css') }}">
 
-    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
 
 </head>
 <body id="body">
@@ -75,10 +75,22 @@
     </div>
 
     <main>
-        <h1>Title Exemple</h1><br>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam sapiente cumque dicta animi explicabo sequi. Ex amet et, dolor eligendi commodi consectetur quo voluptatibus, cum nemo porro veniam at blanditiis?</p> <br>
-
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident adipisci beatae impedit quia, deleniti quasi sequi iusto exercitationem nihil nulla, laboriosam dolore corrupti fuga officiis? Odit a mollitia id magnam amet delectus quia blanditiis reprehenderit explicabo eveniet! Rem voluptatum explicabo ipsum quae, dolorum, laudantium doloribus a, illum saepe sapiente accusantium dicta reiciendis? Amet iure porro voluptatum error fugit odit voluptas?</p>
+        <h1>Barberías Registradas</h1>
+        {% for barberia in barberias %}
+        <div class="barberia">
+            <h2>{{ barberia[1] }}</h2> <!-- Nombre de la barbería -->
+            <p><strong>Dirección:</strong> {{ barberia[2] }}</p> <!-- Dirección de la barbería -->
+            <p><strong>Ciudad:</strong> {{ barberia[3] }}</p> <!-- Ciudad de la barbería -->
+            <p><strong>Teléfono:</strong> {{ barberia[4] }}</p> <!-- Teléfono de la barbería -->
+            <p><strong>País:</strong> {{ barberia[5] }}</p> <!-- País de la barbería -->
+            <p><strong>Correo:</strong> {{ barberia[6] }}</p> <!-- Correo de la barbería -->
+            <!-- Enlaces -->
+            <a href="#">Ir</a>
+            <a href="#">Ver detalles</a>
+            <a href="#">Agendar cita</a>
+            <!-- Puedes agregar más información si es necesario -->
+        </div>
+        {% endfor %}
     </main>
 
     <script src="{{ url_for('static', filename='js/principal_page.js') }}"></script>

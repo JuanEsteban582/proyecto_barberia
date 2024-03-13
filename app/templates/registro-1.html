@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registro.css') }}">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    
+    <script src="{{ url_for('static', filename='js/registro/validaciones_momento-1.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/registro/validaciones_momento-2.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/registro/validaciones_momento-3.js') }}"></script>
+    
+    
+    <title>Bienvenido Registrate</title>
+</head>
+<body>
+    <main>
+        <div id="volver">
+            <a href="/">
+                <i class="lni lni-arrow-left"></i>
+            </a>
+        </div>
+        
+        <div id="contenedor-logo">
+            <div id="logo"></div>
+        </div>
+
+        <div id="datos-form">
+
+            <div id="txt">
+
+                <p>Registro</p>
+
+            </div>
+            
+            <form action="/registro" method="POST" id="datos-registro">
+    
+                    <div id="momento-1">
+                        <div class="campos">
+                            <input type="text" name="nombre_usuario" id="nombre" placeholder="Nombre" minlength="3" maxlength="25" autocomplete="off">
+                            <div id="nombre-error" class="mensaje-error"></div>
+
+                            <input type="text" name="apellidos_usuario" id="apellidos" placeholder="Apellido" minlength="3" maxlength="25" autocomplete="off">
+                            <div id="apellidos-error" class="mensaje-error"></div>
+
+                            <input type="text" name="cedula_registro" id="cedula" placeholder="Número de identificación" minlength="6" maxlength="12" autocomplete="off">
+                            <div id="cedula-error" class="mensaje-error"></div>
+
+                            <input type="date" name="f_nacimiento_U" id="f_nacimiento">
+                            <div id="f_nacimiento-error" class="mensaje-error"></div>
+                        </div>
+                        <button id="btn-siguiente-1" type="button" >Siguiente</button>
+                    </div>
+                    
+                    <div id="momento-2" class="hidden">
+                        <div class="campos">
+                             <select name="departamento" id="departamento">
+                                <option value="" selected disabled>Elige tu departamento</option>
+                                <option value="antioquia">ANTIOQUIA</option>
+                                <option value="valle-del-cauca">VALLE DEL CAUCA</option>
+                                <option value="bogota">BOGOTÁ</option>
+                            </select> 
+                            <div id="departamento-error" class="mensaje-error"></div>
+
+                            <select name="ciudad_Usuario" id="ciudad">
+                                <option value="" selected disabled>Elige tu ciudad</option>
+                                <option value="buga">BUGA</option>
+                                <option value="tulua">TULUÁ</option>
+                                <option value="cali">CALI</option>
+                            </select> 
+                            <div id="ciudad-error" class="mensaje-error"></div> 
+                            
+
+                            <input type="tel" name="celular_usuario" id="celular" placeholder="Número de celular" maxlength="10">
+                            <div id="celular-error" class="mensaje-error"></div>
+                        </div>
+
+                        <div class="enlaces">
+
+                            <span id="atras-momento-2">Atrás</span>
+                            <button id="btn-siguiente-2" type="button" >Siguiente</button>
+
+                        </div>
+                    </div>
+
+                    <div id="momento-3" class="hidden">
+                        <div class="campos">
+
+
+                            <input type="email" name="correo_usuario" id="correo" placeholder="Correo electrónico">
+                            <div id="correo-error" class="mensaje-error"></div>
+
+                            <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
+                            <ul id="requer-contra" class="mensaje-error">
+                                <li id="long-min">Debe tener mínimo 8 caracteres.</li>
+                                <li id="mayus">Debe contener al menos 1 letra mayúscula.</li>
+                                <li id="minus">Debe contener al menos 1 letra minúscula.</li>
+                                <!-- <li id="numero">Debe contener al menos 1 número.</li>
+                                <li id="car-especial">Debe contener al menos un caracter especial.</li> -->
+                            </ul>
+
+                            <input type="password" name="confir_contra" id="confirmar-contrasena" placeholder="Confirmar contraseña">
+                            <div id="conf-contrasena-error" class="mensaje-error"></div>
+                        </div>
+
+                        <div id="aviso-error" class="mensaje-error"></div>
+                        <div class="enlaces">
+
+                            <span id="atras-momento-3">Atrás</span>
+                            <button type="submit" id="btn-submit">Registrarme</button>
+
+                        </div>
+                    </div>
+            </form>
+        </div>
+        
+            <h2>{{ msj }}</h2>
+            <h2>{{ msj_C }}</h2>
+    </main>
+
+   
+</body>
+</html>       

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/registro.css') }}">
 
+    
 </head>
 <body>
    
@@ -24,7 +25,7 @@
             <h1 id="titulo"> Registrate</h1>
             
             <label for="cedula_registro">Cedula:</label>
-            <input type="number" id="nombre"  class="campo" name="cedula_registro" class="ancho-full" 
+            <input type="number" id="cedula"  class="campo" name="cedula_registro" class="ancho-full" 
             place holder="Tu nombre"  required>
 
             <label for="nombre_usuario">Nombres:</label>
@@ -41,7 +42,7 @@
 
             <label for="ciudad_U">Ciudad:</label>
             <select id="ciudad" name="ciudad_U" class="campo" class="ancho-full">
-                <option value="Buga">Guadalajara de Buga</option>
+                <option value="Guadalajara de Buga">Guadalajara de Buga</option>
                 <option value="Bugalagrande">Bugalagrande</option>
                 <option value="Santiago de cali">Santiago de cali</option>
             </select>
@@ -54,7 +55,6 @@
                 <label for="tipo_registro">Selecciona tu rol:</label>
                 <select id="tipo_registro" name="tipo_registro" class="campo" class="ancho-full" required>
                 <option value="cliente">Cliente</option>
-                <option value="barbero">Barbero</option>
                 <option value="propietario">Propietario</option>
                 </select>
 
@@ -71,7 +71,6 @@
                 <input type="password" id="contrasena" class="campo" class="ancho-full"
                 name="confir_contra" required>
             
-               
         <div id="container_boton">
             <a href="/" class="btn-atras"> X </a>
             <button type="submit" class="btn-accion">Registrarse</button>

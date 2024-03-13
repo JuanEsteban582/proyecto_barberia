@@ -4,9 +4,6 @@ from random import randint
 from flask import Flask, render_template,redirect,request,session,jsonify
 from flask import send_from_directory
 from flaskext.mysql import MySQL
-import hashlib #para cifrar la contraseña 
-from flaskext.mysql import MySQL
-from datetime import datetime
 
 
 

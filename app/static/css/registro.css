@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
 
 * {
     box-sizing: border-box;
@@ -11,153 +11,258 @@ body, html {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    background-color: #2e2518;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
 }
+
 img {
     margin: 0 0 -4px 0;
-    width: 100%;
-}
-
-
-/*-------html------*/
-
-
-
-h1 {
-    font-size: 16px;
-    text-align: center;
-}
-
-main#inicio {
-    margin: 0;
     padding: 0;
-    overflow: hidden;
-    min-height: 100vh;
-    position: relative;
     width: 100%;
 }
 
+/* ---------- Etiquetas HTML ---------- */
 
-section#lado_izq {
-    background: url('https://fondosmil.com/fondo/64250.jpg')  center center / cover no-repeat fixed;
-    height: 33vh;
-    position: relative;
-    width: 100%;
-    z-index: 1;
+button {
+    font-size: 1.05em;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    width: 100px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: transparent;
+    background: #d35b22;
+    color: rgb(255, 246, 230);
+    border-radius: 4px;
+    margin-top: 20px;
 }
-
-
-section#lado_dere {
-    background-color: rgb(250,250,250);
-    border-radius: 48px 48px 0 0;
-    /*left: 0;*/
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 80px;
-    /*top: 130px;*/
-    width:100%;
-    z-index: 2;
-}
-   
-
-
-/*------clases-----*/
-
-
-div#container_boton{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    button:hover {
+        transform: translateY(-7px);
+    }
+    button:active {
+        transform: translateY(-1px);
+    }
     
-
-}
-
-.btn-atras {
-    border: none;
-    border-radius: 8px;
-    border-top: solid 2px #5b5b5b;
-    border-bottom: solid 2px #5b5b5b;
-    border-right: solid 2px #5b5b5b;
-    border-left: solid 2px #5b5b5b;
-    color: #333;
-    cursor: pointer;
-    font-family: 'Poppins';
-    font-size: 1.3em;
-    font-weight: 400;
-    position: relative;
-    left: 1px;
-    margin: 32px 0 0 0;
-    padding: 17px 23px;
+div#datos-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
-
+    color: rgb(255, 246, 230);
 }
 
-.btn-accion {
-    background: linear-gradient(to bottom, #b53e3e, #9f0a0a, rgb(88, 4, 4) );
-    border: none;
-    border-radius: 20px;
-    border-top: solid 2px #5b5b5b;
-    border-bottom: solid 2px #5b5b5b;
-    border-right: solid 2px #5b5b5b;
-    border-left: solid 2px #5b5b5b;
-    color: #ebebeb;
-    cursor: pointer;
-    font-family: 'Poppins';
-    font-size: 1.3em;
-    font-weight: 400;
-    position: relative;
-    margin: 32px 0 0 0;
-    padding: 13px 17px;
+div.campos select {
+    border-radius: 4px;
+    display: flex;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    height: 3.5em;
+    width: 200px;
+    margin-top: 20px;
+    color: rgb(255, 246, 230);
+    flex-direction: column;
+    border: 0;
+    background-color: #403422;
+    outline-offset: 3px;
+    padding: 10px;
     text-align: center;
-    width: 56%;
+    transition: 0.25s;
+}
+div.campos select:focus {
+    outline: 2px solid #cc6c3a;
+    }
+    
+    div#volver {
+        height: 25px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 25px;
 }
 
-.campo {
-    background: none;
-    border-radius: 20px;
-    border-top: solid 2px #111;
-    border-bottom: solid 6px #0A0A0A;
-    border-right: solid 2px #111;
-    border-left: solid 2px #111;
+div#volver i {
+    color: #EDA05a;
+        font-size: 2.0em;
+    }
 
-    color: #333;
-    font-size: 1.1em;
-    display: block;
-    margin: 4px 0 12px 0;
-    padding: 11px;
-    width: 100%;
+div#contenedor-logo {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
 }
-.ancho-full {
+
+div#logo {
+    background: url(../img/logo.png) center center / cover no-repeat;
+    height: 100%;
     width: 100%;
 }
 
-/*-------Resposive-------*/
+form#datos-registro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+span{
+    font-size: 0.9em;
+    line-height: 0.1em;
+    cursor: pointer;
+    color: rgba(255, 246, 230, 0.7);
+    margin-right: 20px;
+}
+    span:hover {
+        transform: translateY(-7px);
+    }
 
+main {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+}
 
-@media screen and (min-width:1000px) {
-    main#inicio {
+div.campos input {
+    border-radius: 4px;
+    display: flex;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    height: 3.5em;
+    width: 200px;
+    margin-top: 20px;
+    color: rgb(255, 246, 230);
+    flex-direction: column;
+    border: 0;
+    background-color: #403422;
+    outline-offset: 3px;
+    padding: 17px;
+    text-align: center;
+    transition: 0.25s;
+}
+    div.campos input:focus {
+        outline: 2px solid #cc6c3a;
+    }
+    div.campos input::placeholder {
+        color: #c09f76;
+    }
+
+    
+    div#momento-2.hidden {
+    display: none;
+}
+
+div#momento-3.hidden{
+    display: none;
+}
+
+div#requer-contrasena {
+    display: none;
+}
+
+div#txt {
+    color: #EDA05a;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    text-align: center;
+    line-height: 0;
+}
+
+/* ---------- Clases ---------- */
+
+.hidden {
+    display: none;
+}
+
+.mensaje-error {
+    color: #cc6c3a;
+    font-size: 0.6em;
+    margin-top: 5px;
+} 
+
+.enlaces {
+    
+    display: inline-block;
+}
+
+/* ---------- Responsive ---------- */
+
+@media screen and (min-width: 700px) {
+    body {
+        font-size: 21px;
+    }
+    button{
+        margin-top: 50px;
+        width: 150px;
+    }
+    div.campos input {
+        font-size: 21px;
+        width: 40vw;
+    }
+    div.campos select {
+        font-size: 21px;
+        width: 40vw;
+    }
+    div#contenedor-logo {
+        height: 250px;
+        margin-bottom: 64px;
+        width: 250px;
+    }
+    div#volver {
+        left: 20px;
+        top: 20px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    button {
+        height: 2.5em;
+        width: 7em;
+    }
+    main {
+        flex-direction: initial;
+    }
+    div#contenedor-logo {
+        height: 100vh;
+        width: 50vw;
+        margin: 0;
+    }
+    div#logo {
+        height: 350px;
+        width: 350px;
+    }
+    div#datos-form {
+        justify-content: center;
+        height: 100%;
+        width: 50vw;
+    }
+    div.campos {
         display: flex;
-        justify-content: flex-start;
-        align-items: stretch;
+        flex-direction: column;
+        align-items: center;
     }
-    section#lado_dere {
-        display: grid;
-        height: inherit;
-        left: auto;
-        place-items: center;
-        position: relative;
-        top: auto;
+        div.campos input {
+            width: 350px;
+        }
+        div.campos select {
+            width: 350px;
+        }
+    div#volver {
+        display: none;
     }
-    #lado_dere #forma_acceso {
-        max-width: 400px;
-        width: 80%;
+    
+    form#datos-registro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    section#lado_izq {
-        background-position: center center;
-        height: inherit;
+    .mensaje-error {
+        font-size: 0.8em;
     }
 }
+
 

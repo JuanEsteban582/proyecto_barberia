@@ -12,16 +12,12 @@
     <h1>Editar Perfil</h1>
     <form action="/editar_barbero" method="post">
         <input type="hidden" name="ced_B" value="{{ datos_barbero[0] }}">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nom_U" name="nom_B" value="{{ datos_barbero[1] }}">
-        <label for="apelli_U">Apellidos:</label>
-        <input type="text" id="apelli_U" name="apelli_B" value="{{ datos_barbero[2] }}">
+        
         <label for="Tel_U">Celular:</label>
         <input type="text" id="Tel_U" name="Tel_B" value="{{ datos_barbero[4] }}">
         <label for="ciudad_U">Ciudad:</label>
         <input type="text" id="ciudad_U" name="ciudad_B" value="{{ datos_barbero[5] }}">
-        <label for="fech_n_U">Fecha de Nacimiento:</label>
-        <input type="text" id="fech_n_U" name="fech_n_B" value="{{ datos_barbero[6] }}">
+    
         <button type="submit">Guardar Cambios</button>
     </form>
 
