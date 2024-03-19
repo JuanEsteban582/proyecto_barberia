@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #2e2518;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+}
+
+img {
+    margin: 0 0 -4px 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* ---------- Etiquetas HTML ---------- */
+
+button {
+    font-size: 1.05em;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    width: 100px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: transparent;
+    background: #d35b22;
+    color: #fff6e6;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+    button:hover {
+        transform: translateY(-7px);
+    }
+    button:active {
+        transform: translateY(-1px);
+    }
+    
+div#datos-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: rgb(255, 246, 230);
+}
+
+div.campos select {
+    border-radius: 4px;
+    display: flex;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    height: 3.5em;
+    width: 200px;
+    margin-top: 20px;
+    color: rgb(255, 246, 230);
+    flex-direction: column;
+    border: 0;
+    background-color: #403422;
+    outline-offset: 3px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.25s;
+}
+div.campos select:focus {
+    outline: 2px solid #cc6c3a;
+    }
+    
+    div#volver {
+        height: 25px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 25px;
+}
+
+div#volver i {
+    color: #EDA05a;
+        font-size: 2.0em;
+    }
+
+div#contenedor-logo {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
+}
+
+div#logo {
+    background: url(../img/logo.png) center center / cover no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+form#datos-registro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+span{
+    font-size: 0.9em;
+    line-height: 0.1em;
+    cursor: pointer;
+    color: rgba(255, 246, 230, 0.7);
+    margin-right: 20px;
+}
+    span:hover {
+        transform: translateY(-7px);
+    }
+
+main {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div.campos input {
+    border-radius: 4px;
+    display: flex;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    height: 3.5em;
+    width: 200px;
+    margin-top: 20px;
+    color: rgb(255, 246, 230);
+    flex-direction: column;
+    border: 0;
+    background-color: #403422;
+    outline-offset: 3px;
+    padding: 17px;
+    text-align: center;
+    transition: 0.25s;
+}
+    div.campos input:focus {
+        outline: 2px solid #cc6c3a;
+    }
+    div.campos input::placeholder {
+        color: #c09f76;
+    }
+
+    
+    div#momento-2.hidden {
+    display: none;
+}
+
+div#momento-3.hidden{
+    display: none;
+}
+
+div#requer-contrasena {
+    display: none;
+}
+
+div#txt {
+    color: #EDA05a;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    text-align: center;
+    line-height: 0;
+}
+
+/* ---------- Clases ---------- */
+
+.hidden {
+    display: none;
+}
+
+.mensaje-error {
+    color: #cc6c3a;
+    font-size: 0.6em;
+    margin-top: 5px;
+} 
+
+.enlaces {
+    
+    display: inline-block;
+}
+
+/* ---------- Responsive ---------- */
+
+@media screen and (min-width: 700px) {
+    body {
+        font-size: 21px;
+    }
+    button{
+        margin-top: 50px;
+        width: 150px;
+    }
+    div.campos input {
+        font-size: 21px;
+        width: 40vw;
+    }
+    div.campos select {
+        font-size: 21px;
+        width: 40vw;
+    }
+    div#contenedor-logo {
+        height: 250px;
+        margin-bottom: 64px;
+        width: 250px;
+    }
+    div#volver {
+        left: 20px;
+        top: 20px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    button {
+        height: 2.5em;
+        width: 7em;
+    }
+    main {
+        flex-direction: initial;
+    }
+    div#contenedor-logo {
+        height: 100vh;
+        width: 50vw;
+        margin: 0;
+    }
+    div#logo {
+        height: 350px;
+        width: 350px;
+    }
+    div#datos-form {
+        justify-content: center;
+        height: 100%;
+        width: 50vw;
+    }
+    div.campos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+        div.campos input {
+            width: 350px;
+        }
+        div.campos select {
+            width: 350px;
+        }
+    div#volver {
+        display: none;
+    }
+    
+    form#datos-registro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .mensaje-error {
+        font-size: 0.8em;
+    }
+}
+
+

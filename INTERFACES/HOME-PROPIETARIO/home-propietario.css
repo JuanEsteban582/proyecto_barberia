@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+}
+
+img {
+    margin: 0 0 -4px 0;
+    padding: 0;
+    width: 100%;
+}
+
+main {
+    align-items: center;
+    background-color: #2e2518;
+    color: #fff6e6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 1em;
+    position: relative;
+}
+
+/* ---------- Etiquetas HTML ---------- */
+
+h2#tlo {
+    color: #eda05a;
+    text-align: center;
+}
+
+section#info-barberos {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+
+/* ---------- Clases ---------- */
+button.btn-actividad-barbero{
+    background: #d35b22;
+    border: transparent;
+    border-radius: 4px;
+    color: #fff6e6;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7em;
+    font-weight: 600;
+    padding: 3px 7px;
+}
+
+button#btn-agregar-barbero {
+    background: #d35b22;
+    border: transparent;
+    border-radius: 4px;
+    color: #fff6e6;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 3px 7px;
+}
+    button#btn-agregar-barbero:hover {
+        transform: translateY(-7px);
+    }
+    button#btn-agregar-barbero:active {
+        transform: translateY(-1px);
+    }
+
+button#btn-administrar-barberos {
+    background: #d35b22;
+    border: transparent;
+    border-radius: 4px;
+    bottom: 20px;
+    color: #fff6e6;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    left: 50%;
+    padding: 3px 7px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+    button#btn-administrar-barberos:hover {
+        transform: translate(-50%, -50%) translateY(-7px);
+    }
+    button#btn-administrar-barberos:active {
+        transform: translate(-50%, -50%) translateY(-1px);
+    }
+
+button.btn-eliminar-barbero {
+    align-items: center;
+    background-color: #d35b22;
+    border: transparent;
+    border-radius: 4px;
+    color: #fff6e6;
+    display: flex;
+    font-size: 20px;
+    height: 35px;
+    justify-content: center;
+    left: 14px;
+    position: relative;
+    width: 32px;
+}
+
+div.contenedor-datos-barbero {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    text-align: start;
+    width: 210px;
+}
+
+figure.contenedor-img-barbero {
+    height: 90px;
+    margin: 0;
+    padding: 10px;
+    width: 101px;
+}
+
+img.img-barbero {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+p.nom-barbero {
+    line-height: 1;
+    margin-bottom: 10px;
+    padding: 0 10px 0 10px;
+}
+
+div.tarjeta-barbero {
+    align-items: center;
+    background-color: #413423;
+    border-radius: 4px;
+    display: flex;
+    height: 100px;
+    justify-content: initial;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+button.esconder {
+    display: none;
+}
+
+/* ---------- Responsive ---------- */
+
+@media screen and (min-width: 700px) {
+    button#btn-agregar-barbero {
+        top: 96px;
+        position: absolute;
+    }
+    button.btn-eliminar-barbero {
+        left: 72px;
+    }
+    div.tarjeta-barbero {
+        width: 400px;
+    }
+    h2#tlo {
+        position: absolute;
+        top: 20px;
+    }
+    main {
+        justify-content: center;
+    }
+    
+}

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>perfil propietario</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+
+  
+    
+ 
+  <style>
+      
+    .seccion-perfil-usuario {
+    display: flex;
+    background-color: #e0871b;;
+    text-align: center; /* Centra el contenido horizontalmente */
+  
+    
+}
+
+.perfil-usuario-avatar {
+    width: 190px;
+    height: 190px;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #e78655;
+    background-image: url(profile-icon.jpg);
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    position: absolute;
+    top: 4%;
+    left: calc(-60%  90px);
+    margin-left: 80px;
+    z-index: 0;
+}
+
+
+.perfil-usuario-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+ .boton-avatar {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    border: 0;
+    background-color: #e78655;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    border-radius: 50%;
+    
+   }
+
+.perfil-usuario-footer{
+    
+    font-size: 1.2rem;
+    display: flex;
+    position: relative;
+    bottom: -40px;
+    background-color: #2f2519;
+    text-align: center; /* Centra el contenido horizontalmente */
+    padding-top: 48px; /* Ajusta el espaciado superior */
+    flex-direction: column;
+    align-self: flex-end;
+}
+
+.lista-datos {
+   padding: 10px;
+}
+
+.lista-datos li {
+    margin-bottom: 20px;
+    color: antiquewhite;
+}
+
+.lista-datos .icono {
+  margin-right: 15px; /* Ajusta el espacio entre el ícono y el texto */
+  font-size: 1.6rem;
+  color: #e78655;
+  bottom: -80;
+  text-align: left;
+} 
+
+
+.lni {
+  margin-right: 15px; /* Ajusta el espacio entre el ícono y el texto */
+  font-size: 1.6rem;
+  color: #e78655;
+  bottom: -80;
+  text-align: left;
+}
+
+.editarPerfil {
+  position: relative;
+  left: 83%;
+  width: 30px;
+  font-size: 1.4rem;
+  color: #e78655;
+
+}
+.masopciones{
+  width: 10%;
+  height: 5%;
+  position: relative;
+  top: -29%;
+  left: 86%;
+  z-index: 1;
+  background-color: antiquewhite;
+}
+
+.nombre-admin{
+  position: relative;
+  bottom: -13px;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: antiquewhite;
+  display: flex;
+  background-color: #2f2519;
+
+}
+
+</style>
+
+</head>
+<body>
+
+    <main class="container">
+     <div class="shape">
+    </div>
+    
+
+        <header class="seccion-perfil-usuario">
+              <div class="perfil-usuario-avatar">
+              <img id="foto-perfil" src="http://localhost/multimedia/relleno/img-c9.png" alt="">
+              <input type="file" id="input-foto" accept="image/*" style="display: none;">
+              <label for="input-foto" class="boton-avatar"><i class="far fa-image"></i></label>  
+              </div>
+              
+        </header>
+        <div class="nombre-admin">
+          <p>Francisco toño</p>
+         </div>
+       <section class="perfil-usuario-footer">
+        <button class="editarPerfil" onclick="mostrarFormularioEdicion()">
+            <i class="fas fa-pencil-alt"></i>
+        </button>
+          <ul class="lista-datos">
+            <li><i class="lni lni-sketch"></i><span id="tipo">Cliente</span></li>
+            <li><i class="lni lni-phone"></i><span id="telefono">3117175899</span></li>
+            <li><i class="icono fas fa-briefcase"></i> <span id="Barrio">Albergue</span></li>
+            <li><i class="icono fas fa-map-marker-alt"></i><span id="ubicacion">cr 27 #15-32</span></li>
+            <li><i class="lni lni-home"></i><span id="ciudad">Guadalajara de Buga</span></li>
+          </ul>
+  
+       </section>
+      </main>
+
+  <script>
+
+     // cargar la foto con el ID 'input-foto'
+    document.getElementById('input-foto').addEventListener('change', function(event) {
+        var imagen = event.target.files[0];
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            document.getElementById('foto-perfil').src = e.target.result;
+        }
+        
+    reader.readAsDataURL(imagen);
+});
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtener el botón de editar perfil
+    var editarPerfilBtn = document.querySelector(".editarPerfil");
+    
+    // Agregar evento de clic al botón
+    editarPerfilBtn.addEventListener("click", function() {
+      // Obtener los elementos de información del perfil
+      var telefonoSpan = document.getElementById("telefono");
+      var barrioSpan = document.getElementById("Barrio");
+      var ubicacionSpan = document.getElementById("ubicacion");
+      var ciudadSpan = document.getElementById("ciudad");
+
+      // Habilitar la edición cambiando los elementos a inputs
+      telefonoSpan.innerHTML = '<input type="text" value="' + telefonoSpan.innerHTML + '">';
+      barrioSpan.innerHTML = '<input type="text" value="' + barrioSpan.innerHTML + '">';
+      ubicacionSpan.innerHTML = '<input type="text" value="' + ubicacionSpan.innerHTML + '">';
+      ciudadSpan.innerHTML = '<input type="text" value="' + ciudadSpan.innerHTML + '">';
+      
+      // Cambiar el icono del botón a "guardar"
+      editarPerfilBtn.innerHTML = '<i class="fas fa-save"></i>';
+      // Cambiar el evento del botón para guardar los cambios
+      editarPerfilBtn.removeEventListener("click", arguments.callee);
+      editarPerfilBtn.addEventListener("click", guardarCambios);
+    });
+
+    // Función para guardar los cambios
+    function guardarCambios() {
+      // Obtener los elementos editables
+      var telefonoInput = document.getElementById("telefono").querySelector("input");
+      var barrioInput = document.getElementById("Barrio").querySelector("input");
+      var ubicacionInput = document.getElementById("ubicacion").querySelector("input");
+      var ciudadInput = document.getElementById("ciudad").querySelector("input");
+
+      // Guardar los nuevos valores
+      var nuevoTelefono = telefonoInput.value;
+      var nuevoBarrio = barrioInput.value;
+      var nuevaUbicacion = ubicacionInput.value;
+      var nuevaCiudad = ciudadInput.value;
+
+      // Actualizar la información del perfil
+      document.getElementById("telefono").innerHTML = nuevoTelefono;
+      document.getElementById("Barrio").innerHTML = nuevoBarrio;
+      document.getElementById("ubicacion").innerHTML = nuevaUbicacion;
+      document.getElementById("ciudad").innerHTML = nuevaCiudad;
+
+      // Cambiar el botón de nuevo a "editar"
+      var editarPerfilBtn = document.querySelector(".editarPerfil");
+      editarPerfilBtn.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+      // Cambiar el evento del botón para editar nuevamente
+      editarPerfilBtn.removeEventListener("click", arguments.callee);
+      editarPerfilBtn.addEventListener("click", function() {
+        // Agregar aquí cualquier acción adicional necesaria para volver a la edición
+      });
+    }
+  });
+
+
+
+
+</script>
+</body>
+</html>
