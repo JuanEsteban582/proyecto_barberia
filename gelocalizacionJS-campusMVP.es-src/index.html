@@ -1,74 +1,77 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>acceder a la ubicacion del usuario </title>
+    <title>Mapa con marcador personalizado y ruta</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
     <style>
-        a {
-            color: #2E88C7;
-        }
+        #mapid { height: 500px; width: 100%; }
+        .marker-icon-red { filter: hue-rotate(0deg); } 
     </style>
-
-    <script>
-      
-        var posElt;
-       
-        var posLinkElt;
-
-
-        window.addEventListener('load', function(){
-            posElt = document.getElementById('Pos');
-            posLinkElt = document.querySelector('#PosLink > a');
-
-            // if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(geoposOK, geoposKO);
-            // }
-            // else {
-            // }
-        });
-
-        /** @parametro {GeolocationPosition} pos */
-        function geoposOK(pos) {
-            //Obtenemos latitud y longitud
-            var lat = pos.coords.latitude;
-            var long = pos.coords.longitude;
-            //Mostramos la posición
-            posElt.textContent = `${lat}, ${long}`;
-            //generamos enlace a la posición
-            posLinkElt.href = `https://maps.google.com/?q=${lat},${long}`;
-            posLinkElt.textContent = 'Mostrar tu posición en un mapa';
-        }
-
-        /** @param {GeolocationPositionError} err */
-        function geoposKO(err) {
-            console.warn(err.message);
-            let msg;
-            switch(err.code) {
-                case err.PERMISSION_DENIED:
-                    msg = "No nos has dado permiso para obtener tu posición";
-                    break;
-                case err.POSITION_UNAVAILABLE:
-                    msg = "Tu posición actual no está disponible";
-                    break;
-                 case err.TIMEOUT:
-                     msg = "No se ha podido obtener tu posición en un tiempo determinado";
-                     break;
-                 default:
-                     msg = "Error desconocido";
-                     break;
-            }
-            posElt.textContent = msg;
-        }
-
-
-    </script>
 </head>
 <body>
-    <div style="width:750px; margin:2em auto;">
-       
-        <p>Tu posición es: <span id="Pos">Desconocida</span></p>
-        <p id="PosLink"><a target="_blank"></a></p>
-    </div>
+    <h2 id="coordenadas">Tu ubicación actual: </h2>
+    <div id="mapid"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!--Ya no est afuncionando ese routing machine por seguridad 
+     -->
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script>
+        var map = L.map('mapid').setView([0, 0], 2); 
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+      
+            L.marker([lat, lon]).addTo(map)
+                .bindPopup("Aqui estas tú.")
+                .openPopup();
+
+            
+            var barberiaCoords = [3.9126708, -76.2983755]; 
+            var icon = L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            var barberiaMarcador = L.marker(barberiaCoords, {icon: icon}).addTo(map)
+                .bindPopup("Barbería")
+                .openPopup();
+
+           
+            barberiaMarcador._icon.classList.add("marker-icon-red");
+
+            //----actualiza las coordenadas de mi ubicacion ---
+            document.getElementById('coordenadas').textContent = "Latitud: " + lat + ", Longitud: " + lon;
+
+            map.setView([lat, lon], 13); // Ajusta la vista del mapa a la ubicación actual
+
+            // Añadir el control de rutas de Leaflet Routing Machine
+            L.Routing.control({
+                waypoints: [
+                    L.latLng(lat, lon),
+                    L.latLng(barberiaCoords[0], barberiaCoords[1])
+                ],
+                routeWhileDragging: true,
+                show: true,
+                geocoder: L.Control.Geocoder.nominatim(),
+                lineOptions: {
+                    styles: [{color: 'blue', opacity: 1, weight: 5}]
+                }
+            }).addTo(map);
+        }, function(error) {
+            console.error("Error al obtener la ubicación: " + error.message);
+        });
+    </script>
 </body>
 </html>
