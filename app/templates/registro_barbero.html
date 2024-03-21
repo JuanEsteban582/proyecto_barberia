@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro barberos</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/registro.css') }}">
+    
 </head>
 <body>
 
@@ -21,43 +21,43 @@
         <label for="cedula_barbero">Cedula del trabajador:</label>
         <input type="number" id="cedula"  class="campo" name="cedula_barberoP" class="ancho-full" 
         place holder="Cedula del trabajador"  required>
-
+        <br>
         <label for="nombre_barbero">Nombres del trabajador:</label>
         <input type="text" id="nombre"  class="campo" name="nombre_barberoP" class="ancho-full" 
         place holder="Nombre del trabajador"  required>
-
+        <br>
         <label for="apellidos_barbero">Apellidos del trabajador:</label>
         <input type="text" id="apellidos" name="apellidos_barberoP" class="campo" class="ancho-full" 
         place holder="Apellidos del trabajador" required>
-    
+        <br>
         <label for="celular_usuario">Celular del trabajador:</label>
         <input type="tel" id="celular" name="celular_barberoP" class="campo" class="ancho-full" 
         place holder="Celular del trabajador" required>
-
+        <br>
         <label for="ciudad_U">Ciudad:</label>
         <select id="ciudad" name="ciudad_barberoP" class="campo" class="ancho-full">
             <option value="Buga">Guadalajara de Buga</option>
             <option value="Bugalagrande">Bugalagrande</option>
             <option value="Santiago de cali">Santiago de cali</option>
         </select>
-
-    
+        <br>
+        
             <label for="f_nacimiento_U">Fecha de Nacimiento del trabajador:</label>
             <input type="date" id="f_nacimiento_barberoP" class="campo" class="ancho-full" 
             name="f_nacimiento_bP"  required>
-            
+            <br>
             <label for="correo_trabajador">Correo Electrónico del trabajador:</label>
             <input type="email" id="correo"class="campo" class="ancho-full" 
             name="correo_barberoP" required>
-        
+            <br>
             <label for="contrasena">Contraseña del trabajador:</label>
             <input type="password" id="contrasena" class="campo" class="ancho-full" 
             name="contrasena_barberoP" required>
-
+            <br>
             <label for="confir_contra">Confirmar Contraseña:</label>
             <input type="password" id="contrasena" class="campo" class="ancho-full"
             name="confir_contra_barberoP" required>
-        
+            <br>
     <div id="container_boton">
         <a href="/principal_propietario" class="btn-atras"> X </a>
         <button  type="submit" class="btn-accion">Registrarse</button>
