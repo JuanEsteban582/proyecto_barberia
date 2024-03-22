@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mapa con marcador personalizado y ruta</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <style>
+        #mapid { height: 500px; width: 100%; }
+        .marker-icon-red { filter: hue-rotate(0deg); } 
+    </style>
+</head>
+<body>
+    <h2 id="coordenadas">Tu ubicación actual: </h2>
+    <div id="mapid"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!--Ya no est afuncionando ese routing machine por seguridad 
+     -->
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script>
+        var map = L.map('mapid').setView([0, 0], 2); 
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+      
+            L.marker([lat, lon]).addTo(map)
+                .bindPopup("Aqui estas tú.")
+                .openPopup();
+
+            
+            var barberiaCoords = [3.9126708, -76.2983755]; 
+            var icon = L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            var barberiaMarcador = L.marker(barberiaCoords, {icon: icon}).addTo(map)
+                .bindPopup("Barbería")
+                .openPopup();
+
+           
+            barberiaMarcador._icon.classList.add("marker-icon-red");
+
+            //----actualiza las coordenadas de mi ubicacion ---
+            document.getElementById('coordenadas').textContent = "Latitud: " + lat + ", Longitud: " + lon;
+
+            map.setView([lat, lon], 13); // Ajusta la vista del mapa a la ubicación actual
+
+            // Añadir el control de rutas de Leaflet Routing Machine
+            L.Routing.control({
+                waypoints: [
+                    L.latLng(lat, lon),
+                    L.latLng(barberiaCoords[0], barberiaCoords[1])
+                ],
+                routeWhileDragging: true,
+                show: true,
+                geocoder: L.Control.Geocoder.nominatim(),
+                lineOptions: {
+                    styles: [{color: 'blue', opacity: 1, weight: 5}]
+                }
+            }).addTo(map);
+        }, function(error) {
+            console.error("Error al obtener la ubicación: " + error.message);
+        });
+    </script>
+</body>
+</html>

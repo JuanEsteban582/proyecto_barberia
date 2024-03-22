@@ -262,7 +262,53 @@ def perfil_propietario():
     else:
         return "Propietario no encontrado", 404
     
+
+@app.route('/subir_foto_perfil', methods=['POST'])
+def subir_foto_perfil():
+    if 'foto_perfil' not in request.files:
+        return 'No se seleccionó ninguna imagen', 400
+
+    file = request.files['foto_perfil']
+    if file.filename == '':
+        return 'No se seleccionó ninguna imagen', 400
+
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
     
+    email = session.get("usuario_id")
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    sql_update = f"UPDATE propietario SET foto_perfil = '{filename}' WHERE correo_P = '{email}'"
+    cursor.execute(sql_update)
+    conn.commit()
+
+    return redirect(url_for('cargar_foto'))
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+@app.route('/cargar_foto')
+def cargar_foto():
+    email = session.get("usuario_id")
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    sql_propietario = f"SELECT * FROM propietario WHERE correo_P='{email}'"
+    cursor.execute(sql_propietario)
+    datos_propietario = cursor.fetchone()
+
+    conn.commit()
+
+    if datos_propietario:
+        # Renderiza la plantilla con la foto de perfil actualizada
+        return render_template('perfiles/propi.html', datos_propietario=datos_propietario)
+    else:
+        return "Propietario no encontrado", 404
+
+
     
 """ 
 @app.route('/perfil_barberia')
@@ -484,66 +530,6 @@ def editar_propietario():
 
 
 
-
-
-
-
-#----------------------------------BARBERIA REGISTRO--------------------_----#
-@app.route('/barberia_registro', methods=['GET', 'POST'])
-def barberia_registro():
-    if request.method == 'POST':
-        nombre_barberia = request.form['nombre_barberia']
-        direccion_barberia = request.form['direccion_barberia']
-        ciudad_negocio = request.form['ciudad_negocio']
-        telefono_negocio = request.form['telefono_negocio']
-        pais_negocio = request.form['Pais_negocio']
-        departamento_negocio = request.form['departamento_negocio']
-        hora_apertura = request.form['hora_A']
-        hora_cierre = request.form['hora_C']
-
-        # Recuperar el correo electrónico del propietario de la sesión
-        correo_propietario = session.get('usuario_id')
-        if not correo_propietario:
-            return "El propietario no está registrado.", 404
-
-        # Crear el código único
-        codigo_unico = f"{nombre_barberia}-{ciudad_negocio}-{telefono_negocio}"
-
-        # Verificar si el código único ya existe en la tabla barberias
-        conn = mysql.connect()
-        cursor = conn.cursor()
-        cursor.execute(f"SELECT * FROM barberia WHERE pk_codigo_barberia = '{codigo_unico}'")
-        existencia = cursor.fetchone()
-
-        if existencia:
-            mensaje = "La barbería ya está registrada."
-            return render_template('barberia/barberiaR.html', mensaje=mensaje)
-        else:
-            # Registrar la barbería con el código único en la tabla barberias
-            cursor.execute("INSERT INTO barberia (nom_barberia, direccion, ciudad, telefono, correo, pais, departamento, pk_codigo_barberia, h_apertura, h_cierre) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (nombre_barberia, direccion_barberia, ciudad_negocio, telefono_negocio, correo_propietario, pais_negocio, departamento_negocio, codigo_unico, hora_apertura, hora_cierre))
-
-            # Obtener el ID del propietario
-            cursor.execute(f"SELECT pk_cedulaP FROM propietario WHERE correo_P = '{correo_propietario}'")
-            propietario_id = cursor.fetchone()
-
-            if propietario_id:
-                
-                cursor.execute("UPDATE propietario SET nom_barberia = %s, codigo_barberia = %s WHERE pk_cedulaP = %s", (nombre_barberia, codigo_unico, propietario_id[0]))
-
-                conn.commit()
-                conn.close()
-
-                mensaje = "La barbería se registró exitosamente."
-                return render_template('htmls_principal_page/principal_propietario.html', mensaje=mensaje)
-            else:
-                conn.close()
-                return "El propietario no está registrado.", 404
-
-    return render_template('barberia/barberiaR.html')
-
-
-
-
 @app.route('/Registro_barbero', methods=['GET','POST'])
 def registrar_barbero():
     if request.method == 'POST':
@@ -609,11 +595,172 @@ def registrar_barbero():
     return render_template('registro_barbero.html', mensaje_edad=mensaje_edad)
 
 
-#HORARIOS BARBERIA
-@app.route('/horarios_barberia')
-def horarios_barberia():
 
-    return render_template ('barberia/horarios.html')
+                                        #BARBERIA
+
+
+#----------------------------------BARBERIA REGISTRO--------------------_----#
+@app.route('/barberia_registro', methods=['GET', 'POST'])
+def barberia_registro():
+    if request.method == 'POST':
+        nombre_barberia = request.form['nombre_barberia']
+        direccion_barberia = request.form['direccion_barberia']
+        ciudad_negocio = request.form['ciudad_negocio']
+        telefono_negocio = request.form['telefono_negocio']
+        pais_negocio = request.form['Pais_negocio']
+        departamento_negocio = request.form['departamento_negocio']
+        hora_apertura = request.form['hora_A']
+        hora_cierre = request.form['hora_C']
+
+        # Recuperar el correo electrónico del propietario de la sesión
+        correo_propietario = session.get('usuario_id')
+        if not correo_propietario:
+            return "El propietario no está registrado.", 404
+
+        # Crear el código único
+        codigo_unico = f"{nombre_barberia}-{ciudad_negocio}-{telefono_negocio}"
+
+        # Verificar si el código único ya existe en la tabla barberias
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT * FROM barberia WHERE pk_codigo_barberia = '{codigo_unico}'")
+        existencia = cursor.fetchone()
+
+        if existencia:
+            mensaje = "La barbería ya está registrada."
+            return render_template('barberia/barberiaR.html', mensaje=mensaje)
+        else:
+            # Registrar la barbería con el código único en la tabla barberias
+            cursor.execute("INSERT INTO barberia (nom_barberia, direccion, ciudad, telefono, correo, pais, departamento, pk_codigo_barberia, h_apertura, h_cierre) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (nombre_barberia, direccion_barberia, ciudad_negocio, telefono_negocio, correo_propietario, pais_negocio, departamento_negocio, codigo_unico, hora_apertura, hora_cierre))
+
+            # Obtener el ID del propietario
+            cursor.execute(f"SELECT pk_cedulaP FROM propietario WHERE correo_P = '{correo_propietario}'")
+            propietario_id = cursor.fetchone()
+
+            if propietario_id:
+                
+                cursor.execute("UPDATE propietario SET nom_barberia = %s, codigo_barberia = %s WHERE pk_cedulaP = %s", (nombre_barberia, codigo_unico, propietario_id[0]))
+
+                conn.commit()
+                conn.close()
+
+                mensaje = "La barbería se registró exitosamente."
+                return redirect(url_for('cargar_barberos'))
+            else:
+                conn.close()
+                return "El propietario no está registrado.", 404
+
+    return render_template('barberia/barberiaR.html')
+
+
+                            
+                            #PERFIL BARBERIA 
+
+@app.route('/perfil_barberia')
+def perfil_barberia():
+    if not session.get("logueado"):
+        return render_template('login.html')
+
+    email_propietario = session.get("usuario_id")
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+   
+    sql_barberia = f"SELECT * FROM barberia WHERE correo='{email_propietario}'"
+    cursor.execute(sql_barberia)
+    datos_barberia = cursor.fetchone()
+
+    conn.commit()
+    conn.close()
+
+    if datos_barberia:
+    
+        return render_template('perfiles/perfil_barberia.html', datos_barberia=datos_barberia)
+    else:
+        return "Barbería no encontrada", 404
+
+
+@app.route('/registrar_horarios', methods=['GET','POST'])
+def registrar_horarios():
+    
+    if 'usuario_id' not in session:
+        return "El propietario no está registrado.", 404
+    
+    
+    correo_propietario = session['usuario_id']
+    
+    
+    if request.method == 'POST':
+        
+        dia_inicio = request.form['dia_inicio']
+        dia_fin = request.form['dia_fin']
+        hora_inicio = request.form['hora_inicio']
+        hora_fin = request.form['hora_fin']
+        
+        
+        if hora_inicio >= hora_fin:
+            return "La hora de inicio debe ser antes de la hora de fin.", 400
+        
+        
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT pk_cedulaP FROM propietario WHERE correo_P = %s", (correo_propietario,))
+        resultado = cursor.fetchone()
+        
+        if not resultado:
+            return "No se encontró la cédula del propietario.", 404
+        
+        cedula_propietario = resultado[0]
+        
+        
+        cursor.execute("INSERT INTO horario_disponible (pk_id_horario, dia_inicio, dia_fin, hora_inicio, hora_fin) VALUES (%s, %s, %s, %s, %s)",
+                       (cedula_propietario, dia_inicio, dia_fin, hora_inicio, hora_fin))
+        
+        conn.commit()
+        
+        return render_template('barberia/registrar_horario.html', message="Horarios registrados exitosamente.")
+    
+    
+    return render_template('barberia/registrar_horario.html')
+
+
+
+
+@app.route('/mostrar_horarios_barberia')
+def horarios_barberia():
+   
+    if not session.get("logueado"):
+        return render_template('login.html')
+
+    email_propietario = session.get("usuario_id")
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    
+    
+    
+    
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    
+
+    cursor.execute("SELECT pk_cedulaP FROM propietario WHERE correo_P = %s", (email_propietario,))
+    resultado = cursor.fetchone()
+    
+    if not resultado:
+        return "No se encontró la cédula del propietario.", 404
+    
+    cedula_propietario = resultado[0]
+    print(cedula_propietario)
+
+    cursor.execute("SELECT * FROM horario_disponible WHERE pk_id_horario = %s", (cedula_propietario,))
+    horarios = cursor.fetchall()
+    
+
+    cursor.close()
+    conn.close()
+    
+    
+    return render_template('barberia/mostrar_horario.html', horarios=horarios)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port="5080")

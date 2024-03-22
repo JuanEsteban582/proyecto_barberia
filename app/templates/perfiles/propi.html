@@ -143,8 +143,15 @@
           <div class="perfil-usuario-header">
 
                   <div class="perfil-usuario-avatar">
-                    <img id="foto-perfil" src="http://localhost/multimedia/relleno/img-c9.png" alt="">
-                    <input type="file" id="input-foto" accept="image/*" style="display: none;">
+                    {% if datos_propietario[13] %}
+    <img id="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_propietario[13]) }}" alt="">
+{% else %}
+    <img id="foto-perfil" src="{{ url_for('static', filename='default_profile_image.jpg') }}" alt="">
+{% endif %}
+                    <form action="/subir_foto_perfil" method="POST" enctype="multipart/form-data">
+                      <input type="file" name="foto_perfil" id="input-foto" accept="image/*" style="display: none;">
+                      <button type="submit" >Subir foto de perfil</button>
+                  </form>
                     <label for="input-foto" class="boton-avatar"><i class="far fa-image"></i></label>  
                   </div>
 
@@ -156,6 +163,7 @@
          <div class= lista-datos-usuario>
           <ul class="lista-datos">
             <p>Cedula: {{ datos_propietario[0] }}</p>
+
             <li><i class="lni lni-sketch"></i><span id="tipo">Propietario</span></li>
 
             <li><i class="lni lni-phone"></i><span id="telefono">{{ datos_propietario[4] }}</span></li>
