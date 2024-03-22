@@ -36,6 +36,7 @@ main {
 
 /* ---------- Etiquetas HTML ---------- */
 
+
 h2#tlo {
     color: #eda05a;
     text-align: center;
@@ -52,6 +53,7 @@ section#info-barberos {
 
 
 /* ---------- Clases ---------- */
+
 button.btn-actividad-barbero{
     background: #d35b22;
     border: transparent;
