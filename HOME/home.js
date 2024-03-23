@@ -50,7 +50,7 @@ require([
                }
             },
             popupTemplate: {
-               title: "Tu ubicación",
+               title: "Tu Estas aqui",
                content: "Aquí está tu ubicación actual."
             }
            });
