@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2f2519;
+}
+
+.container {
+    
+    height: 600px; /* Ajusta la altura según tus necesidades */
+    width: 350px; /* Ajusta el ancho según tus necesidades */
+    margin: auto; /* Centra horizontalmente */
+    box-shadow: 0 10px 20px #000;
+    background: #2f2519;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+.shape {
+    background-color: #cc6c3A;
+    height: 200px;
+    width: 500px;
+    margin-right: 30px;
+    position: relative;
+    top: -80px;
+    box-shadow: 0 2px 15px #000;
+    transform: rotate(26deg);
+    z-index: 0;
+}
+  
+
+
+
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="estilos-login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="login.js"></script>
+    <title>Iniciar sesión</title>
+</head>
+<body>
+    <main>
+        <div id="contenedor-logo">
+            <div id="logo"></div>
+        </div>
+        <div id="datos-form">
+            <form action="" method="post" id="datos-log">
+                <div id="campos">
+
+                    <select name="rol" id="rol">
+                        <option value="" selected disabled>Elige tu rol</option>
+                        <option value="cliente">CLIENTE</option>
+                        <option value="barbero">BARBERO</option>
+                        <option value="propietario">PROPIETARIO</option>
+                    </select>
+                    <div id="rol-error" class="mensaje-error"></div>
+
+                    <input type="text" name="email" id="email" placeholder="ejemplo@ejemplo.com" autocomplete="off" required>
+                    <div id="email-error" class="mensaje-error"></div>
+
+                    <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+                    <div id="contra-error" class="mensaje-error"></div>
+
+                </div>
+
+                <button type="submit" id="btn" href="../HOME/home.html">Ingresar</button>
+            </form>
+
+            <div id="texto-cuenta">
+                <a href="../REGISTRO/registro.html"><p>Crear cuenta</p></a>
+            </div>
+
+            <div id="texto-contra">
+                <a href="../RESTAURAR/restaurar.html"><p>Olvidé mi contraseña</p></a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
