@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=initial-scale=1.0">
+    <link rel="stylesheet" href="estilos-registro-barberia.css">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <script src="validaciones-momento-1.js"></script>
+    <script src="validaciones-momento-2.js"></script>
+    <script src="validaciones-momento-3.js"></script>
+    <title>Registro de barbería</title>
+</head>
+<body>
+    <main>
+        <div id="volver">
+            <a href="../LOGIN/login.html">
+                <i class="lni lni-arrow-left"></i>
+            </a>
+        </div>
+        
+        <div id="contenedor-logo">
+            <div id="logo"></div>
+        </div>
+
+        <div id="datos-form">
+
+            <div id="txt">
+
+                <p>Registro de tu barbería</p>
+
+            </div>
+            
+            <form action="" method="post" id="datos-registro">
+    
+                    <div id="momento-1">
+                        <div class="campos">
+                            <input type="text" name="nombre" id="nombre" placeholder="Nombre de tu negocio" minlength="3" maxlength="25" autocomplete="off">
+                            <div id="nombre-error" class="mensaje-error"></div>
+
+                            <input type="text" name="apellidos" id="direccion" placeholder="Dirección de tu negocio" minlength="3" maxlength="25" autocomplete="off">
+                            <div id="direccion-error" class="mensaje-error"></div>
+
+                            <input type="tel" name="cedula" id="celular" placeholder="Número celular del negocio" maxlength="10" autocomplete="off">
+                            <div id="celular-error" class="mensaje-error"></div>
+                        </div>
+                        <button id="btn-siguiente-1" type="button">Siguiente</button>
+                    </div>
+                    
+                    <div id="momento-2" class="hidden">
+                        <div class="campos">
+                            <select name="pais" id="pais">
+                                <option value="" selected>Elige tu país</option>
+                                <option value="colombia">COLOMBIA</option>
+                            </select>
+                            <div id="pais-error" class="mensaje-error"></div>
+
+                            <select name="departamento" id="departamento">
+                                <option value="" selected>Elige tu departamento</option>
+                                <option value="antioquia">ANTIOQUIA</option>
+                                <option value="valle-del-cauca">VALLE DEL CAUCA</option>
+                                <option value="bogota">BOGOTÁ</option>
+                            </select>
+                            <div id="departamento-error" class="mensaje-error"></div>
+
+                            <select name="ciudad" id="ciudad">
+                                <option value="" selected>Elige tu ciudad</option>
+                                <option value="buga">BUGA</option>
+                                <option value="tulua">TULUÁ</option>
+                                <option value="cali">CALI</option>
+                            </select>
+                            <div id="ciudad-error" class="mensaje-error"></div>
+                        </div>
+
+                        <div class="enlaces">
+
+                            <span id="atras-momento-2" class="atras">Atrás</span>
+                            <button id="btn-siguiente-2" type="button">Siguiente</button>
+
+                        </div>
+                    </div>
+
+                    <div id="momento-3" class="hidden">
+                        <div class="campos">
+
+                            <input type="time" name="" id="hora-apertura" placeholder="Hora apertura">
+                            <div id="apertura-error" class="mensaje-error"></div>
+                            <span class="aclaracion">* Hora de apertura de tu negocio</span>
+
+                            <input type="time" name="" id="hora-cierre" placeholder="Hora cierre">
+                            <div id="cierre-error" class="mensaje-error"></div>
+                            <span class="aclaracion">* Hora de cierre de tu negocio </span>
+                        </div>
+
+                        <div id="aviso-error" class="mensaje-error"></div>
+                        <div class="enlaces">
+
+                            <span id="atras-momento-3" class="atras">Atrás</span>
+                            <button type="submit" id="btn-submit">Registrar barbería</button>
+
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>       
