@@ -1,53 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
-
-*{
-    margin: 0;
-    padding: 0;
+* {
     box-sizing: border-box;
     text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
+    transition: all 0.3s ease-in-out;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
 }
 
 body{
-    margin-left: 80px;
-    margin-top: 80px;
-    transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    min-height: 100vh;
+    background: #2f2519;
 }
 
-main{
-    padding: 20px;
+main {
+    padding: 0 20px;
 }
 
 header{
+    height: 50px;
+    position: relative;
     width: 100%;
-    height: 80px;
-    background: #f5f5f5;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 200;
 }
 
-.icon__menu{
-    width: 50px;
-    height: 100%;
+div#icono-menu {
+    align-items: center;
     display: flex;
+    height: 50px;
     justify-content: center;
-    align-items: center;
-    transform: translateX(10px);
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 50px;
 }
 
-.icon__menu i{
+div#icono-menu i{
+    color: #d55025;
     font-size: 20px;
-    cursor: pointer;
-    position: absolute;
 }
 
 .menu__side{
     width: 80px;
     height: 100%;
-    background: rgb(225, 174, 78);
+    background: #413423;;
     position: fixed;
     top: 0;
     left: 0;
@@ -56,7 +52,7 @@ header{
     z-index: 300;
     overflow: hidden;
     overflow-y: scroll;
-    border-right: 20px solid rgb(225, 174, 78);
+    border-right: 20px solid #413423;;
     transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
@@ -72,26 +68,26 @@ header{
 }
 
 
-.name__page{
+div#icono-cerrar-menu{
     padding: 20px 30px;
     display: flex;
     align-items: center;
     margin-top: 10px;
 }
 
-.name__page i{
+div#icono-cerrar-menu i{
     width: 20px;
     margin-right: 20px;
 }
 
 .options__menu{
-    padding: 20px 30px;
+    padding: 0 30px;
     position: absolute;
     top: 80px;
 }
 
 .options__menu a{
-    color: #ffffffb2;
+    color: #fff6e6;
     cursor: default;
     display: block;
     position: relative;
@@ -99,11 +95,10 @@ header{
 }
 
 .options__menu a:hover{
-    color: rgb(255, 255, 255);
+    color: #eda05a;
 }
 
 .options__menu .option{
-    padding: 20px 0px;
     display: flex;
     align-items: center;
     position: relative;
@@ -121,14 +116,14 @@ header{
 }
 
 a.selected{
-    color: #fff;
+    color: #eda05a;
 }
 
 .selected:before{
     content: '';
     width: 3px;
     height: 80%;
-    background: white;
+    background: #eda05a;
     position: absolute;
     top: 10%;
     left: -30px;
@@ -144,14 +139,53 @@ a.selected{
     width: 250px;
 }
 
+@media screen and (min-width: 700px) {
+    
+}
 
-@media screen and (max-width: 760px){
+@media screen and (max-width: 1000px){
     .body_move{
         margin-left: 0px;
     }
-
     .menu__side_move{
         width: 80px;
         left: -80px;
+    }
+    div#icono-menu {
+        height: 55px;
+        width: 55px;
+    }
+    div#icono-menu i{
+        font-size: 25px;
+    }
+}
+
+@media screen and (min-width: 1000px){
+    .body_move{
+        margin-left: 250px;
+    }
+    body{
+        margin-left: 80px;
+        transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+    div#icono-menu {
+        height: 60px;
+        position: relative;
+        transform: translateX(10px);
+        width: 60px;
+    }
+    div#icono-menu i{
+        cursor: pointer;
+        font-size: 30px;
+        position: absolute;
+    }
+    div#icono-cerrar-menu {
+        display: none;
+    }
+    header {
+        height: 60px;
+    }
+    main {
+        padding: 0 20px;
     }
 }
