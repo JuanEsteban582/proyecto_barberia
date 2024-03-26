@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="home-propietario.css">
+    <link rel="stylesheet" href="estilos-menu.css">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="home-propietario.js"></script>
+    <script src="menu.js"></script>
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
+    <title>Inicio</title>
+</head>
+<body id="body">
+    <header>
+        
+        <div id="icono-menu">
+            <i class="lni lni-menu" id="btn-menu"></i>
+        </div>
+        
+    </header>
+    <nav>
+
+        <div id="menu-lateral" class="menu__side">
+    
+            <div class="icono-cerrar-menu" id="icono-cerrar-menu">
+                <i class="lni lni-close" id="btn-cerrar-menu"></i>
+            </div>
+    
+            <div class="options__menu">	
+    
+                <a href="#" class="selected">
+                    <div class="option">
+                        <i class="fas fa-home" title="Inicio"></i>
+                        <h4>Inicio</h4>
+                    </div>
+                </a>
+    
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-user" title="Perfil"></i>
+                        <h4>Perfil</h4>
+                    </div>
+                </a>
+                
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-building-user" title="Perfil-Barberia"></i>
+                        <h4>Perfil Barbería</h4>
+                    </div>
+                </a>
+    
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-calendar-days"title="Calendario"></i>
+                        <h4>Calendario</h4>
+                    </div>
+                </a>
+    
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-city" title="Notificaciones"></i>
+                        <h4>Notificaciones</h4>
+                    </div>
+                </a>
+    
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-right-to-bracket" title="cerrar_sesion"></i>
+                        <h4>Cerrar sesión</h4>
+                    </div>
+                </a>
+    
+            </div>
+    
+        </div>
+
+    </nav>
+    <main>
+        <h2 id="tlo">Barberos asociados</h2>
+        <button id="btn-agregar-barbero" class="esconder" type="button">Agregar barbero</button>
+        <section id="info-barberos">
+            <div class="tarjeta-barbero">
+
+                <figure class="contenedor-img-barbero">
+                    <img class="img-barbero" src="img/icono-usuario.png" alt="icono usuario">
+                </figure>
+
+                <div class="contenedor-datos-barbero">
+                    <p class="nom-barbero">Juan Esteban Dominguez Rivera</p>
+                    <button class="btn-actividad-barbero" type="button">Ver actividad</button>
+                </div>
+                
+                <button class="btn-eliminar-barbero esconder" type="button"><i class="lni lni-trash-can"></i></button>
+
+            </div>
+
+            <div class="tarjeta-barbero">
+
+                <figure class="contenedor-img-barbero">
+                    <img class="img-barbero" src="img/icono-usuario.png" alt="icono usuario">
+                </figure>
+
+                <div class="contenedor-datos-barbero">
+                    <p class="nom-barbero">Juan Esteban Dominguez Rivera</p>
+                    <button class="btn-actividad-barbero" type="button">Ver actividad</button>
+                </div>
+
+                <button class="btn-eliminar-barbero esconder" type="button"><i class="lni lni-trash-can"></i></button>
+
+            </div>
+            
+        </section>
+        <button id="btn-administrar-barberos" type="button">Administrar barberos</button>
+    </main>
+</body>
+</html>
