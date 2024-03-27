@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=initial-scale=1.0">
-    <link rel="stylesheet" href="estilos-registro-barberia.css">
+    <link rel="stylesheet" href="estilos-registro-barbero.css">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <script src="validaciones-momento-1.js"></script>
     <script src="validaciones-momento-2.js"></script>
     <script src="validaciones-momento-3.js"></script>
-    <title>Registro de barbería</title>
+    <title>Registro de barbero</title>
 </head>
 <body>
     <main>
         <div id="volver">
-            <a href="../LOGIN/login.html">
+            <a href="../HOME-PROPIETARIO/home-propietario.html">
                 <i class="lni lni-arrow-left"></i>
             </a>
         </div>
@@ -26,7 +26,7 @@
 
             <div id="txt">
 
-                <p>Ingresa la información de tu barbería</p>
+                <p>Ingresa la información del barbero</p>
 
             </div>
             
@@ -37,25 +37,23 @@
                             <input type="text" name="nombre" id="nombre" placeholder="Nombre" minlength="3" maxlength="25" autocomplete="off">
                             <div id="nombre-error" class="mensaje-error"></div>
 
-                            <input type="text" name="apellidos" id="direccion" placeholder="Dirección" minlength="3" maxlength="25" autocomplete="off">
-                            <div id="direccion-error" class="mensaje-error"></div>
+                            <input type="text" name="apellidos" id="apellidos" placeholder="Apellido" minlength="3" maxlength="25" autocomplete="off">
+                            <div id="apellidos-error" class="mensaje-error"></div>
 
-                            <input type="tel" name="cedula" id="celular" placeholder="Número celular del negocio" maxlength="10" autocomplete="off">
-                            <div id="celular-error" class="mensaje-error"></div>
+                            <input type="text" name="cedula" id="cedula" placeholder="Número de identificación" minlength="6" maxlength="12" autocomplete="off">
+                            <div id="cedula-error" class="mensaje-error"></div>
+
+                            <input type="date" name="f_nacimiento" id="f_nacimiento">
+                            <div id="f_nacimiento-error" class="mensaje-error"></div>
+                            <span class="aclaracion">* Fecha de nacimiento</span>
                         </div>
                         <button id="btn-siguiente-1" type="button">Siguiente</button>
                     </div>
                     
                     <div id="momento-2" class="hidden">
                         <div class="campos">
-                            <select name="pais" id="pais">
-                                <option value="" selected>Elige tu país</option>
-                                <option value="colombia">COLOMBIA</option>
-                            </select>
-                            <div id="pais-error" class="mensaje-error"></div>
-
                             <select name="departamento" id="departamento">
-                                <option value="" selected>Elige tu departamento</option>
+                                <option value="" selected disabled>Elige tu departamento</option>
                                 <option value="antioquia">ANTIOQUIA</option>
                                 <option value="valle-del-cauca">VALLE DEL CAUCA</option>
                                 <option value="bogota">BOGOTÁ</option>
@@ -63,12 +61,15 @@
                             <div id="departamento-error" class="mensaje-error"></div>
 
                             <select name="ciudad" id="ciudad">
-                                <option value="" selected>Elige tu ciudad</option>
+                                <option value="" selected disabled>Elige tu ciudad</option>
                                 <option value="buga">BUGA</option>
                                 <option value="tulua">TULUÁ</option>
-                                <option value="cali">CALI</option>
+                                <option value="">CALI</option>
                             </select>
                             <div id="ciudad-error" class="mensaje-error"></div>
+
+                            <input type="tel" name="celular" id="celular" placeholder="Número de celular" maxlength="10">
+                            <div id="celular-error" class="mensaje-error"></div>
                         </div>
 
                         <div class="enlaces">
@@ -82,20 +83,27 @@
                     <div id="momento-3" class="hidden">
                         <div class="campos">
 
-                            <input type="time" name="" id="hora-apertura" placeholder="Hora apertura">
-                            <div id="apertura-error" class="mensaje-error"></div>
-                            <span class="aclaracion">* Hora de apertura de tu negocio</span>
+                            <input type="email" name="" id="correo" placeholder="Correo electrónico">
+                            <div id="correo-error" class="mensaje-error"></div>
 
-                            <input type="time" name="" id="hora-cierre" placeholder="Hora cierre">
-                            <div id="cierre-error" class="mensaje-error"></div>
-                            <span class="aclaracion">* Hora de cierre de tu negocio </span>
+                            <input type="password" name="" id="contrasena" placeholder="Contraseña">
+                            <ul id="requer-contra" class="mensaje-error">
+                                <li id="long-min">Debe tener mínimo 8 caracteres.</li>
+                                <li id="mayus">Debe contener al menos 1 letra mayúscula.</li>
+                                <li id="minus">Debe contener al menos 1 letra minúscula.</li>
+                                <!-- <li id="numero">Debe contener al menos 1 número.</li>
+                                <li id="car-especial">Debe contener al menos un caracter especial.</li> -->
+                            </ul>
+
+                            <input type="password" name="" id="confirmar-contrasena" placeholder="Confirmar contraseña">
+                            <div id="conf-contrasena-error" class="mensaje-error"></div>
                         </div>
 
                         <div id="aviso-error" class="mensaje-error"></div>
                         <div class="enlaces">
 
                             <span id="atras-momento-3" class="atras">Atrás</span>
-                            <button type="submit" id="btn-submit">Registrar barbería</button>
+                            <button type="submit" id="btn-submit">Registrar barbero</button>
 
                         </div>
                     </div>

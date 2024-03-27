@@ -5,6 +5,10 @@
     transition: all 0.3s ease-in-out;
 }
 
+a {
+    color: #fff6e6;
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -35,7 +39,6 @@ main {
 }
 
 /* ---------- Etiquetas HTML ---------- */
-
 
 h2#tlo {
     color: #eda05a;
