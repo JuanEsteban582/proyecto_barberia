@@ -6,21 +6,71 @@
   <title>perfil propietario</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="stylesheet" href="estilos-menu.css">
   <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
-
-
+  <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
+  <script src="menu.js"></script>
 </head>
-<body>
+<body id="body">
+  <header>
+        
+    <div id="icono-menu">
+        <i class="lni lni-menu" id="btn-menu"></i>
+    </div>
+    
+  </header>
+  <nav>
 
+    <div id="menu-lateral" class="menu__side">
+
+        <div class="icono-cerrar-menu" id="icono-cerrar-menu">
+            <i class="lni lni-close" id="btn-cerrar-menu"></i>
+        </div>
+
+        <div class="options__menu">	
+
+            <a href="#" class="selected">
+                <div class="option">
+                    <i class="fas fa-home" title="Inicio"></i>
+                    <h4>Inicio</h4>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="option">
+                    <i class="fa-solid fa-user" title="Perfil"></i>
+                    <h4>Perfil</h4>
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="option">
+                    <i class="fa-solid fa-building-user" title="Perfil Barberia"></i>
+                    <h4>Perfil Barbería</h4>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="option">
+                    <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
+                    <h4>Cerrar sesión</h4>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+  </nav>
     <main class="container">
 
-        <header class="seccion-perfil-usuario">
+        <div class="seccion-perfil-usuario">
               <div class="perfil-usuario-avatar">
               <img id="foto-perfil" src="http://localhost/multimedia/relleno/img-c9.png" alt="">
               <input type="file" id="input-foto" accept="image/*" style="display: none;">
               <label for="input-foto" class="boton-avatar"><i class="far fa-image"></i></label>  
               </div>
-        </header>
+        </div>
        
         <button class="editarPerfil" onclick="mostrarFormularioEdicion()">
             <i class="fas fa-pencil-alt"></i>
@@ -36,7 +86,6 @@
           
           <div class="lineaC"></div>
         
-          <button class="butonfab">Elegir Barbero </button>
         
             <div class="wrapper">
                
