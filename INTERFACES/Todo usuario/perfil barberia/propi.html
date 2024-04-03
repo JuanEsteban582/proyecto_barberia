@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>perfil propietario</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+
+
+</head>
+<body>
+
+    <main class="container">
+
+        <header class="seccion-perfil-usuario">
+              <div class="perfil-usuario-avatar">
+              <img id="foto-perfil" src="http://localhost/multimedia/relleno/img-c9.png" alt="">
+              </div>
+        </header>
+       
+  
+          <div class="alinFoto">
+        
+           <p class="nomperfil">BarberLocate</p>
+           
+          </div>
+          
+          <div class="lineaC"></div>
+        
+          <button class="butonfab">Elegir Barbero </button>
+        
+            <div class="wrapper">
+                <h1 class="horarios">Horarios</h1>
+              <div class="days">
+                  <div class="day">Lunes</div>
+                  <div class="day">Martes</div>
+                  <div class="day">Miércoles</div>
+                  <div class="day">Jueves</div>
+                  <div class="day">Viernes</div>
+                  <div class="day">Sábado</div>
+                  <div class="day">Domingo</div>
+              </div>
+                
+              <div class="hours">
+                  <div class="hour">10:00am-4:00pm </div>
+        
+                  <div class="hour">10:00am-4:00pm </div>
+        
+                  <div class="hour">10:00am-4:00pm </div>
+        
+                  <div class="hour">10:00am-4:00pm </div>
+          
+                  <div class="hour">10:00am-4:00pm </div>
+        
+                  <div class="hour">10:00am - 4:00pm </div>
+        
+                  <div class="hour">Cerrado </div>
+              </div>
+            </div>
+        
+            <div id="preservis">
+        
+                <div class="servipre">
+        
+                   <h1 class="servi">Servicios</h1> 
+           
+                   <div class="servicios">
+                     <div class="servicio">Afeitado</div>
+           
+                     <div class="servicio">Corte cabello</div>
+                 </div>
+                   
+           
+                   <div class="servicios">
+                     <div class="servicio">$10,000  </div>
+             
+                     <div class="servicio">$10,000  </div>
+                  </div>
+
+               </div>     
+   
+
+      </main>
+
+  <script>
+
+     // cargar la foto con el ID 'input-foto'
+    document.getElementById('input-foto').addEventListener('change', function(event) {
+        var imagen = event.target.files[0];
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            document.getElementById('foto-perfil').src = e.target.result;
+        }
+        
+    reader.readAsDataURL(imagen);
+});
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtener el botón de editar perfil
+    var editarPerfilBtn = document.querySelector(".editarPerfil");
+    
+    // Agregar evento de clic al botón
+    editarPerfilBtn.addEventListener("click", function() {
+      // Obtener los elementos de información del perfil
+      var telefonoSpan = document.getElementById("telefono");
+      var barrioSpan = document.getElementById("Barrio");
+      var ubicacionSpan = document.getElementById("ubicacion");
+      var ciudadSpan = document.getElementById("ciudad");
+
+      // Habilitar la edición cambiando los elementos a inputs
+      telefonoSpan.innerHTML = '<input type="text" value="' + telefonoSpan.innerHTML + '">';
+      barrioSpan.innerHTML = '<input type="text" value="' + barrioSpan.innerHTML + '">';
+      ubicacionSpan.innerHTML = '<input type="text" value="' + ubicacionSpan.innerHTML + '">';
+      ciudadSpan.innerHTML = '<input type="text" value="' + ciudadSpan.innerHTML + '">';
+      
+      // Cambiar el icono del botón a "guardar"
+      editarPerfilBtn.innerHTML = '<i class="fas fa-save"></i>';
+      // Cambiar el evento del botón para guardar los cambios
+      editarPerfilBtn.removeEventListener("click", arguments.callee);
+      editarPerfilBtn.addEventListener("click", guardarCambios);
+    });
+
+    // Función para guardar los cambios
+    function guardarCambios() {
+      // Obtener los elementos editables
+      var telefonoInput = document.getElementById("telefono").querySelector("input");
+      var barrioInput = document.getElementById("Barrio").querySelector("input");
+      var ubicacionInput = document.getElementById("ubicacion").querySelector("input");
+      var ciudadInput = document.getElementById("ciudad").querySelector("input");
+
+      // Guardar los nuevos valores
+      var nuevoTelefono = telefonoInput.value;
+      var nuevoBarrio = barrioInput.value;
+      var nuevaUbicacion = ubicacionInput.value;
+      var nuevaCiudad = ciudadInput.value;
+
+      // Actualizar la información del perfil
+      document.getElementById("telefono").innerHTML = nuevoTelefono;
+      document.getElementById("Barrio").innerHTML = nuevoBarrio;
+      document.getElementById("ubicacion").innerHTML = nuevaUbicacion;
+      document.getElementById("ciudad").innerHTML = nuevaCiudad;
+
+      // Cambiar el botón de nuevo a "editar"
+      var editarPerfilBtn = document.querySelector(".editarPerfil");
+      editarPerfilBtn.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+      // Cambiar el evento del botón para editar nuevamente
+      editarPerfilBtn.removeEventListener("click", arguments.callee);
+      editarPerfilBtn.addEventListener("click", function() {
+        // Agregar aquí cualquier acción adicional necesaria para volver a la edición
+      });
+    }
+  });
+
+  function mostrarOpciones() {
+    var opciones = document.getElementById('opciones-adicionales');
+    if (opciones.style.display === 'none' || opciones.style.display === '') {
+        opciones.style.display = 'block';
+    } else {
+        opciones.style.display = 'none';
+    }
+}
+
+
+
+</script>
+</body>
+</html>

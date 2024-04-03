@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.container {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #2f2519;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+  
+.seccion-perfil-usuario{
+  position: absolute;
+  top: 4%;
+}
+
+.perfil-usuario-avatar {
+    width: 100px;
+    height: 100px;
+    background-image: url(profile-icon.jpg);
+    background-size: cover;
+    border-radius: 12%;
+}
+
+.perfil-usuario-avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 12%;
+}
+
+
+
+.alinFoto{
+  position:absolute;
+  bottom: 78%;
+}
+
+  .nomperfil{
+    color: #fff6e6;
+    font-size: 1.4rem;
+    height: 0;
+  }
+
+  .lineaC{
+    position: absolute;
+    width: 500px;
+    height: 2px;
+    background-color: #cc6c3A;
+    bottom: 73%;
+  }
+ 
+  .butonfab{
+    position: absolute;
+    width: 40%;
+    font-size: 1.3rem;
+    bottom: 68%;
+    color: #fff6e6;
+    background-color: #d55025;
+    border-radius: 4px;
+    border: none;
+}
+
+  
+  .wrapper {
+    position: absolute;
+    display: flex;
+    top: 48%;
+    color: antiquewhite;
+    
+  }
+  
+  
+  .day, .hour {
+    padding: 6px;
+    border-bottom: 0px solid #ccc;
+    color: aliceblue;
+  }
+  
+  .day:last-child, .hour:last-child {
+    border-bottom: none;
+  }
+
+ .horarios{
+  position: absolute;
+  display: flex;
+  font-size: 1.12rem;
+  bottom: 97%;
+  left: 30%;
+
+ }
+
+
+
+  #preservis{
+    font-size: 1.17rem;
+    position: absolute;
+    display: flex;
+    top: 87%;
+    color: antiquewhite;
+  }
+
+ .servipre {
+  display: flex;
+  left: 14px;
+  height: 0;
+ 
+  
+}
+
+
+.precios, .servicio {
+  padding: 6px;
+  border-bottom: 0px solid #ccc;
+  color: aliceblue;
+}
+
+
+.servicios{
+font-size: 1.0rem;
+top: 80px;
+height: 0;
+
+}
+
+.servi{
+  position: absolute;
+  font-size: 1.12rem;
+  bottom: 10%;
+  left: 30%;
+}
+
+ 
+/* Media query para pantallas de computadora */
+@media screen and (min-width: 768px) {
+  .container {
+      padding: 0 35%; /* Ajusta el espacio alrededor del contenedor */
+      
+  }
+  
+  .perfil-usuario-avatar {
+      width: 140px; /* Ajusta el tamaño del avatar */
+      height: 140px;
+  }
+  
+  .nombre-admin {
+      font-size: 1.8rem; 
+  }
+  
+  .lista-datos {
+      left: 50%; 
+      transform: translateX(-50%);
+  }
+
+
+  .butonfab{
+    position: absolute;
+    width: 15%;
+    font-size: 1.3rem;
+    bottom: 60%;
+    border-radius: 5px;
+  }
+
+  
+  .lineaC{
+    bottom: 66%;
+  }
+  
+  .alinFoto{
+    bottom: 73%;
+  }
+
+  .seccion-perfil-usuario{
+    position: absolute;
+    top: 2%;
+  }
+}
+
+
+
