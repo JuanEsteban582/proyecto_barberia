@@ -21,7 +21,11 @@ main {
 header{
     height: 50px;
     position: relative;
+<<<<<<< HEAD
     width: 100%;
+=======
+    width: 20%;
+>>>>>>> 2b57bd9013277521818ef4876817c9f757824da4
 }
 
 div#icono-menu {

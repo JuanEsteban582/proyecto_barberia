@@ -4,7 +4,12 @@
     box-sizing: border-box;
 }
 
-
+#foto-perfil {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+  height: 100%; /* Asegura que la imagen ocupe todo el alto del contenedor */
+  object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor sin distorsionarse */
+  border-radius: 12px;
+}
 
 
 .container {
@@ -20,6 +25,12 @@
     
 }
 
+.enviarf {
+  position: absolute;
+  top: 50%; /* Ajusta la posición vertical del botón */
+  left: 80%; /* Ajusta la posición horizontal del botón */
+  transform: translate(-50%, -50%); /* Centra el botón */
+}
 .seccion-perfil-usuario {
     align-items: center;
     justify-content: center;
@@ -98,11 +109,12 @@
    display: flex;
    flex-wrap: wrap;
    padding: 1.5rem 2rem;
-    font-size: 1.5rem;
+   font-size: 1.5rem;
     background-color: #2f2519;
     padding-top:  40%; 
     flex-direction: column;
-    width: 100%
+    width: 100%;
+    
 }
   
 
@@ -164,3 +176,6 @@
   }
 
 }
+
+
+

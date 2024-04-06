@@ -58,6 +58,7 @@ div#volver {
     left: 20px;
     top: 20px;
     width: 50px;
+    display: block;
 }
 
     div#volver i {
@@ -147,6 +148,7 @@ main {
     main {
         height: 100vh;
     }
+   
 }
 @media screen and (min-width: 1000px) {
     button {

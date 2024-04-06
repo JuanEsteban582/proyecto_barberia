@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/registro.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/estilos-registro-barbero.css') }}">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     
     <script src="{{ url_for('static', filename='js/registro/validaciones_momento-1.js') }}"></script>
     <script src="{{ url_for('static', filename='js/registro/validaciones_momento-2.js') }}"></script>
     <script src="{{ url_for('static', filename='js/registro/validaciones_momento-3.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
     
     
     <title>Bienvenido Registrate</title>
@@ -22,7 +23,9 @@
         </div>
         
         <div id="contenedor-logo">
-            <div id="logo"></div>
+            <div id="logo">
+                <img  src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo_barber_locate">
+            </div>
         </div>
 
         <div id="datos-form">

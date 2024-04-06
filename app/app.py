@@ -542,7 +542,7 @@ def registrar_barbero():
         f_nacimiento_barbero = request.form['f_nacimiento_bP']
         contrasena = request.form['contrasena_barberoP']
         confir_contrasenabP = request.form['confir_contra_barberoP']
-
+        bdepartamento = request.form['departamento_barberoP']
         conn = mysql.connect()
         cursor = conn.cursor()
 
@@ -578,8 +578,8 @@ def registrar_barbero():
                 codigo_perteneciente = f"{cedula_propietario}"
         
         
-                sql_insert = "INSERT INTO barberos (fk_cedulaB, bnombre, apellido, bcorreo, bcelular, bciudad, bf_nacimiento, bcontrasena, codigo_perteneciente) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                cursor.execute(sql_insert, (cedula_barbero, Nombre_barbero, Apellidos_barbero, correo_barbero, celular_barbero, ciudad_barbero, f_nacimiento_barbero, contrasena, codigo_perteneciente))
+                sql_insert = "INSERT INTO barberos (fk_cedulaB, bnombre, apellido, bcorreo, bcelular, bciudad, bf_nacimiento, bcontrasena, rol, codigo_perteneciente, bdepartamento) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s)"
+                cursor.execute(sql_insert, (cedula_barbero, Nombre_barbero, Apellidos_barbero, correo_barbero, celular_barbero, ciudad_barbero, f_nacimiento_barbero, contrasena,"barbero", codigo_perteneciente, bdepartamento ))
      
                 cursor.execute("UPDATE propietario SET codigo_perteneciente = %s WHERE pk_cedulaP = %s", (codigo_perteneciente, cedula_propietario))
         
@@ -680,15 +680,38 @@ def perfil_barberia():
         return "Barbería no encontrada", 404
 
 
+
+@app.route('/subir_foto_barberia', methods=['POST'])
+def subir_foto_barberia():
+    if 'foto_perfil' not in request.files:
+        return 'No se seleccionó ninguna imagen', 400
+
+    file = request.files['foto_perfil']
+    if file.filename == '':
+        return 'No se seleccionó ninguna imagen', 400
+
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    email = session.get("usuario_id")
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    sql_update = f"UPDATE barberia SET imagenb = '{filename}' WHERE correo='{email}'"
+    cursor.execute(sql_update)
+    conn.commit()
+
+    return redirect(url_for('perfil_barberia'))
+
+
+
 @app.route('/registrar_horarios', methods=['GET','POST'])
 def registrar_horarios():
     
     if 'usuario_id' not in session:
         return "El propietario no está registrado.", 404
     
-    
     correo_propietario = session['usuario_id']
-    
     
     if request.method == 'POST':
         
@@ -697,10 +720,8 @@ def registrar_horarios():
         hora_inicio = request.form['hora_inicio']
         hora_fin = request.form['hora_fin']
         
-        
         if hora_inicio >= hora_fin:
             return "La hora de inicio debe ser antes de la hora de fin.", 400
-        
         
         conn = mysql.connect()
         cursor = conn.cursor()
@@ -712,7 +733,15 @@ def registrar_horarios():
         
         cedula_propietario = resultado[0]
         
+        # Verifica si ya existen horarios registrados para el propietario
+        cursor.execute("SELECT COUNT(*) FROM horario_disponible WHERE pk_id_horario = %s", (cedula_propietario,))
+        count = cursor.fetchone()[0]
         
+        if count > 0:
+            # Si ya existen horarios, muestra un mensaje al usuario
+            return "La barbería ya tiene horarios registrados. Ve al perfil de la barbería y actualízalos.", 400
+        
+        # Si no existen horarios, procede con la inserción
         cursor.execute("INSERT INTO horario_disponible (pk_id_horario, dia_inicio, dia_fin, hora_inicio, hora_fin) VALUES (%s, %s, %s, %s, %s)",
                        (cedula_propietario, dia_inicio, dia_fin, hora_inicio, hora_fin))
         
@@ -720,11 +749,15 @@ def registrar_horarios():
         
         return render_template('barberia/registrar_horario.html', message="Horarios registrados exitosamente.")
     
-    
     return render_template('barberia/registrar_horario.html')
 
 
 
+
+
+
+
+# lo de mostrar los horarios lo haremos con los clientes  
 
 @app.route('/mostrar_horarios_barberia')
 def horarios_barberia():
@@ -761,6 +794,52 @@ def horarios_barberia():
     
     
     return render_template('barberia/mostrar_horario.html', horarios=horarios)
+
+
+#REGISTRAR SERVICIOS
+
+@app.route('/registrar_servicios', methods=['GET', 'POST'])
+def registrar_servicios():
+    if request.method == 'POST':
+        nombre_servicio = request.form['nombre_servicio']
+        precio_servicio = request.form['precio_servicio']
+
+        # Recuperar el correo electrónico del propietario de la sesión
+        correo_propietario = session.get('usuario_id')
+        if not correo_propietario:
+            return "El propietario no está registrado.", 404
+
+        # Obtener el código único de la barbería del propietario
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT pk_codigo_barberia FROM barberia WHERE correo = %s", (correo_propietario,))
+        codigo_barberia = cursor.fetchone()
+
+        if not codigo_barberia:
+            return "La barbería no está registrada.", 404
+
+        # Insertar el nuevo servicio en la base de datos
+        cursor.execute("INSERT INTO servicios (codigo_servicio, nombre, precio) VALUES (%s, %s, %s)",
+                       (codigo_barberia[0], nombre_servicio, precio_servicio))
+
+        conn.commit()
+        conn.close()
+
+        flash('Has guardado el servicio de manera exitosa. Si deseas agregar otro servicio, agregalo.')
+        
+        return redirect(url_for('registrar_servicios'))
+
+    return render_template('barberia/registrar_servicios.html')
+
+
+#CERRAR SESION 
+@app.route('/cerrar_sesion', methods=['GET'])
+def cerrar_sesion():
+    session.clear() # Borra la sesión del usuario
+    return redirect(url_for('index')) # Redirige al usuario a la página de inicio de sesión
+
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port="5080")

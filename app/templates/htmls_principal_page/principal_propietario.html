@@ -9,9 +9,15 @@
     <script src="{{ url_for('static', filename='js/principal_propietario/home-propietario.js') }}"></script>
     <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
+    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cerrar_sesion.js') }}"></script>
     <title>Inicio</title>
 </head>
 <body id="body">
+    
+
+
+
     <header>
         
         <div id="icono-menu">
@@ -29,7 +35,7 @@
     
             <div class="options__menu">	
     
-                <a href="#" class="selected">
+                <a href="/principal_propietario" class="selected">
                     <div class="option">
                         <i class="fas fa-home" title="Inicio"></i>
                         <h4>Inicio</h4>
@@ -62,15 +68,22 @@
     
                 
     
-                <a href="/horarios_barberia">
+                <a href="/registrar_horarios">
                     <div class="option">
                         <i class="fas fa-clock"title="Mapa"></i>
-                        <h4>Horarios</h4>
+                        <h4>Registra el horario de tú barberia </h4>
+                    </div>
+                </a>
+
+                <a href="/registrar_servicios">
+                    <div class="option">
+                        <i class="fas fa-scissors"title="Mapa"></i>
+                        <h4>Registra los servicios de tú barberia </h4>
                     </div>
                 </a>
 
 
-                <a href="#">
+                <a href="#" id="btn-cerrar-sesion">
                     <div class="option">
                         <i class="fa-solid fa-right-to-bracket" title="cerrar_sesion"></i>
                         <h4>Cerrar sesión</h4>
