@@ -4,175 +4,123 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>perfil propietario</title>
-
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"> 
-  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" > 
-
-  
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/perfil.css') }}">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
     
  
   <style>
       
-    .seccion-perfil-usuario {
-    display: flex;
-    background-color: #e0871b;;
-    text-align: center; /* Centra el contenido horizontalmente */
-  
-    
-}
-
-.perfil-usuario-avatar {
-    width: 190px;
-    height: 190px;
-    align-items: center;
-    justify-content: center;
-    border: 4px solid #e78655;
-    background-image: url(profile-icon.jpg);
-    background-size: cover;
-    border-radius: 50%;
-    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
-    position: absolute;
-    top: 4%;
-    left: calc(-60%  90px);
-    margin-left: 80px;
-    z-index: 0;
-}
-
-
-.perfil-usuario-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
- .boton-avatar {
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    left: -2px;
-    top: -2px;
-    border: 0;
-    background-color: #e78655;
-    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
-    border-radius: 50%;
-    
-   }
-
-.perfil-usuario-footer{
-    
-    font-size: 1.2rem;
-    display: flex;
-    position: relative;
-    bottom: -40px;
-    background-color: #2f2519;
-    text-align: center; /* Centra el contenido horizontalmente */
-    padding-top: 48px; /* Ajusta el espaciado superior */
-    flex-direction: column;
-    align-self: flex-end;
-}
-
-.lista-datos {
-   padding: 10px;
-}
-
-.lista-datos li {
-    margin-bottom: 20px;
-    color: antiquewhite;
-}
-
-.lista-datos .icono {
-  margin-right: 15px; /* Ajusta el espacio entre el ícono y el texto */
-  font-size: 1.6rem;
-  color: #e78655;
-  bottom: -80;
-  text-align: left;
-} 
-
-
+   
 .lni {
-  margin-right: 15px; /* Ajusta el espacio entre el ícono y el texto */
-  font-size: 1.6rem;
-  color: #e78655;
-  bottom: -80;
-  text-align: left;
+  flex-direction:column;
+  font-size: 23px;
+   text-align: center;
+   
+  
 }
 
-.editarPerfil {
-  position: relative;
-  left: 83%;
-  width: 30px;
-  font-size: 1.4rem;
-  color: #e78655;
-
-}
-.masopciones{
-  width: 10%;
-  height: 5%;
-  position: relative;
-  top: -29%;
-  left: 86%;
-  z-index: 1;
-  background-color: antiquewhite;
-}
-
-.nombre-admin{
-  position: relative;
-  bottom: -13px;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: antiquewhite;
+.icono{
   display: flex;
-  background-color: #2f2519;
-
+  position:relative;
+  bottom: 23%;
+  left: 26%;
+  flex-direction: column; 
 }
 
+.icono{
+  font-size: 1.5rem;
+  color: #e78655;
+}
+
+
+ul{
+  list-style-type: none;
+}
+
+#volver {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px; /* Añade un poco de espacio alrededor del botón para evitar que esté pegado a los bordes */
+}
+
+#volver i {
+    color: #EDA05a;
+    font-size: 2.0em;
+    display: block;
+}
+
+#volver a {
+    text-decoration: none;
+}
 </style>
+
 </head>
 <body>
-    <div class="container">
-     <div class="shape">
+
+    <main class="container">
+
+      <div id="volver">
+        <a href="/principal_propietario">
+            <i class="lni lni-arrow-left"></i>
+        </a>
     </div>
-    <button class="editarPerfil" onclick="window.location.href='/editar_propietario'">
-      <i class="fas fa-pencil-alt"></i>
-  </button>
-  
 
+        <header class="seccion-perfil-usuario">
+              <div class="perfil-usuario-avatar">
+                {% if datos_propietario[13] %}
+                <img id="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_propietario[13]) }}" alt="foto_de_perfil">
+            {% else %}
+            <img  src="{{ url_for('static', filename='img/principal_propietario/profile-icon.jpg') }}" alt="Logo_perfil">
+            {% endif %}
+
+              <form action="/subir_foto_perfil" method="POST" enctype="multipart/form-data">
+              <input type="file" id="input-foto" name="foto_perfil" accept="image/*" style="display: none;">
+              
+              <div class="enviarf">
+                <button class="subirf" type="submit">Subir foto</button>
+              </div>
+            </form>
+              <label for="input-foto" class="boton-avatar"><i class="lni lni-plus"></i></label> 
+              
+            </div>
+              
+             
+        </header>
+
+         <div class="nombre-admin">
+          <p>{{ datos_propietario[1] }} {{ datos_propietario[2] }}</p>
+         </div>
+         <div class="lineaC"></div>
+         
+       <section class="perfil-usuario-footer">
         
-        <section class="seccion-perfil-usuario">
-          <div class="perfil-usuario-header">
+        <button class="editarPerfil" onclick="window.location.href='/editar_propietario'">
+          <i class="lni lni-pencil"></i>
+        </button>
 
-                  <div class="perfil-usuario-avatar">
-                    {% if datos_propietario[13] %}
-    <img id="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_propietario[13]) }}" alt="">
-{% else %}
-    <img id="foto-perfil" src="{{ url_for('static', filename='default_profile_image.jpg') }}" alt="">
-{% endif %}
-                    <form action="/subir_foto_perfil" method="POST" enctype="multipart/form-data">
-                      <input type="file" name="foto_perfil" id="input-foto" accept="image/*" style="display: none;">
-                      <button type="submit" >Subir foto de perfil</button>
-                  </form>
-                    <label for="input-foto" class="boton-avatar"><i class="far fa-image"></i></label>  
-                  </div>
-
-                  <h1 class="nombre-admin">{{ datos_propietario[1] }} {{ datos_propietario[2] }}</h1>
-          </div>
+     
+        <br>
+        <ul class="lista-datos">
           
-        </section>
-        <section class="perfil-usuario-footer">
-         <div class= lista-datos-usuario>
-          <ul class="lista-datos">
-            <p>Cedula: {{ datos_propietario[0] }}</p>
-
-            <li><i class="lni lni-sketch"></i><span id="tipo">Propietario</span></li>
-
-            <li><i class="lni lni-phone"></i><span id="telefono">{{ datos_propietario[4] }}</span></li>
-            <li><i class="lni lni-home"></i><span >{{ datos_propietario[8] }}</span></li>
-            <li><i class="lni lni-sketch"></i><span > {{ datos_propietario[9] }}</span></li>
-          </ul>
-        </div>
-      </div>
-      </section>
+          <li><span class="inform">Cliente</span></li>
+          <li><span class="inform">{{ datos_propietario[0] }}</span></li>
+          <li><span class="inform">{{ datos_propietario[4] }}</span></li> 
+          <li><span class="inform">{{ datos_propietario[8] }}</span></li>
+          <li><span class="inform">{{ datos_propietario[9] }}</span></li>
+       </ul>
+      
+       <div class="icono">
+        <div class="icon"><i class="lni lni-user"></i></div>
+        <div class="icon"><i class="fas fa-id-card"></i></div>
+        <div class="icon"><i class="lni lni-phone"></i></div>
+        <div class="icon"><i class="fas fa-city"></i></div>
+        <div class="icon"><i class="fa fa-birthday-cake"></i></div>
+       </section>
+      </main>
 
   <script>
 
@@ -187,6 +135,9 @@
         
     reader.readAsDataURL(imagen);
 });
+
+
+
 
 </script>
 </body>

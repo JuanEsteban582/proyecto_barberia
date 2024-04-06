@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
     <title>Iniciar sesión</title>
 </head>
 <body>
+
+
     <main>
         <div id="contenedor-logo">
-            <div id="logo"></div>
+            <div id="logo">
+                <img  src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo_barber_locate">
+            </div>
         </div>
         <div id="datos-form">
             <form action="/login" method="POST" id="datos-log">

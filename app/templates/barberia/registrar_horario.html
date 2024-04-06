@@ -1,42 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/estilos-registro-barbero.css') }}">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css">
+    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/barberia/registro-horario.js') }}"></script>
+    <title>Registrar Horarios</title>
 </head>
 <body>
-    
-<form action="/registrar_horarios" method="POST">
-    <div>
-        <label for="dia_inicio">Día de Inicio:</label>
-        <select id="dia_inicio" name="dia_inicio">
-            <option value="Lunes">Lunes</option>
-            <option value="Martes">Martes</option>
-            <option value="Miércoles">Miércoles</option>
-            <option value="Jueves">Jueves</option>
-            <option value="Viernes">Viernes</option>
-            <option value="Sábado">Sábado</option>
-            <option value="Domingo">Domingo</option>
-        </select>
-        <label for="dia_fin">Día de Fin:</label>
-        <select id="dia_fin" name="dia_fin">
-            <option value="Lunes">Lunes</option>
-            <option value="Martes">Martes</option>
-            <option value="Miércoles">Miércoles</option>
-            <option value="Jueves">Jueves</option>
-            <option value="Viernes">Viernes</option>
-            <option value="Sábado">Sábado</option>
-            <option value="Domingo">Domingo</option>
-        </select>
-    </div>
-    <div>
-        <label for="hora_inicio">Hora de Inicio:</label>
-        <input type="time" id="hora_inicio" name="hora_inicio">
-        <label for="hora_fin">Hora de Fin:</label>
-        <input type="time" id="hora_fin" name="hora_fin">
-    </div>
-    <button type="submit">Guardar Horarios</button>
-</form>
+    <main>
+        <div id="volver">
+            <a href="/principal_propietario">
+                <i class="lni lni-arrow-left"></i>
+            </a>
+        </div>
+        
+        <div id="contenedor-logo">
+            <div id="logo">
+                <img  src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo_barber_locate">
+            </div>
+        </div>
+
+        <div id="datos-form">
+            <div id="txt">
+                <p>Registra los horarios</p>
+            </div>
+            
+            <form action="/registrar_horarios" method="POST" id="datos-registro">
+                <div class="campos">
+                    
+                    <select name="dia_inicio" id="dia_inicio">
+                        <option value="" selected disabled>Elige el día de inicio</option>
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+                    <div id="dia_inicio-error" class="mensaje-error"></div>
+
+                    
+                    <input type="time" id="hora_inicio" name="hora_inicio" placeholder="Hora apertura" required>
+                    
+
+                    
+                    <select name="dia_fin" id="dia_fin">
+                        <option value="" selected disabled>Elige el día de fin</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+                    <div id="dia_fin-error" class="mensaje-error"></div>
+
+                    
+                    <input type="time" id="hora_fin" name="hora_fin" placeholder="Hora cierre" required>
+                    <div id="hora_fin-error" class="mensaje-error" ></div>
+                </div>
+                <button type="submit" id="btn-submit">Guardar</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
