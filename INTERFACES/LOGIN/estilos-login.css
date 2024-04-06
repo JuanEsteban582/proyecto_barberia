@@ -38,17 +38,18 @@ img {
 /* ---------- Etiquetas HTML ---------- */
 
 button {
-    font-size: 1.05em;
+    font-size: 18px;
     font-weight: 600;
     font-family: 'Oswald', sans-serif;
     width: 100px;
     cursor: pointer;
-    padding: 5px 23px;
+    padding: 5px 10px;
     border: transparent;
     background: #d35b22;
     color: rgb(255, 246, 230);
     border-radius: 4px;
-    margin-top: 20px;
+    margin-top: 40px;
+    text-align: center;
 }
     button:hover {
         transform: translateY(-7px);
@@ -68,13 +69,13 @@ div#contenedor-logo {
     align-items: center;
     display: flex;
     justify-content: center;
-    height: 200px;
-    margin-bottom: 16px;
-    width: 200px;
+    height: 150px;
+    margin-bottom: 50px;
+    width: 150px;
 }
 
 div#logo {
-    background: url(../img/logo.png) center center / cover no-repeat;
+    background: url(img/logo3.png) center center / cover no-repeat;
     height: 100%;
     width: 100%;
 }
@@ -160,6 +161,7 @@ main {
         font-size: 21px;
     }
     button{
+        font-size: 21px;
         margin-top: 50px;
         width: 150px;
     }
@@ -172,9 +174,9 @@ main {
         width: 40vw;
     }
     div#contenedor-logo {
-        height: 250px;
+        height: 180px;
         margin-bottom: 64px;
-        width: 250px;
+        width: 180px;
     }
 }
 @media screen and (min-width: 1000px) {
@@ -191,8 +193,8 @@ main {
         margin: 0;
     }
     div#logo {
-        height: 350px;
-        width: 350px;
+        height: 220px;
+        width: 220px;
     }
     div#datos-form {
         justify-content: center;

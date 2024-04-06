@@ -116,6 +116,7 @@ button.btn-eliminar-barbero {
     border: transparent;
     border-radius: 4px;
     color: #fff6e6;
+    cursor: pointer;
     display: flex;
     font-size: 20px;
     height: 35px;
