@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         let valido = true;
         // Validar campo de departamento
-        if (campoDepartamento.value.trim() === "") {
-            departamentoError.textContent = "Por favor, elige un departamento.";
+        if (campoDepartamento.value.trim() < 4) {
+            departamentoError.textContent = "El nombre del departamento debe tener 4 caracteres o más.";
             valido = false;
             event.preventDefault(); // Evitar que se avance al siguiente momento
         } else {
@@ -40,8 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     
         // Validar campo de ciudad
-        if (campoCiudad.value.trim() === "") {
-            ciudadError.textContent = "Por favor, elige una ciudad.";
+        if (campoCiudad.value.trim() < 4) {
+            ciudadError.textContent = "El nombre de la ciudad debe tener 4 caracteres o más.";
             valido = false;
             event.preventDefault(); // Evitar que se avance al siguiente momento
         } else {

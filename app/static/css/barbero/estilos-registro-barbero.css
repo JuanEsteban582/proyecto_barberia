@@ -96,7 +96,7 @@ div#contenedor-logo {
 }
 
 div#logo {
-    background: url(img/logo3.png) center center / cover no-repeat;
+    background: url(../img/logo.png) center center / cover no-repeat;
     height: 100%;
     width: 100%;
 }
@@ -107,14 +107,14 @@ form#datos-registro {
     align-items: center;
 }
 
-span.atras{
+span{
     font-size: 0.9em;
     line-height: 0.1em;
     cursor: pointer;
     color: rgba(255, 246, 230, 0.7);
     margin-right: 20px;
 }
-    span.atras:hover {
+    span:hover {
         transform: translateY(-7px);
     }
 
@@ -155,9 +155,6 @@ div.campos input {
     display: none;
 }
 
-
-
-
 div#momento-3.hidden{
     display: none;
 }
@@ -186,12 +183,6 @@ div#txt {
     font-size: 0.6em;
     margin-top: 5px;
 } 
-
-.aclaracion {
-    font-size: 0.6em;
-    line-height: 0;
-    color: rgba(255, 246, 230, 0.7);
-}
 
 .enlaces {
     
@@ -230,7 +221,7 @@ div#txt {
 @media screen and (min-width: 1000px) {
     button {
         height: 2.5em;
-        width: 9em;
+        width: 7em;
     }
     main {
         flex-direction: initial;
@@ -241,8 +232,8 @@ div#txt {
         margin: 0;
     }
     div#logo {
-        height: 200px;
-        width: 200px;
+        height: 220px;
+        width: 220px;
     }
     div#datos-form {
         justify-content: center;
@@ -260,22 +251,13 @@ div#txt {
         div.campos select {
             width: 350px;
         }
-    div#volver {
-        display: block;
-    }
     
     form#datos-registro {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    .aclaracion {
-        font-size: 0.8em;
-        margin: 10px 0 20px 0;
-    }
     .mensaje-error {
         font-size: 0.8em;
     }
 }
-
-

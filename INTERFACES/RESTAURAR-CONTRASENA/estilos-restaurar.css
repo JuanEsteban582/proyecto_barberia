@@ -23,13 +23,17 @@ img {
     width: 100%;
 }
 
+main {
+    min-height: 100vh;
+}
+
 /* ---------- Etiquetas HTML ---------- */
 
 button {
     font-size: 1.05em;
     font-weight: 600;
     font-family: 'Oswald', sans-serif;
-    width: 100px;
+    width: 120px;
     cursor: pointer;
     padding: 5px 10px;
     border: transparent;
@@ -46,8 +50,9 @@ button {
     }
 
 div#contenedor-logo {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
+    margin-bottom: 20px;
 }
 
 div#volver {
@@ -64,7 +69,7 @@ div#volver {
     }
 
 div#logo {
-    background: url(../img/logo.png) center center / cover no-repeat;
+    background: url(img/logo3.png) center center / cover no-repeat;
     height: 100%;
     width: 100%;
 }
@@ -100,6 +105,12 @@ div#campos input {
     text-align: center;
     transition: 0.25s;
 }
+    div#campos input:focus {
+        outline: 2px solid #cc6c3a;
+    }
+    div#campos input::placeholder {
+        color: #c09f76;
+    }
 
 div#campos select {
     border-radius: 4px;
@@ -168,9 +179,9 @@ main {
         width: 40vw;
     }
     div#contenedor-logo {
-        height: 250px;
+        height: 180px;
         margin-bottom: 64px;
-        width: 250px;
+        width: 180px;
     }
     div#volver {
         left: 20px;
@@ -195,8 +206,8 @@ main {
         width: 50vw;
     }
     div#logo {
-        height: 350px;
-        width: 350px;
+        height: 220px;
+        width: 220px;
     }
     div#formulario {
         display: flex;
@@ -216,9 +227,6 @@ main {
         div#campos select {
             width: 350px;
         }
-    div#volver {
-        display: none;
-    }
     form#datos-res {
         height: 80%;
         width: 50vw;

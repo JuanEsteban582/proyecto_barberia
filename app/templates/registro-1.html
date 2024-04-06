@@ -12,7 +12,7 @@
     <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
     
     
-    <title>Bienvenido Registrate</title>
+    <title>Registro</title>
 </head>
 <body>
     <main>
@@ -57,20 +57,11 @@
                     
                     <div id="momento-2" class="hidden">
                         <div class="campos">
-                             <select name="departamento" id="departamento">
-                                <option value="" selected disabled>Elige tu departamento</option>
-                                <option value="antioquia">ANTIOQUIA</option>
-                                <option value="valle-del-cauca">VALLE DEL CAUCA</option>
-                                <option value="bogota">BOGOTÁ</option>
-                            </select> 
+                            
+                            <input type="text" name="departamento" id="departamento" placeholder="Departamento" minlength="4" maxlength="18" autocomplete="off">
                             <div id="departamento-error" class="mensaje-error"></div>
 
-                            <select name="ciudad_Usuario" id="ciudad">
-                                <option value="" selected disabled>Elige tu ciudad</option>
-                                <option value="buga">BUGA</option>
-                                <option value="tulua">TULUÁ</option>
-                                <option value="cali">CALI</option>
-                            </select> 
+                            <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off">
                             <div id="ciudad-error" class="mensaje-error"></div> 
                             
 

@@ -51,20 +51,11 @@
                     
                     <div id="momento-2" class="hidden">
                         <div class="campos">
-                            <select name="departamento" id="departamento">
-                                <option value="" selected disabled>Elige tu departamento</option>
-                                <option value="antioquia">ANTIOQUIA</option>
-                                <option value="valle-del-cauca">VALLE DEL CAUCA</option>
-                                <option value="bogota">BOGOTÁ</option>
-                            </select>
+
+                            <input type="text" name="departamento" id="departamento" placeholder="Departamento" minlength="4" maxlength="18" autocomplete="off">
                             <div id="departamento-error" class="mensaje-error"></div>
 
-                            <select name="ciudad" id="ciudad">
-                                <option value="" selected disabled>Elige tu ciudad</option>
-                                <option value="buga">BUGA</option>
-                                <option value="tulua">TULUÁ</option>
-                                <option value="">CALI</option>
-                            </select>
+                            <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off">
                             <div id="ciudad-error" class="mensaje-error"></div>
 
                             <input type="tel" name="celular" id="celular" placeholder="Número de celular" maxlength="10">
@@ -81,14 +72,6 @@
 
                     <div id="momento-3" class="hidden">
                         <div class="campos">
-
-                            <select name="rol" id="rol">
-                                <option value="" selected disabled>Elige tu rol</option>
-                                <option value="cliente">CLIENTE</option>
-                                <option value="barbero">BARBERO</option>
-                                <option value="propietario">PROPIETARIO</option>
-                            </select>
-                            <div id="rol-error" class="mensaje-error"></div>
 
                             <input type="email" name="" id="correo" placeholder="Correo electrónico">
                             <div id="correo-error" class="mensaje-error"></div>
