@@ -69,30 +69,42 @@
         </div>
 
     </nav>
-    <body>
-        <form action="/principal_barbero" method="get">
-            <label for="fecha">Selecciona una fecha:</label>
-            <input type="date" id="fecha" name="fecha">
-            <input type="submit" value="Mostrar citas">
-        </form>
-        
-        <main>
-            <h2 id="tlo">Citas Pendientes</h2>
-            <section id="info-barberos">
-                {% for cita in citas %}
-                <div class="tarjeta-barbero">
-                    <figure class="contenedor-img-barbero">
-                        <img class="img-barberia" src="{{ url_for('static', filename='img/icono-usuario.png') }}" alt="Icono de barbería">
-                    </figure>
-                    <div class="contenedor-datos-barbero">
-                        <p class="nom-barbero">{{ cita[0] }} {{ cita[1] }}</p> <!-- Nombre y apellido del cliente -->
-                        <p>Hora: {{ cita[2] }}</p>
-                        <p>Fecha: {{ cita[3] }}</p>
-                        <p>Teléfono: {{ cita[4] }}</p>
-                    </div>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal Barbero</title>
+    <!-- Asegúrate de incluir aquí cualquier archivo CSS necesario para tu diseño -->
+</head>
+<body>
+    <form action="/principal_barbero" method="get">
+        <label for="fecha">Selecciona una fecha:</label>
+        <input type="date" id="fecha" name="fecha">
+        <input type="submit" value="Mostrar citas">
+    </form>
+    
+    <main>
+        <h2 id="tlo">Citas Pendientes</h2>
+        <section id="info-barberos">
+            {% if citas %}
+            {% for cita in citas %}
+            <div class="tarjeta-barbero">
+                <figure class="contenedor-img-barbero">
+                    <img class="img-barberia" src="{{ url_for('static', filename='img/icono-usuario.png') }}" alt="Icono de barbería">
+                </figure>
+                <div class="contenedor-datos-barbero">
+                    <p class="nom-barbero">{{ cita[0] }} {{ cita[1] }}</p> <!-- Nombre y apellido del cliente -->
+                    <p>Hora: {{ cita[2] }}</p>
+                    <p>Fecha: {{ cita[3] }}</p>
+                    <p>Teléfono: {{ cita[4] }}</p>
                 </div>
-                {% endfor %}
-            </section>
-        </main>
-    </body>
-    </html>
+            </div>
+            {% endfor %}
+            {% else %}
+                <p>{{mensaje}}</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

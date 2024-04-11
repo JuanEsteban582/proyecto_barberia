@@ -343,7 +343,6 @@ def principal_cliente():
 
 
 
-
 @app.route('/principal_barbero', methods=['GET'])
 def principal_barbero():
     # Verificar si el usuario está logueado
@@ -372,21 +371,26 @@ def principal_barbero():
     # Obtener la fecha seleccionada por el usuario
     fecha_seleccionada = request.args.get('fecha')
     if not fecha_seleccionada:
-        # Si no se seleccionó una fecha, mostrar todas las citas
-        sql_citas = f"SELECT nombre_cliente, apellidos_cliente, hora, fecha, telefono_cliente FROM citas_agendadas WHERE ced_barbero = '{cedula_barbero_db}'"
-    else:
-        # Si se seleccionó una fecha, mostrar solo las citas de esa fecha
-        sql_citas = f"SELECT nombre_cliente, apellidos_cliente, hora, fecha, telefono_cliente FROM citas_agendadas WHERE ced_barbero = '{cedula_barbero_db}' AND fecha = '{fecha_seleccionada}'"
+        # Si no se seleccionó una fecha, no hacer nada o mostrar un mensaje
+        return render_template('htmls_principal_page/principal_barbero.html', mensaje="Por favor, selecciona una fecha para ver las citas.")
+
+    # Si se seleccionó una fecha, mostrar solo las citas de esa fecha
+    sql_citas = f"SELECT nombre_cliente, apellidos_cliente, hora, fecha, telefono_cliente FROM citas_agendadas WHERE ced_barbero = '{cedula_barbero_db}' AND fecha = '{fecha_seleccionada}'"
     cursor.execute(sql_citas)
     citas = cursor.fetchall()
+
+    # Verificar si hay citas para la fecha seleccionada
+    if not citas:
+        mensaje = f"No hay citas pendientes para el día seleccionado: {fecha_seleccionada}."
+    else:
+        mensaje = "Citas Pendientes"
 
     # Cerrar el cursor y la conexión
     cursor.close()
     conn.close()
 
-    # Pasar las citas a la plantilla
-    return render_template('htmls_principal_page/principal_barbero.html', citas=citas)
-
+    # Pasar las citas y el mensaje a la plantilla
+    return render_template('htmls_principal_page/principal_barbero.html', citas=citas, mensaje=mensaje)
 
 
 
