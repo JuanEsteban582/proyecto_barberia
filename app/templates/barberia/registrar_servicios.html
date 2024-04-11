@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/estilos-registro-barbero.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/barberia/servicio.css') }}">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
+    <script src="{{ url_for('static', filename='js/barberia/registrar_servicio.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cerrar_sesion.js') }}"></script>
+    <title>Agregar servicios</title>
+
+    <style>
+        .flashes {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    
+        .flash-message {
+            background-color: #cc6c3a; /* Color amarillo */
+            color: rgb(236, 226, 226); /* Color del texto */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #cc6c3a; /* Borde del cuadro */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra para darle profundidad */
+        }
+    </style>
+    
+</head>
+<body id="body">
+
+    <header>
+        
+        <div id="icono-menu">
+            <i class="lni lni-menu" id="btn-menu"></i>
+        </div>
+        
+    </header>
+    <nav>
+
+        <div id="menu-lateral" class="menu__side">
+    
+            <div class="icono-cerrar-menu" id="icono-cerrar-menu">
+                <i class="lni lni-close" id="btn-cerrar-menu"></i>
+            </div>
+    
+            <div class="options__menu">	
+    
+                <a href="/principal_propietario">
+                    <div class="option">
+                        <i class="fas fa-home" title="Inicio"></i>
+                        <h4>Inicio</h4>
+                    </div>
+                </a>
+    
+                <a href="/perfil_propietario">
+                    <div class="option">
+                        <i class="fa-solid fa-user" title="Perfil"></i>
+                        <h4>Perfil</h4>
+                    </div>
+                </a>
+                
+                <a href="/perfil_barberia">
+                    <div class="option">
+                        <i class="fa-solid fa-building-user" title="Perfil Barberia"></i>
+                        <h4>Perfil Barbería</h4>
+                    </div>
+                </a>
+                
+                
+                <a href="/barberia_registro">
+                    <div class="option">
+                        <i class="fa fa-plus-square" title="Registra tú barberia"></i>
+    
+                        <h4>Registra tú barberia</h4>
+                    </div>
+                </a>
+    
+                <a href="/registrar_horarios">
+                    <div class="option">
+                        <i class="fas fa-clock"title="Registra el horario de tu barbería"></i>
+                        <h4>Registra el horario de tú barberia </h4>
+                    </div>
+                </a>
+
+                <a href="/registrar_servicios" class="selected">
+                    <div class="option">
+                        <i class="fas fa-scissors"title="Registra los servicios de tu barbería"></i>
+                        <h4>Registra los servicios de tú barberia </h4>
+                    </div>
+                </a>
+
+
+                <a href="#" id="btn-cerrar-sesion">
+                    <div class="option">
+                        <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
+                        <h4>Cerrar sesión</h4>
+                    </div>
+                </a>
+    
+            </div>
+    
+        </div>
+        
+    </nav>
+    <main>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flashes">
+                {% for message in messages %}
+                    <div class="flash-message" id="flash-message-{{ loop.index }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+{% endwith %}
+        
+        <div id="contenedor-logo">
+            <div id="logo">
+                <img  src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo_barber_locate">
+            </div>
+        </div>
+
+        <div id="datos-form">
+
+            <div id="txt">
+
+                <h4>Agrega los servicios de tú barberia</h4>
+
+                <h6>*Agrega los precios con su punto correspondiente</h6>
+
+                <h6>corte = 10.000</h6>
+
+            </div>
+            
+            <form action="/registrar_servicios" method="POST" id="datos-registro">
+    
+                    <div id="momento-1">
+                        <div class="campos">
+                            <input type="text" name="nombre_servicio"  placeholder="Nombre del servicio" minlength="3" 
+                            maxlength="25" autocomplete="off" pattern="^[a-zA-Z\s]*$" title="Solo se permiten letras y espacios">
+                            
+
+                            <input type="number" id="precio_servicio" name="precio_servicio" min="0" 
+                            step="0.01" placeholder="Precio del servicio" autocomplete="off">
+
+                        
+
+
+        
+                            <button type="submit" id="btn-submit">Guardar servicios</button>
+
+                        </div>
+                    </div>
+            </form>
+        </div>
+
+        
+    </main>
+
+
+    
+
+        
+    
+   
+</body>
+
+
+</html>

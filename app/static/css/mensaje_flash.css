@@ -1,0 +1,18 @@
+
+        .flashes {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    
+        .flash-message {
+            background-color: #cc6c3a; /* Color amarillo */
+            color: rgb(236, 226, 226); /* Color del texto */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #cc6c3a; /* Borde del cuadro */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra para darle profundidad */
+        }
+   

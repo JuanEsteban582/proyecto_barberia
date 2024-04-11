@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cliente/barberos_disponibles.css') }}">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Barberos Disponibles</title>
+</head>
+<body>
+    <main>
+        <h2 id="tlo">Barberos disponibles</h2>
+        <section id="info-barberos">
+            <div class="tarjeta-barbero">
+                {% for barbero in barberos %}
+                <figure class="contenedor-img-barbero">
+                    {% if barbero[8] %}
+                    <img class="img-barbero" src="{{ url_for('uploaded_file', filename=barbero[8]) }}" alt="Foto de perfil">
+                    {% else %}
+                    <img class="img-barbero" src="{{ url_for('static', filename='img/icono-usuario.png') }}" alt="icono usuario">
+                    {% endif %}
+                </figure>
+
+                <div class="contenedor-datos-barbero">
+                    <p class="nom-barbero">{{ barbero[1] }} {{ barbero[2] }}</p>
+                    <a href="{{ url_for('mostrar_horarios_disponibles', cedula_barbero=barbero[0]) }}" class="btn-actividad-barbero" type="button">Elegir</a>
+
+                    <a href="{{ url_for('perfilC_barbero', cedula_barbero=barbero[0]) }}" class="bt-escoger-barbero" type="button">Ver Perfil</a>
+                </div>
+                {% endfor %}
+                
+            </div>
+
+            
+                
+
+              
+            </div>
+        </section>
+       
+    </main>
+</body>
+</html>

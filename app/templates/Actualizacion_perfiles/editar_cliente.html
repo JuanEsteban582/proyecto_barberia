@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/estilos-registro-barbero.css') }}">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" >
+   
+    <script src="{{ url_for('static', filename='js/principal_propietario/perfil/validaciones-momento-2.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
+    <title>Editar perfil</title>
+</head>
+<body>
+    <main>
+
+        <div id="volver">
+            <a href="/perfil_usuario">
+                <i class="lni lni-arrow-left"></i>
+            </a>
+        </div>
+        
+        <div id="contenedor-logo">
+            <div id="logo">
+                <img  src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo_barber_locate">
+            </div>
+        </div>
+        <div id="datos-form">
+
+            <div id="txt">
+
+                <p>*Solo puedes cambiar estos dos datos*</p>
+
+            </div>
+            
+            <form action="/editar_user" method="POST" id="datos-registro">
+                    
+                    <div id="" class="">
+                        <div class="campos">
+                            
+                            <input type="hidden" name="ced_U" value="{{ datos_usuario[0] }}">
+                            <input type="tel" name="Tel_U" id="celular" placeholder="Número de celular" maxlength="10" value="{{ datos_usuario[3] }}">
+                            <div id="celular-error" class="mensaje-error"></div>
+
+
+                            <select name="ciudad_U" id="ciudad">
+                                <option value="" selected disabled>Elige tu ciudad</option>
+                                <option value="buga" {% if datos_usuario[4] == 'buga' %}selected{% endif %}>BUGA</option>
+                                <option value="tulua" {% if datos_usuario[4] == 'tulua' %}selected{% endif %}>TULUÁ</option>
+                                <option value="cali" {% if datos_usuario[4] == 'cali' %}selected{% endif %}>CALI</option>
+                            </select>
+                            
+                            <div id="ciudad-error" class="mensaje-error"></div>
+
+                    
+                        </div>
+
+            
+                    </div> 
+                        <div class="enlaces">
+
+                    
+                            <button type="submit" id="btn-submit">Guardar cambios</button>
+
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>       

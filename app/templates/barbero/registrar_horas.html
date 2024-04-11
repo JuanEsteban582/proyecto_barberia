@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Horarios de Disponibilidad</title>
+    <script>
+        function agregarHorario() {
+            var contenedorHorarios = document.getElementById("contenedorHorarios");
+            var nuevoHorario = document.createElement("div");
+            nuevoHorario.innerHTML = `
+                <div>
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha[]" min="2024-01-01" required>
+                    <label for="dia_semana">Día de la Semana:</label>
+                    <label for="dia_semana">Día de la Semana:</label>
+                    <select id="dia_semana" name="dia_semana[]" required>
+                        <option value="">Seleccione un día</option>
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+                    <label for="hora_inicio">Hora de Inicio:</label>
+                    <input type="time" id="hora_inicio" name="hora_inicio[]" required>
+                    <label for="hora_fin">Hora de Fin:</label>
+                    <input type="time" id="hora_fin" name="hora_fin[]" required>
+                </div>
+            `;
+            contenedorHorarios.appendChild(nuevoHorario);
+        }
+    </script>
+</head>
+<body>
+    <h1>Registrar Horarios de Disponibilidad</h1>
+    <form action="/registrar_horarios_barbero" method="POST">
+        
+        <div id="contenedorHorarios">
+            <!-- Aquí se agregarán los campos de horario dinámicamente -->
+        </div>
+        <button type="button" onclick="agregarHorario()">Agregar Horario</button>
+        <br>
+        <input type="submit" value="Registrar Horarios">
+    </form>
+
+    <a href="/principal_barbero">regresar</a>
+</body>
+</html>

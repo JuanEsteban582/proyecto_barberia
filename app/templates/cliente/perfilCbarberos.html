@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>perfil del barbero</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/barberia/perfil_barberia.css') }}">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
+    
+ 
+  <style>
+      
+.lni {
+  flex-direction:column;
+  font-size: 23px;
+   text-align: center;
+   
+  
+}
+
+.icono{
+  display: flex;
+  position:relative;
+  bottom: 23%;
+  left: 26%;
+  flex-direction: column; 
+}
+
+.icono{
+  font-size: 1.5rem;
+  color: #e78655;
+}
+
+
+ul{
+  list-style-type: none;
+}
+
+#volver {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px; /* Añade un poco de espacio alrededor del botón para evitar que esté pegado a los bordes */
+}
+
+#volver i {
+    color: #EDA05a;
+    font-size: 2.0em;
+    display: block;
+}
+
+#volver a {
+    text-decoration: none;
+}
+
+.butonfab{
+    position: absolute;
+    width: 40%;
+    font-size: 1.3rem;
+    bottom: 68%;
+    color: #fff6e6;
+    background-color: #d55025;
+    border-radius: 4px;
+    border: none;
+}
+</style>
+
+</head>
+<body>
+
+    <main class="container">
+
+      <div id="volver">
+        <a href="/principal_cliente">
+            <i class="lni lni-arrow-left"></i>
+        </a>
+    </div>
+
+        <header class="seccion-perfil-usuario">
+              <div class="perfil-usuario-avatar">
+                {% if barbero[15] %}
+                <img class="foto-perfil" src="{{ url_for('uploaded_file', filename=barbero[15]) }}" alt="foto_de_perfil">
+            {% else %}
+            <img class="foto-perfil" src="{{ url_for('static', filename='img/principal_propietario/profile-icon.jpg') }}" alt="Logo_perfil">
+            {% endif %}
+
+          
+             
+              
+            </div>
+              
+             
+        </header>
+
+         <div class="nombre-admin">
+          <p>{{ barbero[1] }} {{ barbero[2] }}</p>
+         </div>
+         <div class="lineaC"></div>
+         
+       <section class="perfil-usuario-footer">
+        
+
+     
+        <br>
+        <ul class="lista-datos">
+          
+          <li><span class="inform">Barbero</span></li>
+          <li><span class="inform">{{ barbero[4] }}</span></li>
+          <li><span class="inform">{{ barbero[5] }}</span></li> 
+          <li><span class="inform">{{ barbero[16] }}</span></li> 
+       </ul>
+      
+       <div class="icono">
+        <div class="icon"><i class="lni lni-user"></i></div>
+        <div class="icon"><i class="fa fa-map-marker"></i></div>
+        <div class="icon"><i class="lni lni-phone"></i></div>
+        <div class="icon"><i class="fas fa-building"></i></div>
+        <div class="icon"><i class="fas fa-city"></i></div>
+
+        </div>
+       </section>
+
+
+
+      </main>
+
+
+</body>
+</html>
