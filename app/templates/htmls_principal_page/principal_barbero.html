@@ -70,6 +70,12 @@
 
     </nav>
     <body>
+        <form action="/principal_barbero" method="get">
+            <label for="fecha">Selecciona una fecha:</label>
+            <input type="date" id="fecha" name="fecha">
+            <input type="submit" value="Mostrar citas">
+        </form>
+        
         <main>
             <h2 id="tlo">Citas Pendientes</h2>
             <section id="info-barberos">
@@ -83,8 +89,6 @@
                         <p>Hora: {{ cita[2] }}</p>
                         <p>Fecha: {{ cita[3] }}</p>
                         <p>Teléfono: {{ cita[4] }}</p>
-                        <a class="btn-actividad-barbero" type="button">Ver perfil</a>
-                        <button class="bt-escoger-barbero" type="button">Agendar cita</button>
                     </div>
                 </div>
                 {% endfor %}

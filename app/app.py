@@ -516,21 +516,25 @@ def cargar_barberos():
         # Manejar el caso en que no se encuentre el propietario
         return "Propietario no encontrado", 404
     
-    
-    
-@app.route('/principal_barbero')
+
+@app.route('/principal_barbero', methods=['GET'])
 def principal_barbero():
     # Verificar si el usuario está logueado
     if not session.get("logueado"):
         return render_template('login.html')
 
+    # Obtener el correo electrónico del barbero de la sesión
+    email_barbero = session.get("usuario_id")
+    if not email_barbero:
+        return "El correo electrónico del barbero no está disponible en la sesión.", 404
+
     # Conectar a la base de datos
     conn = mysql.connect()
     cursor = conn.cursor()
 
-    # Obtener la cédula del barbero de la tabla barberos
+    # Consulta SQL para obtener la cédula del barbero de la tabla barberos
     sql_cedula_barbero = "SELECT fk_cedulaB FROM barberos WHERE bcorreo = %s"
-    cursor.execute(sql_cedula_barbero, (session.get("usuario_id"),))
+    cursor.execute(sql_cedula_barbero, (email_barbero,))
     cedula_barbero_db = cursor.fetchone()
 
     if not cedula_barbero_db:
@@ -538,8 +542,14 @@ def principal_barbero():
 
     cedula_barbero_db = cedula_barbero_db[0]
 
-    # Consulta SQL para obtener las citas agendadas del barbero
-    sql_citas = f"SELECT nombre_cliente, apellidos_cliente, hora, fecha, telefono_cliente FROM citas_agendadas WHERE ced_barbero = '{cedula_barbero_db}'"
+    # Obtener la fecha seleccionada por el usuario
+    fecha_seleccionada = request.args.get('fecha')
+    if not fecha_seleccionada:
+        # Si no se seleccionó una fecha, mostrar todas las citas
+        sql_citas = f"SELECT nombre_cliente, apellidos_cliente, hora, fecha, telefono_cliente FROM citas_agendadas WHERE ced_barbero = '{cedula_barbero_db}'"
+    else:
+        # Si se seleccionó una fecha, mostrar solo las citas de esa fecha
+        sql_citas = f"SELECT nombre_cliente, apellidos_cliente, hora, fecha, telefono_cliente FROM citas_agendadas WHERE ced_barbero = '{cedula_barbero_db}' AND fecha = '{fecha_seleccionada}'"
     cursor.execute(sql_citas)
     citas = cursor.fetchall()
 
@@ -553,7 +563,6 @@ def principal_barbero():
 
     # Renderizar la plantilla con los datos de las citas
     return render_template('htmls_principal_page/principal_barbero.html', citas=citas)
-
 
 
 
