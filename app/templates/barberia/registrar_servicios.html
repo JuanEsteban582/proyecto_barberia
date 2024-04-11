@@ -36,13 +36,13 @@
     <main>
 
         {% with messages = get_flashed_messages() %}
-{% if messages %}
-    <div class="flashes">
-        {% for message in messages %}
-            <div class="flash-message" id="flash-message-{{ loop.index }}">{{ message }}</div>
-        {% endfor %}
-    </div>
-{% endif %}
+        {% if messages %}
+            <div class="flashes">
+                {% for message in messages %}
+                    <div class="flash-message" id="flash-message-{{ loop.index }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
 {% endwith %}
 
         <div id="volver">

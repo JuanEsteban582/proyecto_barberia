@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>perfil cliente</title>
+  <title>perfil barberia</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/barberia/perfil_barberia.css') }}">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
   <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
@@ -55,6 +55,21 @@ ul{
 #volver a {
     text-decoration: none;
 }
+
+.butonfab{
+    position: absolute;
+    width: 40%;
+    font-size: 1.3rem;
+    bottom: 68%;
+    color: #fff6e6;
+    background-color: #d55025;
+    border-radius: 4px;
+    border: none;
+}
+
+.color{
+  color:aliceblue;
+}
 </style>
 
 </head>
@@ -63,27 +78,21 @@ ul{
     <main class="container">
 
       <div id="volver">
-        <a href="/principal_barbero">
+        <a href="/principal_cliente">
             <i class="lni lni-arrow-left"></i>
         </a>
     </div>
 
         <header class="seccion-perfil-usuario">
               <div class="perfil-usuario-avatar">
-                {% if datos_barbero[15] %}
-                <img class="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_barbero[15]) }}" alt="foto_de_perfil">
+                {% if datos_barberia[13] %}
+                <img class="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_barberia[13]) }}" alt="foto_de_perfil">
             {% else %}
-            <img  class="foto-perfil" src="{{ url_for('static', filename='img/principal_propietario/profile-icon.jpg') }}" alt="Logo_perfil">
+            <img class="foto-perfil" src="{{ url_for('static', filename='img/principal_propietario/profile-icon.jpg') }}" alt="Logo_perfil">
             {% endif %}
 
-              <form action="/subir_foto_barbero" method="POST" enctype="multipart/form-data">
-              <input type="file" id="input-foto" name="foto_perfil" accept="image/*" style="display: none;">
-              
-              <div class="enviarf">
-                <button class="subirf" type="submit">Subir foto</button>
-              </div>
-            </form>
-              <label for="input-foto" class="boton-avatar"><i class="lni lni-plus"></i></label> 
+          
+             
               
             </div>
               
@@ -91,54 +100,54 @@ ul{
         </header>
 
          <div class="nombre-admin">
-          <p>{{ datos_barbero[1] }} {{ datos_barbero[2] }}</p>
+          <p>{{ datos_barberia[1] }}</p>
          </div>
          <div class="lineaC"></div>
          
        <section class="perfil-usuario-footer">
         
-        <button class="editarPerfil" onclick="window.location.href='/editar_barbero'">
-
-          <i class="lni lni-pencil"></i>
-        </button>
 
      
         <br>
         <ul class="lista-datos">
           
-          <li><span class="inform">barbero</span></li>
-          <li><span class="inform">{{ datos_barbero[0] }}</span></li>
-          <li><span class="inform">{{ datos_barbero[4] }}</span></li> 
-          <li><span class="inform">{{ datos_barbero[5] }}</span></li>
-          <li><span class="inform">{{ datos_barbero[6] }}</span></li>
+          <li><span class="inform">Barberia</span></li>
+          <li><span class="inform">{{ datos_barberia[2] }}</span></li>
+          <li><span class="inform">{{ datos_barberia[6] }}</span></li> 
+          <li><span class="inform">{{ datos_barberia[3] }}</span></li>
+          <li><span class="inform">{{ datos_barberia[4] }}</span></li>
        </ul>
       
        <div class="icono">
         <div class="icon"><i class="lni lni-user"></i></div>
-        <div class="icon"><i class="fas fa-id-card"></i></div>
+        <div class="icon"><i class="fa fa-map-marker"></i></div>
         <div class="icon"><i class="lni lni-phone"></i></div>
+        <div class="icon"><i class="fas fa-building"></i></div>
         <div class="icon"><i class="fas fa-city"></i></div>
-        <div class="icon"><i class="fa fa-birthday-cake"></i></div>
        </section>
+
+       <a href="{{ url_for('mostrar_barberos', codigo_barberia=datos_barberia[0]) }}" class="butonfab">Elegir Barbero</a>
+
+      
+       
+
+       <h2 class="color">Servicios Ofrecidos</h2>
+        {% for servicio in servicios %}
+        <p class="color">{{ servicio[2] }}: {{ servicio[3] }}</p>
+        {% else %}
+        <p>No hay servicios disponibles.</p>
+        {% endfor %}
+       
+
+        {% for horario in horarios %}
+        <p class="color">Abre de {{ horario[3] }} a {{ horario[4] }} de {{ horario[1] }} a {{ horario[2] }}</p>
+        {% else %}
+        <p>No hay horarios disponibles.</p>
+        {% endfor %}
+
+        <a href="{{ datos_barberia[14] }}" target="_blank" >¿Cómo llegar?</a>
       </main>
 
-  <script>
 
-     // cargar la foto con el ID 'input-foto'
-    document.getElementById('input-foto').addEventListener('change', function(event) {
-        var imagen = event.target.files[0];
-        var reader = new FileReader();
-        
-        reader.onload = function(e) {
-            document.getElementById('foto-perfil').src = e.target.result;
-        }
-        
-    reader.readAsDataURL(imagen);
-});
-
-
-
-
-</script>
 </body>
 </html>

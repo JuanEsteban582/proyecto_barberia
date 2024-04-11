@@ -6,7 +6,7 @@ from flask import send_from_directory
 from flaskext.mysql import MySQL
 from werkzeug.utils import secure_filename
 import os
-from flask import flash
+
 
 app = Flask(__name__)
 mysql = MySQL()

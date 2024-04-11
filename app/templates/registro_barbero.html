@@ -4,15 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/estilos-registro-barbero.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mensaje_flash.css') }}">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
     <script src="{{ url_for('static', filename='js/registro/validaciones_momento-1.js') }}"></script>
     <script src="{{ url_for('static', filename='js/registro/validaciones_momento-2.js') }}"></script>
     <script src="{{ url_for('static', filename='js/registro/validaciones_momento-3.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
     <title>Registro de barbero</title>
+
+
+    <style>
+        .modal {
+    display: none; /* Oculta la ventana modal por defecto */
+    position: fixed; /* Fija la posición de la ventana modal */
+    z-index: 1; /* Asegura que la ventana modal esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completo */
+    overflow: auto; /* Permite el desplazamiento si es necesario */
+    background-color: rgba(0,0,0,0.4); /* Fondo oscuro con transparencia */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centra la ventana modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho de la ventana modal */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    </style>
 </head>
 <body>
+
+
+
     <main>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modal-message"></p>
+            </div>
+        </div>
+        
+
         <div id="volver">
             <a href="/principal_propietario">
                 <i class="lni lni-arrow-left"></i>
@@ -58,7 +109,7 @@
                             <select name="departamento_barberoP" id="departamento">
                                 <option value="" selected disabled>Elige tu departamento</option>
                                 <option value="antioquia">ANTIOQUIA</option>
-                                <option value="valle-del-cauca">VALLE DEL CAUCA</option>
+                                <option value="valle del cauca">VALLE DEL CAUCA</option>
                                 <option value="bogota">BOGOTÁ</option>
                             </select>
                             <div id="departamento-error" class="mensaje-error"></div>

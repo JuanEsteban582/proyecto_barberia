@@ -63,20 +63,20 @@ ul{
     <main class="container">
 
       <div id="volver">
-        <a href="/principal_barbero">
+        <a href="/principal_cliente">
             <i class="lni lni-arrow-left"></i>
         </a>
     </div>
 
         <header class="seccion-perfil-usuario">
               <div class="perfil-usuario-avatar">
-                {% if datos_barbero[15] %}
-                <img class="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_barbero[15]) }}" alt="foto_de_perfil">
+                {% if datos_usuario[9] %}
+                <img class="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_usuario[9]) }}" alt="foto_de_perfil">
             {% else %}
             <img  class="foto-perfil" src="{{ url_for('static', filename='img/principal_propietario/profile-icon.jpg') }}" alt="Logo_perfil">
             {% endif %}
 
-              <form action="/subir_foto_barbero" method="POST" enctype="multipart/form-data">
+              <form action="/subir_foto_cliente" method="POST" enctype="multipart/form-data">
               <input type="file" id="input-foto" name="foto_perfil" accept="image/*" style="display: none;">
               
               <div class="enviarf">
@@ -91,13 +91,13 @@ ul{
         </header>
 
          <div class="nombre-admin">
-          <p>{{ datos_barbero[1] }} {{ datos_barbero[2] }}</p>
+          <p>{{ datos_usuario[1] }} {{ datos_usuario[2] }}</p>
          </div>
          <div class="lineaC"></div>
          
        <section class="perfil-usuario-footer">
         
-        <button class="editarPerfil" onclick="window.location.href='/editar_barbero'">
+        <button class="editarPerfil" onclick="window.location.href='/editar_user'">
 
           <i class="lni lni-pencil"></i>
         </button>
@@ -106,11 +106,11 @@ ul{
         <br>
         <ul class="lista-datos">
           
-          <li><span class="inform">barbero</span></li>
-          <li><span class="inform">{{ datos_barbero[0] }}</span></li>
-          <li><span class="inform">{{ datos_barbero[4] }}</span></li> 
-          <li><span class="inform">{{ datos_barbero[5] }}</span></li>
-          <li><span class="inform">{{ datos_barbero[6] }}</span></li>
+          <li><span class="inform">Cliente</span></li>
+          <li><span class="inform">{{ datos_usuario[0] }}</span></li>
+          <li><span class="inform">{{ datos_usuario[3] }}</span></li> 
+          <li><span class="inform">{{ datos_usuario[4] }}</span></li>
+          <li><span class="inform">{{ datos_usuario[5] }}</span></li>
        </ul>
       
        <div class="icono">
