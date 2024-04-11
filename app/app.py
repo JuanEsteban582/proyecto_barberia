@@ -576,6 +576,8 @@ def cargar_barberos():
 
 @app.route('/Registro_barbero', methods=['GET','POST'])
 def registrar_barbero():
+    if not session.get("logueado"):
+        return render_template('login.html')
     if request.method == 'POST':
         cedula_barbero = request.form['cedula_barberoP']
         Nombre_barbero = request.form['nombre_barberoP']
@@ -587,86 +589,75 @@ def registrar_barbero():
         contrasena = request.form['contrasena_barberoP']
         confir_contrasenabP = request.form['confir_contra_barberoP']
         bdepartamento = request.form['departamento_barberoP']
+
         conn = mysql.connect()
         cursor = conn.cursor()
 
-        cursor.execute("SELECT * FROM barberos WHERE fk_cedulaB = %s", (cedula_barbero,))
-        barbero_existe = cursor.fetchone()
+        correo_propietario = session.get("usuario_id")
+        if not correo_propietario:
+            return "No se encontró el propietario en sesión", 401
 
-         # Verificar si la cédula ya existe en la tabla de propietarios
-        cursor.execute("SELECT pk_cedulaP FROM propietario WHERE pk_cedulaP = %s", (cedula_barbero,))
-        propietario_existe = cursor.fetchone()
-        
-        cursor.execute("SELECT fk_cedulaU FROM usuario WHERE fk_cedulaU = %s", (cedula_barbero,))
-        usuario_existe = cursor.fetchone()
-        
-        cursor.execute("SELECT fk_cedulaB FROM barberos WHERE fk_cedulaB = %s", (cedula_barbero,))
-        barbero_existe_cedula = cursor.fetchone()
-        # Calcular edad
-        fecha_nacimiento = datetime.strptime(f_nacimiento_barbero, '%Y-%m-%d')
-        fecha_actual = datetime.now()
-        edad_calc = fecha_actual.year - fecha_nacimiento.year - ((fecha_actual.month, fecha_actual.day) < (fecha_actual.month, fecha_actual.day))
+        cursor.execute("SELECT pk_cedulaP, nombre_P, codigo_barberia FROM propietario WHERE correo_P = %s", (correo_propietario,))
+        propietario_info = cursor.fetchone()
 
-        if barbero_existe_cedula:
-            msj_error = "El trabajador ya está registrado con este documento. Por favor ingresa uno nuevo"
-            return render_template('registro_barbero.html', msjB=msj_error)
-        if barbero_existe:
-            msj_error = "El trabajador ya está registrado con este documento. Por favor ingresa uno nuevo"
-            return render_template('registro_barbero.html', msj=msj_error)
-        if propietario_existe:
-            msj_error_propietario = "La cédula ya está registrada como propietario. Por favor ingresa una cédula diferente."
-            return render_template('registro_barbero.html', msj_error_propietario=msj_error_propietario)
-        if usuario_existe:
-            msj_error_cliente = "La cédula ya está registrada como cliente. Por favor ingresa una cédula diferente."
-            return render_template('registro_barbero.html', msj_error_cliente=msj_error_cliente)
+        if propietario_info:
+            cedula_propietario = propietario_info[0]
+            codigo_barberia_propietario = propietario_info[2]
 
-        cursor.execute("SELECT bcorreo FROM barberos WHERE bcorreo = %s", (correo_barbero,))
-        correo_existente = cursor.fetchone()
-        
-        cursor.execute("SELECT correo FROM usuario WHERE correo = %s", (correo_barbero,))
-        correo_existente_U = cursor.fetchone()
-        
-        cursor.execute("SELECT correo_P FROM propietario WHERE correo_P = %s", (correo_barbero,))
-        correo_existente_P = cursor.fetchone()
-        if correo_existente:
-            error_correo = "El correo ya está registrado. Ingresa uno nuevo."
-            return render_template('registro_barbero.html', error_correo_B=error_correo)
-        if correo_existente_U:
-            error_correo_U = "El correo ya está registrado. Ingresa uno nuevo."
-            return render_template('registro_barbero.html', error_correo_U=error_correo_U)
-        if correo_existente_P:
-            error_correo_P = "El correo ya está registrado. Ingresa uno nuevo."
-            return render_template('registro_barbero.html', error_correo_P=error_correo_P)
+            cursor.execute("SELECT * FROM barberos WHERE fk_cedulaB = %s", (cedula_barbero,))
+            barbero_existe = cursor.fetchone()
 
+            if barbero_existe:
+                return render_template('registro_barbero.html', msj="El trabajador ya está registrado con este documento. Por favor ingresa uno nuevo")
 
+            cursor.execute("SELECT pk_cedulaP FROM propietario WHERE pk_cedulaP = %s", (cedula_barbero,))
+            propietario_existe = cursor.fetchone()
 
-        if contrasena == confir_contrasenabP:
-            if edad_calc >= 18:
-                # Asegúrate de seleccionar el campo codigo_barberia del propietario
-                cursor.execute("SELECT pk_cedulaP, nombre_P, codigo_barberia FROM propietario")
-                propietario_info = cursor.fetchone()
-                if propietario_info:
-                    cedula_propietario = propietario_info[0]
-                    codigo_barberia_propietario = propietario_info[2] # Obtener el código de la barbería del propietario
+            if propietario_existe:
+                return render_template('registro_barbero.html', msj_error_propietario="La cédula ya está registrada como propietario. Por favor ingresa una cédula diferente.")
 
-                    # GENERACION DE CODIGO PERTENECIENTE
-                    codigo_perteneciente = f"{cedula_propietario}"
+            cursor.execute("SELECT fk_cedulaU FROM usuario WHERE fk_cedulaU = %s", (cedula_barbero,))
+            usuario_existe = cursor.fetchone()
 
-                    # Incluir el código de la barbería del propietario y el código perteneciente en la consulta de inserción
-                    sql_insert = "INSERT INTO barberos (fk_cedulaB, bnombre, apellido, bcorreo, bcelular, bciudad, bf_nacimiento, bcontrasena, rol, codigo_perteneciente, bdepartamento, fk_codigo_barberia) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                    cursor.execute(sql_insert, (cedula_barbero, Nombre_barbero, Apellidos_barbero, correo_barbero, celular_barbero, ciudad_barbero, f_nacimiento_barbero, contrasena, "barbero", codigo_perteneciente, bdepartamento, codigo_barberia_propietario))
+            if usuario_existe:
+                return render_template('registro_barbero.html', msj_error_cliente="La cédula ya está registrada como cliente. Por favor ingresa una cédula diferente.")
 
-                    cursor.execute("UPDATE propietario SET codigo_perteneciente = %s WHERE pk_cedulaP = %s", (codigo_perteneciente, cedula_propietario))
+            cursor.execute("SELECT fk_cedulaB FROM barberos WHERE fk_cedulaB = %s", (cedula_barbero,))
+            barbero_existe_cedula = cursor.fetchone()
 
-                    conn.commit()
+            if barbero_existe_cedula:
+                return render_template('registro_barbero.html', msjB="El trabajador ya está registrado con este documento. Por favor ingresa uno nuevo")
 
-                    return render_template('registro_barbero.html')
-                else:
-                    mensaje_error = "No se pudo obtener la información del propietario."
-                    return render_template('registro_barbero.html', mensaje_error=mensaje_error)
+            cursor.execute("SELECT bcorreo FROM barberos WHERE bcorreo = %s", (correo_barbero,))
+            correo_existente = cursor.fetchone()
+
+            cursor.execute("SELECT correo FROM usuario WHERE correo = %s", (correo_barbero,))
+            correo_existente_U = cursor.fetchone()
+
+            cursor.execute("SELECT correo_P FROM propietario WHERE correo_P = %s", (correo_barbero,))
+            correo_existente_P = cursor.fetchone()
+
+            if correo_existente or correo_existente_U or correo_existente_P:
+                return render_template('registro_barbero.html', error_correo="El correo ya está registrado. Ingresa uno nuevo.")
+
+            fecha_nacimiento = datetime.strptime(f_nacimiento_barbero, '%Y-%m-%d')
+            fecha_actual = datetime.now()
+            edad_calc = fecha_actual.year - fecha_nacimiento.year - ((fecha_actual.month, fecha_actual.day) < (fecha_actual.month, fecha_actual.day))
+
+            if contrasena == confir_contrasenabP and edad_calc >= 18:
+                codigo_perteneciente = f"{cedula_propietario}"
+                sql_insert = "INSERT INTO barberos (fk_cedulaB, bnombre, apellido, bcorreo, bcelular, bciudad, bf_nacimiento, bcontrasena, rol, codigo_perteneciente, bdepartamento, fk_codigo_barberia) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                cursor.execute(sql_insert, (cedula_barbero, Nombre_barbero, Apellidos_barbero, correo_barbero, celular_barbero, ciudad_barbero, f_nacimiento_barbero, contrasena, "barbero", codigo_perteneciente, bdepartamento, codigo_barberia_propietario))
+
+                cursor.execute("UPDATE propietario SET codigo_perteneciente = %s WHERE pk_cedulaP = %s", (codigo_perteneciente, cedula_propietario))
+
+                conn.commit()
+
+                return render_template('registro_barbero.html')
+            else:
+                return render_template('registro_barbero.html', mensaje_edad="El barbero necesita ser mayor de edad para registrarse.")
         else:
-            mensaje_edad = "El barbero necesita ser mayor de edad para registrarse."
-            return render_template('registro_barbero.html', mensaje_edad=mensaje_edad)
+            return render_template('registro_barbero.html', mensaje_error="No se pudo obtener la información del propietario.")
     else:
         return render_template('registro_barbero.html')
 
@@ -934,7 +925,7 @@ def registrar_horarios():
 
         if count > 0:
             # Si ya existen horarios, mostrar un mensaje al usuario
-            return "La barbería ya tiene horarios registrados. Ve al perfil de la barbería y actualízalos.", 400
+            return "La barbería ya tiene horarios registrados.contacta el administrador para actualizar los horarios", 400
 
         # Insertar los nuevos horarios utilizando el código de la barbería
         cursor.execute("INSERT INTO horario_disponible (pk_id_horario, dia_inicio, dia_fin, hora_inicio, hora_fin) VALUES (%s, %s, %s, %s, %s)",
