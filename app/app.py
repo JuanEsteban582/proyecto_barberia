@@ -42,7 +42,7 @@ def login():
         session["logueado"] = True
         session["usuario_id"] = email
         session["usuario_nombre"] = resultado_barbero[1]
-        return render_template('htmls_principal_page/principal_barbero.html')
+        return redirect(url_for('principal_barbero')) 
     elif resultado_propietario and contrasena == resultado_propietario[0]:
         session["logueado"] = True
         session["usuario_id"] = email
@@ -59,6 +59,7 @@ def login():
 
         #----//REGISTRO DE DATOS Y MANEJO DE ROLES EN EL REGISTRO-------//;
         #//------SE LLEVARA UNA SOLA INTERFAZ DE REGISTRO PARA EL USUARIO-------- //#
+        #FUNCIONES DE LOGIN RESTAURAR ; LOGIN ; REGISTRAR CLIENTE#
 
 @app.route("/registro", methods=['GET','POST'])
 def registro():
@@ -68,7 +69,7 @@ def registro():
         nombre = request.form['nombre_usuario']
         apellidos = request.form['apellidos_usuario']
         celular = request.form['celular_usuario']
-        ciudad = request.form['ciudad_Usuario']#
+        ciudad = request.form['ciudad_usuario']
         departamento = request.form['departamento']
         f_nacimiento = request.form['f_nacimiento_U']
         correo = request.form['correo_usuario']
@@ -76,6 +77,9 @@ def registro():
     
         # Consultas SQL para verificar si la cédula ya existe en la tabla de usuarios
         sqlU_ced_existe = f"SELECT fk_cedulaU FROM usuario WHERE fk_cedulaU = %s"
+        sqlU_ced_existe = f"SELECT pk_cedulaP FROM propietario WHERE fk_cedulaP = %s"
+        sqlU_ced_existe = f"SELECT fk_cedulaB FROM barberos WHERE fk_cedulaB = %s"
+        
         
         # Consultas SQL para verificar si el correo ya existe en las tablas
         sqlU_correo_existeu = f"SELECT correo FROM usuario WHERE correo = %s"
@@ -121,7 +125,7 @@ def registro():
             t_sql = "INSERT INTO usuario (nombre, apellidos, celular, ciudad, f_nacimiento, correo, contrasena, rol, fk_cedulaU, departamento) VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s,%s)"
             cursor.execute(t_sql, (nombre, apellidos, celular, ciudad, f_nacimiento, correo, contrasena, 'cliente', fk_cedula, departamento))
             conn.commit()
-            return render_template('htmls_principal_page/principal_cliente.html')
+            return redirect(url_for('principal_cliente')) 
         else:
             mensaje_edad = "No te puedes registrar porque no eres mayor de 18 años"
             return render_template('registro-1.html', msjedad=mensaje_edad)
@@ -134,7 +138,7 @@ def registro():
     
 
         
-        
+        #RECUPERAR CONTRASEÑAAAA
 
 
 @app.route("/recuperar_contra", methods=['GET', 'POST'])
@@ -187,9 +191,11 @@ def actualizar_contrasena():
     
     return render_template('recuperar_contra.html')
 
-                        #<<<<<<<<<<<<<<<<<<<<PERFILESSS>>>>>>>>>>>>>>>>>>>>>>>>>>#
+
+    #__________________________________PERFILES_________________________________________________________#
 
 
+            #________________________________CLIENTE____________________________#
 @app.route('/perfil_usuario')
 def perfil_usuario():
     if not session.get("logueado"):
@@ -255,7 +261,9 @@ def cargar_foto_cliente():
         return "Usuario no encontrado", 404
 
 
-#LO MISMO QUE PERFIL CLIENTE
+
+
+ #__________________________________________________BARBERO______________________________________#
 
 @app.route('/perfil_barbero') 
 def perfil_barbero():
@@ -317,9 +325,110 @@ def cargar_foto_barbero():
     else:
         return "Barbero no encontrado", 404
 
+@app.route('/principal_cliente', methods=['GET'])
+def principal_cliente():
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    # Consultar todas las barberías registradas
+    sql_barberias = "SELECT nom_barberia FROM barberia"
+    cursor.execute(sql_barberias)
+    barberias = cursor.fetchall()
+
+    conn.commit()
+    conn.close()
+
+    # Pasar la lista de barberías a la plantilla para mostrarlas
+    return render_template('htmls_principal_page/principal_cliente.html', barberias=barberias)
 
 
-#PROPIETARIO
+
+
+@app.route('/principal_barbero', methods=['GET'])
+def principal_barbero():
+    # Verificar si el usuario está logueado
+    if not session.get("logueado"):
+        return render_template('login.html')
+
+    # Obtener el correo electrónico del barbero de la sesión
+    email_barbero = session.get("usuario_id")
+    if not email_barbero:
+        return "El correo electrónico del barbero no está disponible en la sesión.", 404
+
+    # Conectar a la base de datos
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    # Consulta SQL para obtener la cédula del barbero de la tabla barberos
+    sql_cedula_barbero = "SELECT fk_cedulaB FROM barberos WHERE bcorreo = %s"
+    cursor.execute(sql_cedula_barbero, (email_barbero,))
+    cedula_barbero_db = cursor.fetchone()
+
+    if not cedula_barbero_db:
+        return "La cédula del barbero no se encontró en la base de datos.", 404
+
+    cedula_barbero_db = cedula_barbero_db[0]
+
+    # Obtener la fecha seleccionada por el usuario
+    fecha_seleccionada = request.args.get('fecha')
+    if not fecha_seleccionada:
+        # Si no se seleccionó una fecha, mostrar todas las citas
+        sql_citas = f"SELECT nombre_cliente, apellidos_cliente, hora, fecha, telefono_cliente FROM citas_agendadas WHERE ced_barbero = '{cedula_barbero_db}'"
+    else:
+        # Si se seleccionó una fecha, mostrar solo las citas de esa fecha
+        sql_citas = f"SELECT nombre_cliente, apellidos_cliente, hora, fecha, telefono_cliente FROM citas_agendadas WHERE ced_barbero = '{cedula_barbero_db}' AND fecha = '{fecha_seleccionada}'"
+    cursor.execute(sql_citas)
+    citas = cursor.fetchall()
+
+    # Cerrar el cursor y la conexión
+    cursor.close()
+    conn.close()
+
+    # Verificar si hay citas
+    if not citas:
+        return "No hay citas agendadas para este barbero.", 404
+
+    # Renderizar la plantilla con los datos de las citas
+    return render_template('htmls_principal_page/principal_barbero.html', citas=citas)
+
+
+
+@app.route('/perfil_barberias/<codigo>', methods=['GET'])
+def perfil_barberias(codigo):
+    conn = mysql.connect()
+    cursor = conn.cursor()
+
+    # Consulta SQL para obtener la información de la barbería, incluyendo el código
+    sql_barberia = f"SELECT * FROM barberia WHERE nom_barberia = '{codigo}'"
+    cursor.execute(sql_barberia)
+    datos_barberia = cursor.fetchone()
+
+    # Asegúrate de que el código de la barbería esté disponible en los datos
+    if datos_barberia:
+        codigo_barberia = datos_barberia[0]
+    else:
+        return "Barbería no encontrada", 404
+
+    # Consulta SQL para obtener los horarios disponibles para la barbería
+    sql_horarios = f"SELECT * FROM horario_disponible WHERE pk_id_horario = '{codigo_barberia}'"
+    cursor.execute(sql_horarios)
+    horarios = cursor.fetchall()
+
+  
+   
+    
+    sql_servicios = f"SELECT * FROM servicios WHERE codigo_servicio = '{codigo_barberia}'"
+    cursor.execute(sql_servicios)
+    servicios = cursor.fetchall()
+
+    conn.commit()
+    conn.close()
+
+    # Renderizar la plantilla de perfil de la barbería con la información obtenida
+    return render_template('cliente/perfil_negocios.html', datos_barberia=datos_barberia, horarios=horarios,servicios=servicios)
+
+
+    #_____________________________________________PROPIETARIO__________________________________#
 @app.route('/perfil_propietario')
 def perfil_propietario():
     if not session.get("logueado"):
@@ -388,63 +497,9 @@ def cargar_foto():
         return render_template('perfiles/propi.html', datos_propietario=datos_propietario)
     else:
         return "Propietario no encontrado", 404
-
-
     
-
-            #------------------------PAGINAS PRINCIPALES-----------------------------#
-
-
-@app.route('/principal_cliente', methods=['GET'])
-def principal_cliente():
-    conn = mysql.connect()
-    cursor = conn.cursor()
-
-    # Consultar todas las barberías registradas
-    sql_barberias = "SELECT nom_barberia FROM barberia"
-    cursor.execute(sql_barberias)
-    barberias = cursor.fetchall()
-
-    conn.commit()
-    conn.close()
-
-    # Pasar la lista de barberías a la plantilla para mostrarlas
-    return render_template('htmls_principal_page/principal_cliente.html', barberias=barberias)
-
-
-@app.route('/perfil_barberias/<codigo>', methods=['GET'])
-def perfil_barberias(codigo):
-    conn = mysql.connect()
-    cursor = conn.cursor()
-
-    # Consulta SQL para obtener la información de la barbería, incluyendo el código
-    sql_barberia = f"SELECT * FROM barberia WHERE nom_barberia = '{codigo}'"
-    cursor.execute(sql_barberia)
-    datos_barberia = cursor.fetchone()
-
-    # Asegúrate de que el código de la barbería esté disponible en los datos
-    if datos_barberia:
-        codigo_barberia = datos_barberia[0]
-    else:
-        return "Barbería no encontrada", 404
-
-    # Consulta SQL para obtener los horarios disponibles para la barbería
-    sql_horarios = f"SELECT * FROM horario_disponible WHERE pk_id_horario = '{codigo_barberia}'"
-    cursor.execute(sql_horarios)
-    horarios = cursor.fetchall()
-
-  
-   
     
-    sql_servicios = f"SELECT * FROM servicios WHERE codigo_servicio = '{codigo_barberia}'"
-    cursor.execute(sql_servicios)
-    servicios = cursor.fetchall()
-
-    conn.commit()
-    conn.close()
-
-    # Renderizar la plantilla de perfil de la barbería con la información obtenida
-    return render_template('cliente/perfil_negocios.html', datos_barberia=datos_barberia, horarios=horarios,servicios=servicios)
+    
 
 @app.route('/principal_propietario', methods=['GET'])
 def principal_propietario():
@@ -517,52 +572,98 @@ def cargar_barberos():
         return "Propietario no encontrado", 404
     
 
-@app.route('/principal_barbero', methods=['GET'])
-def principal_barbero():
-    # Verificar si el usuario está logueado
-    if not session.get("logueado"):
-        return render_template('login.html')
 
-    # Obtener el correo electrónico del barbero de la sesión
-    email_barbero = session.get("usuario_id")
-    if not email_barbero:
-        return "El correo electrónico del barbero no está disponible en la sesión.", 404
 
-    # Conectar a la base de datos
-    conn = mysql.connect()
-    cursor = conn.cursor()
+@app.route('/Registro_barbero', methods=['GET','POST'])
+def registrar_barbero():
+    if request.method == 'POST':
+        cedula_barbero = request.form['cedula_barberoP']
+        Nombre_barbero = request.form['nombre_barberoP']
+        Apellidos_barbero = request.form['apellidos_barberoP']
+        correo_barbero = request.form['correo_barberoP']
+        celular_barbero = request.form['celular_barberoP']
+        ciudad_barbero = request.form['ciudad_barberoP']
+        f_nacimiento_barbero = request.form['f_nacimiento_bP']
+        contrasena = request.form['contrasena_barberoP']
+        confir_contrasenabP = request.form['confir_contra_barberoP']
+        bdepartamento = request.form['departamento_barberoP']
+        conn = mysql.connect()
+        cursor = conn.cursor()
 
-    # Consulta SQL para obtener la cédula del barbero de la tabla barberos
-    sql_cedula_barbero = "SELECT fk_cedulaB FROM barberos WHERE bcorreo = %s"
-    cursor.execute(sql_cedula_barbero, (email_barbero,))
-    cedula_barbero_db = cursor.fetchone()
+        cursor.execute("SELECT * FROM barberos WHERE fk_cedulaB = %s", (cedula_barbero,))
+        barbero_existe = cursor.fetchone()
 
-    if not cedula_barbero_db:
-        return "La cédula del barbero no se encontró en la base de datos.", 404
+         # Verificar si la cédula ya existe en la tabla de propietarios
+        cursor.execute("SELECT pk_cedulaP FROM propietario WHERE pk_cedulaP = %s", (cedula_barbero,))
+        propietario_existe = cursor.fetchone()
+        
+        cursor.execute("SELECT fk_cedulaU FROM usuario WHERE fk_cedulaU = %s", (cedula_barbero,))
+        usuario_existe = cursor.fetchone()
+        # Calcular edad
+        fecha_nacimiento = datetime.strptime(f_nacimiento_barbero, '%Y-%m-%d')
+        fecha_actual = datetime.now()
+        edad_calc = fecha_actual.year - fecha_nacimiento.year - ((fecha_actual.month, fecha_actual.day) < (fecha_actual.month, fecha_actual.day))
 
-    cedula_barbero_db = cedula_barbero_db[0]
+        if barbero_existe:
+            msj_error = "El trabajador ya está registrado con este documento. Por favor ingresa uno nuevo"
+            return render_template('registro_barbero.html', msj=msj_error)
+        if propietario_existe:
+            msj_error_propietario = "La cédula ya está registrada como propietario. Por favor ingresa una cédula diferente."
+            return render_template('registro_barbero.html', msj_error_propietario=msj_error_propietario)
+        if usuario_existe:
+            msj_error_cliente = "La cédula ya está registrada como cliente. Por favor ingresa una cédula diferente."
+            return render_template('registro_barbero.html', msj_error_cliente=msj_error_cliente)
 
-    # Obtener la fecha seleccionada por el usuario
-    fecha_seleccionada = request.args.get('fecha')
-    if not fecha_seleccionada:
-        # Si no se seleccionó una fecha, mostrar todas las citas
-        sql_citas = f"SELECT nombre_cliente, apellidos_cliente, hora, fecha, telefono_cliente FROM citas_agendadas WHERE ced_barbero = '{cedula_barbero_db}'"
+        cursor.execute("SELECT * FROM barberos WHERE bcorreo = %s", (correo_barbero,))
+        correo_existente = cursor.fetchone()
+        cursor.execute("SELECT correo FROM usuario WHERE correo = %s", (correo_barbero,))
+        correo_existente_U = cursor.fetchone()
+        cursor.execute("SELECT correo_P FROM propietario WHERE correo_P = %s", (correo_barbero,))
+        correo_existente_P = cursor.fetchone()
+        if correo_existente:
+            error_correo = "El correo ya está registrado. Ingresa uno nuevo."
+            return render_template('registro_barbero.html', error_correo=error_correo)
+        if correo_existente_U:
+            error_correo_U = "El correo ya está registrado. Ingresa uno nuevo."
+            return render_template('registro_barbero.html', error_correo=error_correo_U)
+        if correo_existente_P:
+            error_correo_P = "El correo ya está registrado. Ingresa uno nuevo."
+            return render_template('registro_barbero.html', error_correo=error_correo_P)
+
+
+
+        if contrasena == confir_contrasenabP:
+            if edad_calc >= 18:
+                # Asegúrate de seleccionar el campo codigo_barberia del propietario
+                cursor.execute("SELECT pk_cedulaP, nombre_P, codigo_barberia FROM propietario")
+                propietario_info = cursor.fetchone()
+                if propietario_info:
+                    cedula_propietario = propietario_info[0]
+                    codigo_barberia_propietario = propietario_info[2] # Obtener el código de la barbería del propietario
+
+                    # GENERACION DE CODIGO PERTENECIENTE
+                    codigo_perteneciente = f"{cedula_propietario}"
+
+                    # Incluir el código de la barbería del propietario y el código perteneciente en la consulta de inserción
+                    sql_insert = "INSERT INTO barberos (fk_cedulaB, bnombre, apellido, bcorreo, bcelular, bciudad, bf_nacimiento, bcontrasena, rol, codigo_perteneciente, bdepartamento, fk_codigo_barberia) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                    cursor.execute(sql_insert, (cedula_barbero, Nombre_barbero, Apellidos_barbero, correo_barbero, celular_barbero, ciudad_barbero, f_nacimiento_barbero, contrasena, "barbero", codigo_perteneciente, bdepartamento, codigo_barberia_propietario))
+
+                    cursor.execute("UPDATE propietario SET codigo_perteneciente = %s WHERE pk_cedulaP = %s", (codigo_perteneciente, cedula_propietario))
+
+                    conn.commit()
+
+                    return render_template('registro_barbero.html')
+                else:
+                    mensaje_error = "No se pudo obtener la información del propietario."
+                    return render_template('registro_barbero.html', mensaje_error=mensaje_error)
+        else:
+            mensaje_edad = "El barbero necesita ser mayor de edad para registrarse."
+            return render_template('registro_barbero.html', mensaje_edad=mensaje_edad)
     else:
-        # Si se seleccionó una fecha, mostrar solo las citas de esa fecha
-        sql_citas = f"SELECT nombre_cliente, apellidos_cliente, hora, fecha, telefono_cliente FROM citas_agendadas WHERE ced_barbero = '{cedula_barbero_db}' AND fecha = '{fecha_seleccionada}'"
-    cursor.execute(sql_citas)
-    citas = cursor.fetchall()
+        return render_template('registro_barbero.html')
 
-    # Cerrar el cursor y la conexión
-    cursor.close()
-    conn.close()
 
-    # Verificar si hay citas
-    if not citas:
-        return "No hay citas agendadas para este barbero.", 404
 
-    # Renderizar la plantilla con los datos de las citas
-    return render_template('htmls_principal_page/principal_barbero.html', citas=citas)
 
 
 
@@ -684,72 +785,6 @@ def editar_propietario():
             return render_template('Actualizacion_perfiles/editar_perfil_propietario.html', datos_propietario=datos_propietario)
         else:
             return "Usuario no encontrado", 404
-
-
-
-@app.route('/Registro_barbero', methods=['GET','POST'])
-def registrar_barbero():
-    if request.method == 'POST':
-        cedula_barbero = request.form['cedula_barberoP']
-        Nombre_barbero = request.form['nombre_barberoP']
-        Apellidos_barbero = request.form['apellidos_barberoP']
-        correo_barbero = request.form['correo_barberoP']
-        celular_barbero = request.form['celular_barberoP']
-        ciudad_barbero = request.form['ciudad_barberoP']
-        f_nacimiento_barbero = request.form['f_nacimiento_bP']
-        contrasena = request.form['contrasena_barberoP']
-        confir_contrasenabP = request.form['confir_contra_barberoP']
-        bdepartamento = request.form['departamento_barberoP']
-        conn = mysql.connect()
-        cursor = conn.cursor()
-
-        cursor.execute("SELECT * FROM barberos WHERE fk_cedulaB = %s", (cedula_barbero,))
-        barbero_existe = cursor.fetchone()
-
-        # Calcular edad
-        fecha_nacimiento = datetime.strptime(f_nacimiento_barbero, '%Y-%m-%d')
-        fecha_actual = datetime.now()
-        edad_calc = fecha_actual.year - fecha_nacimiento.year - ((fecha_actual.month, fecha_actual.day) < (fecha_actual.month, fecha_actual.day))
-
-        if barbero_existe:
-            msj_error = "El trabajador ya está registrado con este documento. Por favor ingresa uno nuevo"
-            return render_template('registro_barbero.html', msj=msj_error)
-
-        cursor.execute("SELECT * FROM barberos WHERE bcorreo = %s", (correo_barbero,))
-        correo_existente = cursor.fetchone()
-        if correo_existente:
-            error_correo = "El correo ya está registrado. Ingresa uno nuevo."
-            return render_template('registro_barbero.html', error_correo=error_correo)
-
-        if contrasena == confir_contrasenabP:
-            if edad_calc >= 18:
-                # Asegúrate de seleccionar el campo codigo_barberia del propietario
-                cursor.execute("SELECT pk_cedulaP, nombre_P, codigo_barberia FROM propietario")
-                propietario_info = cursor.fetchone()
-                if propietario_info:
-                    cedula_propietario = propietario_info[0]
-                    codigo_barberia_propietario = propietario_info[2] # Obtener el código de la barbería del propietario
-
-                    # GENERACION DE CODIGO PERTENECIENTE
-                    codigo_perteneciente = f"{cedula_propietario}"
-
-                    # Incluir el código de la barbería del propietario y el código perteneciente en la consulta de inserción
-                    sql_insert = "INSERT INTO barberos (fk_cedulaB, bnombre, apellido, bcorreo, bcelular, bciudad, bf_nacimiento, bcontrasena, rol, codigo_perteneciente, bdepartamento, fk_codigo_barberia) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                    cursor.execute(sql_insert, (cedula_barbero, Nombre_barbero, Apellidos_barbero, correo_barbero, celular_barbero, ciudad_barbero, f_nacimiento_barbero, contrasena, "barbero", codigo_perteneciente, bdepartamento, codigo_barberia_propietario))
-
-                    cursor.execute("UPDATE propietario SET codigo_perteneciente = %s WHERE pk_cedulaP = %s", (codigo_perteneciente, cedula_propietario))
-
-                    conn.commit()
-
-                    return render_template('registro_barbero.html')
-                else:
-                    mensaje_error = "No se pudo obtener la información del propietario."
-                    return render_template('registro_barbero.html', mensaje_error=mensaje_error)
-        else:
-            mensaje_edad = "El barbero necesita ser mayor de edad para registrarse."
-            return render_template('registro_barbero.html', mensaje_edad=mensaje_edad)
-    else:
-        return render_template('registro_barbero.html')
 
 
 

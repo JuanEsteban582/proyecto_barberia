@@ -71,9 +71,9 @@ ul{
         <header class="seccion-perfil-usuario">
               <div class="perfil-usuario-avatar">
                 {% if datos_barberia[13] %}
-                <img id="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_barberia[13]) }}" alt="foto_de_perfil">
+                <img class="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_barberia[13]) }}" alt="foto_de_perfil">
             {% else %}
-            <img id="foto-perfil" src="{{ url_for('static', filename='img/principal_propietario/profile-icon.jpg') }}" alt="Logo_perfil">
+            <img class="foto-perfil" src="{{ url_for('static', filename='img/principal_propietario/profile-icon.jpg') }}" alt="Logo_perfil">
             {% endif %}
 
               <form action="/subir_foto_barberia" method="POST" enctype="multipart/form-data">

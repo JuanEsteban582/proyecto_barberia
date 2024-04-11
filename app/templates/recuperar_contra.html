@@ -10,6 +10,13 @@
     <title>Restaurar contraseña</title>
 </head>
 <body>
+     <style>
+        .mensaje-error {
+            text-align: left;
+            color: rgb(204, 190, 190);
+            display: block;
+        }
+    </style>
     <main>
 
         <div id="volver">
@@ -62,10 +69,11 @@
 
                 <button type="submit" id="btn">Restaurar</button>
             </form>
-
+            <p class="mensaje-error">{{invalidados}}</p>
         </div>
-        <h2>{{exito}}</h2>
-        <h2>{{invalidados}}</h2>
+
+         
+            
     </main>
 </body>
 </html>

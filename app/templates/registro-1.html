@@ -11,10 +11,28 @@
     <script src="{{ url_for('static', filename='js/registro/validaciones_momento-3.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
     
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var msjError = document.querySelector('.mensaje-error');
+            if (msjError) {
+                msjError.style.display = 'block';
+                setTimeout(function() {
+                    msjError.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
     <title>Registro</title>
 </head>
 <body>
+
+    <style>
+        .mensaje-error {
+            text-align: left;
+            color: rgb(204, 190, 190);
+            display: block;
+        }
+    </style>
     <main>
         <div id="volver">
             <a href="/">
@@ -33,7 +51,8 @@
             <div id="txt">
 
                 <p>Registro</p>
-
+                
+        
             </div>
             
             <form action="/registro" method="POST" id="datos-registro">
@@ -61,7 +80,7 @@
                             <input type="text" name="departamento" id="departamento" placeholder="Departamento" minlength="4" maxlength="18" autocomplete="off">
                             <div id="departamento-error" class="mensaje-error"></div>
 
-                            <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off">
+                            <input type="text" name="ciudad_usuario" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off">
                             <div id="ciudad-error" class="mensaje-error"></div> 
                             
 
@@ -84,7 +103,7 @@
                             <input type="email" name="correo_usuario" id="correo" placeholder="Correo electrónico">
                             <div id="correo-error" class="mensaje-error"></div>
 
-                            <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
+                            <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" autocomplete="off">
                             <ul id="requer-contra" class="mensaje-error">
                                 <li id="long-min">Debe tener mínimo 8 caracteres.</li>
                                 <li id="mayus">Debe contener al menos 1 letra mayúscula.</li>
@@ -93,7 +112,7 @@
                                 <li id="car-especial">Debe contener al menos un caracter especial.</li> -->
                             </ul>
 
-                            <input type="password" name="confir_contra" id="confirmar-contrasena" placeholder="Confirmar contraseña">
+                            <input type="password" name="confir_contra" id="confirmar-contrasena" placeholder="Confirmar contraseña" autocomplete="off">
                             <div id="conf-contrasena-error" class="mensaje-error"></div>
                         </div>
 
@@ -106,10 +125,11 @@
                         </div>
                     </div>
             </form>
+            <p class="mensaje-error">{{msjedad}}</p>
+            <p class="mensaje-error">{{msj_C}}</p>
+            <p class="mensaje-error">{{msj}}</p>
         </div>
         
-            <h2>{{ msj }}</h2>
-            <h2>{{ msj_C }}</h2>
     </main>
 
    
