@@ -599,11 +599,17 @@ def registrar_barbero():
         
         cursor.execute("SELECT fk_cedulaU FROM usuario WHERE fk_cedulaU = %s", (cedula_barbero,))
         usuario_existe = cursor.fetchone()
+        
+        cursor.execute("SELECT fk_cedulaB FROM barberos WHERE fk_cedulaB = %s", (cedula_barbero,))
+        barbero_existe_cedula = cursor.fetchone()
         # Calcular edad
         fecha_nacimiento = datetime.strptime(f_nacimiento_barbero, '%Y-%m-%d')
         fecha_actual = datetime.now()
         edad_calc = fecha_actual.year - fecha_nacimiento.year - ((fecha_actual.month, fecha_actual.day) < (fecha_actual.month, fecha_actual.day))
 
+        if barbero_existe_cedula:
+            msj_error = "El trabajador ya está registrado con este documento. Por favor ingresa uno nuevo"
+            return render_template('registro_barbero.html', msjB=msj_error)
         if barbero_existe:
             msj_error = "El trabajador ya está registrado con este documento. Por favor ingresa uno nuevo"
             return render_template('registro_barbero.html', msj=msj_error)
@@ -614,21 +620,23 @@ def registrar_barbero():
             msj_error_cliente = "La cédula ya está registrada como cliente. Por favor ingresa una cédula diferente."
             return render_template('registro_barbero.html', msj_error_cliente=msj_error_cliente)
 
-        cursor.execute("SELECT * FROM barberos WHERE bcorreo = %s", (correo_barbero,))
+        cursor.execute("SELECT bcorreo FROM barberos WHERE bcorreo = %s", (correo_barbero,))
         correo_existente = cursor.fetchone()
+        
         cursor.execute("SELECT correo FROM usuario WHERE correo = %s", (correo_barbero,))
         correo_existente_U = cursor.fetchone()
+        
         cursor.execute("SELECT correo_P FROM propietario WHERE correo_P = %s", (correo_barbero,))
         correo_existente_P = cursor.fetchone()
         if correo_existente:
             error_correo = "El correo ya está registrado. Ingresa uno nuevo."
-            return render_template('registro_barbero.html', error_correo=error_correo)
+            return render_template('registro_barbero.html', error_correo_B=error_correo)
         if correo_existente_U:
             error_correo_U = "El correo ya está registrado. Ingresa uno nuevo."
-            return render_template('registro_barbero.html', error_correo=error_correo_U)
+            return render_template('registro_barbero.html', error_correo_U=error_correo_U)
         if correo_existente_P:
             error_correo_P = "El correo ya está registrado. Ingresa uno nuevo."
-            return render_template('registro_barbero.html', error_correo=error_correo_P)
+            return render_template('registro_barbero.html', error_correo_P=error_correo_P)
 
 
 
