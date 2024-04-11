@@ -665,7 +665,6 @@ def registrar_barbero():
 
 
 
-
 #<------------ EDICION DE PERFILES CLIENTE, BARBERO, PROPIETARIO  -------------------------->
 @app.route('/editar_user', methods=['GET', 'POST'])
 def editar_user():
