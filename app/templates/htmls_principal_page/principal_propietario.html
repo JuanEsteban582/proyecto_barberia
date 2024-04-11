@@ -15,9 +15,6 @@
 </head>
 <body id="body">
     
-
-
-
     <header>
         
         <div id="icono-menu">
@@ -51,14 +48,10 @@
                 
                 <a href="/perfil_barberia">
                     <div class="option">
-                        <i class="fas fa-store" title="Perfil-Barberia"></i>
+                        <i class="fa-solid fa-building-user" title="Perfil Barberia"></i>
                         <h4>Perfil Barbería</h4>
                     </div>
                 </a>
-                
-              
-                
-                
                 
                 
                 <a href="/barberia_registro">
@@ -68,23 +61,17 @@
                         <h4>Registra tú barberia</h4>
                     </div>
                 </a>
-
-                
-    
-    
-    
-                
     
                 <a href="/registrar_horarios">
                     <div class="option">
-                        <i class="fas fa-clock"title="Mapa"></i>
+                        <i class="fas fa-clock"title="Registra el horario de tu barbería"></i>
                         <h4>Registra el horario de tú barberia </h4>
                     </div>
                 </a>
 
                 <a href="/registrar_servicios">
                     <div class="option">
-                        <i class="fas fa-scissors"title="Mapa"></i>
+                        <i class="fas fa-scissors"title="Registra los servicios de tu barbería"></i>
                         <h4>Registra los servicios de tú barberia </h4>
                     </div>
                 </a>
@@ -92,7 +79,7 @@
 
                 <a href="#" id="btn-cerrar-sesion">
                     <div class="option">
-                        <i class="fa-solid fa-right-to-bracket" title="cerrar_sesion"></i>
+                        <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
                         <h4>Cerrar sesión</h4>
                     </div>
                 </a>
@@ -100,10 +87,11 @@
             </div>
     
         </div>
-
+        
     </nav>
     <main>
         <h2 id="tlo">Barberos asociados</h2>
+        <button id="btn-administrar-barberos" type="button">Administrar barberos</button>
         <button id="btn-agregar-barbero" class="esconder" type="button"><a href="/Registro_barbero">Agregar barbero</a></button>
         <section id="info-barberos">
             {% for persona in barberos %}
@@ -124,7 +112,6 @@
             {% endfor %}
             
         </section>
-        <button id="btn-administrar-barberos" type="button">Administrar barberos</button>
     </main>
 </body>
 </html>

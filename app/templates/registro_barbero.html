@@ -113,21 +113,11 @@ display: block;
                     
                     <div id="momento-2" class="hidden">
                         <div class="campos">
-                            <select name="departamento_barberoP" id="departamento">
-                                <option value="" selected disabled>Elige tu departamento</option>
-                                <option value="antioquia">ANTIOQUIA</option>
-                                <option value="valle del cauca">VALLE DEL CAUCA</option>
-                                <option value="bogota">BOGOTÁ</option>
-                            </select>
+                            <input type="text" name="departamento_barberoP" id="departamento" placeholder="Departamento" minlength="4" maxlength="18" autocomplete="off">
                             <div id="departamento-error" class="mensaje-error"></div>
 
-                            <select name="ciudad_barberoP" id="ciudad">
-                                <option value="" selected disabled>Elige tu ciudad</option>
-                                <option value="buga">BUGA</option>
-                                <option value="tulua">TULUÁ</option>
-                                <option value="">CALI</option>
-                            </select>
-                            <div id="ciudad-error" class="mensaje-error"></div>
+                            <input type="text" name="ciudad_barberoP" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off">
+                            <div id="ciudad-error" class="mensaje-error"></div> 
 
                             <input type="tel" name="celular_barberoP" id="celular" placeholder="Número de celular" maxlength="10">
                             <div id="celular-error" class="mensaje-error"></div>
