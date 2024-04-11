@@ -2,16 +2,21 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/registrar_horas.css') }}">
     <title>Registrar Horarios de Disponibilidad</title>
+    <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
     <script>
         function agregarHorario() {
             var contenedorHorarios = document.getElementById("contenedorHorarios");
             var nuevoHorario = document.createElement("div");
             nuevoHorario.innerHTML = `
-                <div>
+                
                     <label for="fecha">Fecha:</label>
                     <input type="date" id="fecha" name="fecha[]" min="2024-01-01" required>
-                    <label for="dia_semana">Día de la Semana:</label>
                     <label for="dia_semana">Día de la Semana:</label>
                     <select id="dia_semana" name="dia_semana[]" required>
                         <option value="">Seleccione un día</option>
@@ -27,24 +32,76 @@
                     <input type="time" id="hora_inicio" name="hora_inicio[]" required>
                     <label for="hora_fin">Hora de Fin:</label>
                     <input type="time" id="hora_fin" name="hora_fin[]" required>
-                </div>
+                    <div class="lineaC"></div>
             `;
             contenedorHorarios.appendChild(nuevoHorario);
         }
     </script>
 </head>
-<body>
-    <h1>Registrar Horarios de Disponibilidad</h1>
-    <form action="/registrar_horarios_barbero" method="POST">
+<body id="body">
+    <header>
         
-        <div id="contenedorHorarios">
-            <!-- Aquí se agregarán los campos de horario dinámicamente -->
+        <div id="icono-menu">
+            <i class="lni lni-menu" id="btn-menu"></i>
         </div>
-        <button type="button" onclick="agregarHorario()">Agregar Horario</button>
-        <br>
-        <input type="submit" value="Registrar Horarios">
-    </form>
+        
+    </header>
+    <nav>
 
-    <a href="/principal_barbero">regresar</a>
+        <div id="menu-lateral" class="menu__side">
+    
+            <div class="icono-cerrar-menu" id="icono-cerrar-menu">
+                <i class="lni lni-close" id="btn-cerrar-menu"></i>
+            </div>
+    
+            <div class="options__menu">	
+    
+                <a href="/principal_barbero">
+                    <div class="option">
+                        <i class="fas fa-home" title="Inicio"></i>
+                        <h4>Inicio</h4>
+                    </div>
+                </a>
+    
+                <a href="/perfil_barbero">
+                    <div class="option">
+                        <i class="fa-solid fa-user" title="Perfil"></i>
+                        <h4>Perfil</h4>
+                    </div>
+                </a>
+                
+                <a href="/registrar_horarios_barbero" class="selected">
+                    <div class="option">
+                        <i class="fas fa-clock"title="Registra tus horarios de disponibilidad"></i>
+                        <h4>Registra tus horarios de disponibilidad</h4>
+                    </div>
+                </a>
+
+                <a href="#" id="btn-cerrar-sesion">
+                    <div class="option">
+                        <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
+                        <h4>Cerrar sesión</h4>
+                    </div>
+                </a>
+    
+            </div>
+    
+        </div>
+
+    </nav>
+    <main>
+
+        <h2 id="tlo">Registrar Horarios de Disponibilidad</h2>
+        <form action="/registrar_horarios_barbero" method="POST">
+            
+            <div id="contenedorHorarios">
+                <!-- Aquí se agregarán los campos de horario dinámicamente -->
+            </div>
+            <button type="button" onclick="agregarHorario()">Agregar Horario</button>
+
+            <button type="submit">Registrar horarios</button>
+        </form>
+
+    </main>
 </body>
 </html>

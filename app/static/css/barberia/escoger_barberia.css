@@ -16,6 +16,25 @@ body {
     font-size: 16px;
 }
 
+button {
+    background: #d55025;
+    border: transparent;
+    border-radius: 4px;
+    color: #fff6e6;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 3px 7px;
+    margin: 10px 0 40px 0;
+}
+    button:hover {
+        transform: translateY(-7px);
+    }
+    button:active {
+        transform: translateY(-1px);
+    }
+
 img {
     margin: 0 0 -4px 0;
     padding: 0;
@@ -24,17 +43,36 @@ img {
 
 main {
     align-items: center;
-    background-color: #2e2518;
+    background-color: #2f2519;
     color: #fff6e6;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    min-height: 100vh;
+    min-height: 90vh;
     padding: 1em;
     position: relative;
 }
 
+p.info {
+    line-height: 0.3;
+    font-size: 15px;
+}
+
 /* ---------- Etiquetas HTML ---------- */
+
+form#form-cita {
+    align-items: center;
+    color: rgba(255, 246, 230, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div#campo-fecha {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
 
 h2#tlo {
     color: #eda05a;
@@ -49,6 +87,30 @@ section#info-barberos {
     position: relative;
     width: 100%;
 }
+
+input#fecha {
+    border-radius: 4px;
+    display: flex;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    height: 50px;
+    width: 150px;
+    margin-left: 10px;
+    color: rgb(255, 246, 230);
+    flex-direction: column;
+    border: 0;
+    background-color: #403422;
+    outline-offset: 3px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.25s;
+}
+    input#fecha:focus {
+        outline: 2px solid #cc6c3a;
+    }
+    input#fecha::placeholder {
+        color: #c09f76;
+    }
 
 
 /* ---------- Clases ---------- */
@@ -110,9 +172,8 @@ img.img-barbero {
 }
 
 p.nom-barbero {
-    line-height: 1;
-    margin-bottom: 10px;
-    padding: 0 10px 0 10px;
+    line-height: 0;
+    margin-bottom: 30px;
 }
 
 div.tarjeta-barbero {
@@ -140,13 +201,5 @@ div.tarjeta-barbero {
     div.tarjeta-barbero {
         width: 400px;
     }
-    h2#tlo {
-        position: absolute;
-        top: 20px;
-    }
-    main {
-        justify-content: center;
-    }
-    
 }
 

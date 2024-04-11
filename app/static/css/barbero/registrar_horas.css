@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Oswald', sans-serif;
+}
+
+body {
+    background-color: #2f2519;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+}
+
+button {
+    background: #d55025;
+    border: transparent;
+    border-radius: 4px;
+    color: #fff6e6;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 3px 7px;
+    margin: 10px 0 10px 0;
+}
+    button:hover {
+        transform: translateY(-7px);
+    }
+    button:active {
+        transform: translateY(-1px);
+    }
+
+form {
+    align-items: center;
+    color: rgba(255, 246, 230, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 320px;
+}
+
+div#contenedorHorarios div {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+div#contenedorHorarios input {
+    border-radius: 4px;
+    display: flex;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    height: 50px;
+    width: 150px;
+    margin: 0 10px 10px 10px;
+    color: rgb(255, 246, 230);
+    flex-direction: column;
+    border: 0;
+    background-color: #403422;
+    outline-offset: 3px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.25s;
+}
+    div#contenedorHorarios input:focus {
+        outline: 2px solid #cc6c3a;
+    }
+    div#contenedorHorarios input::placeholder {
+        color: #c09f76;
+    }
+
+div#contenedorHorarios select {
+    border-radius: 4px;
+    display: flex;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    height: 50px;
+    width: 150px;
+    margin: 0 10px 10px 10px;
+    color: rgb(255, 246, 230);
+    flex-direction: column;
+    border: 0;
+    background-color: #403422;
+    outline-offset: 3px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.25s;
+}
+    div#contenedorHorarios select:focus {
+        outline: 2px solid #cc6c3a;
+    }
+    div#contenedorHorarios select::placeholder {
+        color: #c09f76;
+    }
+
+h2#tlo {
+    color: #eda05a;
+    text-align: center;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lineaC{
+    width: 320px;
+    height: 2px;
+    background-color: #cc6c3A;
+    margin-bottom: 10px;
+  }

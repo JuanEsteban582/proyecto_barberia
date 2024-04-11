@@ -124,27 +124,16 @@
                     
                     <div id="momento-2" class="hidden">
                         <div class="campos">
-                            <select name="Pais_negocio" id="pais">
-                                <option value="" selected>Elige tu país</option>
-                                <option value="colombia">COLOMBIA</option>
-                            </select>
-                            <div id="pais-error" class="mensaje-error"></div>
 
-                            <select name="departamento_negocio" id="departamento">
-                                <option value="" selected>Elige tu departamento</option>
-                                <option value="antioquia">ANTIOQUIA</option>
-                                <option value="valle-del-cauca">VALLE DEL CAUCA</option>
-                                <option value="bogota">BOGOTÁ</option>
-                            </select>
+                            <input type="text" name="Pais_negocio" id="pais" placeholder="País" minlength="4" maxlength="23" autocomplete="off">
+                            <div id="pais-error" class="mensaje-error"></div> 
+
+                            <input type="text" name="departamento_negocio" id="departamento" placeholder="Departamento" minlength="4" maxlength="18" autocomplete="off">
                             <div id="departamento-error" class="mensaje-error"></div>
 
-                            <select name="ciudad_negocio" id="ciudad">
-                                <option value="" selected>Elige tu ciudad</option>
-                                <option value="buga">BUGA</option>
-                                <option value="tulua">TULUÁ</option>
-                                <option value="cali">CALI</option>
-                            </select>
-                            <div id="ciudad-error" class="mensaje-error"></div>
+                            <input type="text" name="ciudad_negocio" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off">
+                            <div id="ciudad-error" class="mensaje-error"></div> 
+                            
                         </div>
 
                         <div class="enlaces">

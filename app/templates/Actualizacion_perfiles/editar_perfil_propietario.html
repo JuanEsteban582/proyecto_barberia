@@ -41,14 +41,7 @@
                             <input type="tel" name="Celular_P" id="celular" placeholder="Número de celular" maxlength="10" value="{{ datos_propietario[4] }}">
                             <div id="celular-error" class="mensaje-error"></div>
 
-
-                            <select name="Ciudad_P" id="ciudad">
-                                <option value="" selected disabled>Elige tu ciudad</option>
-                                <option value="buga" {% if datos_propietario[8] == 'buga' %}selected{% endif %}>BUGA</option>
-                                <option value="tulua" {% if datos_propietario[8] == 'tulua' %}selected{% endif %}>TULUÁ</option>
-                                <option value="cali" {% if datos_propietario[8] == 'cali' %}selected{% endif %}>CALI</option>
-                            </select>
-                            
+                            <input type="text" name="Ciudad_P" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off" value="{{datos_propietario[8]}}">
                             <div id="ciudad-error" class="mensaje-error"></div>
 
                     

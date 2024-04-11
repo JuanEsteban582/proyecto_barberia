@@ -52,14 +52,14 @@
                 
                 <a href="/registrar_horarios_barbero">
                     <div class="option">
-                        <i class="fas fa-clock"title="Mapa"></i>
+                        <i class="fas fa-clock"title="Registra tus horarios de disponibilidad"></i>
                         <h4>Registra tus horarios de disponibilidad</h4>
                     </div>
                 </a>
 
                 <a href="#" id="btn-cerrar-sesion">
                     <div class="option">
-                        <i class="fa-solid fa-right-to-bracket" title="cerrar_sesion"></i>
+                        <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
                         <h4>Cerrar sesión</h4>
                     </div>
                 </a>
@@ -69,15 +69,18 @@
         </div>
 
     </nav>
-    <body>
-        <form action="/principal_barbero" method="get">
-            <label for="fecha">Selecciona una fecha:</label>
-            <input type="date" id="fecha" name="fecha">
-            <input type="submit" value="Mostrar citas">
+    
+    <main>
+        <h2 id="tlo">Citas Pendientes</h2>
+        <form action="/principal_barbero" method="get" id="form-cita">
+            <div id="campo-fecha">
+
+                <label for="fecha">Selecciona una fecha:</label>
+                <input type="date" id="fecha" name="fecha">
+                
+            </div>
+            <button type="submit">Mostrar citas</button>
         </form>
-        
-        <main>
-            <h2 id="tlo">Citas Pendientes</h2>
             <section id="info-barberos">
                 {% for cita in citas %}
                 <div class="tarjeta-barbero">
@@ -86,9 +89,9 @@
                     </figure>
                     <div class="contenedor-datos-barbero">
                         <p class="nom-barbero">{{ cita[0] }} {{ cita[1] }}</p> <!-- Nombre y apellido del cliente -->
-                        <p>Hora: {{ cita[2] }}</p>
-                        <p>Fecha: {{ cita[3] }}</p>
-                        <p>Teléfono: {{ cita[4] }}</p>
+                        <p class="info">Hora: {{ cita[2] }}</p>
+                        <p class="info">Fecha: {{ cita[3] }}</p>
+                        <p class="info">Teléfono: {{ cita[4] }}</p>
                     </div>
                 </div>
                 {% endfor %}
