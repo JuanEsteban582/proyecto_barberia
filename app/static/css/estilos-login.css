@@ -6,7 +6,7 @@
 }
 a {
     text-decoration: none;
-    color: rgba(255, 246, 230, 0.7);
+    color: #faebd7;
 }
 p{
     font-size: 0.9em;
@@ -45,8 +45,8 @@ button {
     cursor: pointer;
     padding: 5px 10px;
     border: transparent;
-    background: #d35b22;
-    color: rgb(255, 246, 230);
+    background: #d55025;
+    color: #faebd7;
     border-radius: 4px;
     margin-top: 40px;
     text-align: center;
@@ -63,7 +63,7 @@ div#datos-form {
     align-items: center;
     flex-direction: column;
     text-align: center;
-    color: rgb(255, 246, 230);
+    color: #faebd7;
 }
 div#contenedor-logo {
     align-items: center;
@@ -88,7 +88,7 @@ div#campos input {
     height: 3.5em;
     width: 200px;
     margin-top: 20px;
-    color: rgb(255, 246, 230);
+    color: #faebd7;
     flex-direction: column;
     border: 0;
     background-color: #403422;
@@ -112,7 +112,7 @@ div#campos select {
     height: 3.5em;
     width: 200px;
     margin-top: 20px;
-    color: rgb(255, 246, 230);
+    color: #faebd7;
     flex-direction: column;
     border: 0;
     background-color: #403422;

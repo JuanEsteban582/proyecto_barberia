@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/estilos-registro-barbero.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/barberia/servicio.css') }}">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    
+    <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
     <script src="{{ url_for('static', filename='js/barberia/registrar_servicio.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cerrar_sesion.js') }}"></script>
     <title>Agregar servicios</title>
 
     <style>
@@ -31,8 +34,82 @@
     </style>
     
 </head>
-<body>
+<body id="body">
 
+    <header>
+        
+        <div id="icono-menu">
+            <i class="lni lni-menu" id="btn-menu"></i>
+        </div>
+        
+    </header>
+    <nav>
+
+        <div id="menu-lateral" class="menu__side">
+    
+            <div class="icono-cerrar-menu" id="icono-cerrar-menu">
+                <i class="lni lni-close" id="btn-cerrar-menu"></i>
+            </div>
+    
+            <div class="options__menu">	
+    
+                <a href="/principal_propietario">
+                    <div class="option">
+                        <i class="fas fa-home" title="Inicio"></i>
+                        <h4>Inicio</h4>
+                    </div>
+                </a>
+    
+                <a href="/perfil_propietario">
+                    <div class="option">
+                        <i class="fa-solid fa-user" title="Perfil"></i>
+                        <h4>Perfil</h4>
+                    </div>
+                </a>
+                
+                <a href="/perfil_barberia">
+                    <div class="option">
+                        <i class="fa-solid fa-building-user" title="Perfil Barberia"></i>
+                        <h4>Perfil Barbería</h4>
+                    </div>
+                </a>
+                
+                
+                <a href="/barberia_registro">
+                    <div class="option">
+                        <i class="fa fa-plus-square" title="Registra tú barberia"></i>
+    
+                        <h4>Registra tú barberia</h4>
+                    </div>
+                </a>
+    
+                <a href="/registrar_horarios">
+                    <div class="option">
+                        <i class="fas fa-clock"title="Registra el horario de tu barbería"></i>
+                        <h4>Registra el horario de tú barberia </h4>
+                    </div>
+                </a>
+
+                <a href="/registrar_servicios" class="selected">
+                    <div class="option">
+                        <i class="fas fa-scissors"title="Registra los servicios de tu barbería"></i>
+                        <h4>Registra los servicios de tú barberia </h4>
+                    </div>
+                </a>
+
+
+                <a href="#" id="btn-cerrar-sesion">
+                    <div class="option">
+                        <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
+                        <h4>Cerrar sesión</h4>
+                    </div>
+                </a>
+    
+            </div>
+    
+        </div>
+        
+    </nav>
     <main>
 
         {% with messages = get_flashed_messages() %}
@@ -44,12 +121,6 @@
             </div>
         {% endif %}
 {% endwith %}
-
-        <div id="volver">
-            <a href="/principal_propietario">
-                <i class="lni lni-arrow-left"></i>
-            </a>
-        </div>
         
         <div id="contenedor-logo">
             <div id="logo">
@@ -61,11 +132,11 @@
 
             <div id="txt">
 
-                <p>Agrega los servicios de  tú barberia </p><br>
+                <h4>Agrega los servicios de tú barberia</h4>
 
-                <p>*Agrega los precios con su punto correspondiente</p>
+                <h6>*Agrega los precios con su punto correspondiente</h6>
 
-                <p>corte = 10.000</p>
+                <h6>corte = 10.000</h6>
 
             </div>
             
