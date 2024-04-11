@@ -384,12 +384,9 @@ def principal_barbero():
     cursor.close()
     conn.close()
 
-    # Verificar si hay citas
-    if not citas:
-        return "No hay citas agendadas para este barbero.", 404
-
-    # Renderizar la plantilla con los datos de las citas
+    # Pasar las citas a la plantilla
     return render_template('htmls_principal_page/principal_barbero.html', citas=citas)
+
 
 
 
@@ -739,7 +736,7 @@ def editar_barbero():
         conn.commit()
 
         if datos_barbero:
-            return render_template('Actualizacion_perfiles/editar_perfil_barbero.html', datos_barbero=datos_barbero)
+            return render_template('Actualizacion_perfiles/editar_perfil_barberos.html', datos_barbero=datos_barbero)
         else:
             return "Usuario no encontrado", 404
 
@@ -816,8 +813,12 @@ def barberia_registro():
         cursor.execute(f"SELECT * FROM barberia WHERE pk_codigo_barberia = '{codigo_unico}'")
         existencia = cursor.fetchone()
 
-        if existencia:
-            mensaje = "La barbería ya está registrada."
+        # Verificar si el propietario ya tiene una barbería registrada
+        cursor.execute(f"SELECT * FROM barberia WHERE correo = '{correo_propietario}'")
+        barberia_existente = cursor.fetchone()
+
+        if existencia or barberia_existente:
+            mensaje = "Ya tienes una barbería registrada."
             return render_template('barberia/barberiaR.html', mensaje=mensaje)
         else:
             # Registrar la barbería con el código único en la tabla barberias
@@ -828,7 +829,6 @@ def barberia_registro():
             propietario_id = cursor.fetchone()
 
             if propietario_id:
-                
                 cursor.execute("UPDATE propietario SET nom_barberia = %s, codigo_barberia = %s WHERE pk_cedulaP = %s", (nombre_barberia, codigo_unico, propietario_id[0]))
 
                 conn.commit()
@@ -841,6 +841,7 @@ def barberia_registro():
                 return "El propietario no está registrado.", 404
 
     return render_template('barberia/barberiaR.html')
+
 
 
                             
@@ -924,15 +925,15 @@ def registrar_horarios():
 
         if count > 0:
             # Si ya existen horarios, mostrar un mensaje al usuario
-            return "La barbería ya tiene horarios registrados.contacta el administrador para actualizar los horarios", 400
-
+            mesange = "La barbería ya tiene horarios registrados. Contacta el administrador para actualizar los horarios."
+            return render_template('barberia/registrar_horario.html', message=mesange), 400
         # Insertar los nuevos horarios utilizando el código de la barbería
         cursor.execute("INSERT INTO horario_disponible (pk_id_horario, dia_inicio, dia_fin, hora_inicio, hora_fin) VALUES (%s, %s, %s, %s, %s)",
                        (codigo_barberia, dia_inicio, dia_fin, hora_inicio, hora_fin))
 
         conn.commit()
-
-        return render_template('barberia/registrar_horario.html', message="Horarios registrados exitosamente.")
+        mens = "Horarios registrados exitosamente."
+        return render_template('barberia/registrar_horario.html', meage=mens)
 
     return render_template('barberia/registrar_horario.html')
 

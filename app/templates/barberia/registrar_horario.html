@@ -19,6 +19,13 @@
     <title>Registrar Horarios</title>
 </head>
 <body id="body">
+    <style>
+.mensaje-error {
+text-align: left;
+color: rgb(204, 190, 190);
+display: block;
+        }
+    </style>
     <header>
         
         <div id="icono-menu">
@@ -142,6 +149,8 @@
                 </div>
                 <button type="submit" id="btn-submit">Guardar</button>
             </form>
+            <p class="mensaje-error">{{meage}}</p>
+            <p class="mensaje-error">{{message}}</p>
         </div>
     </main>
 </body>
