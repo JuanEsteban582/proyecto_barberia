@@ -7,7 +7,7 @@
     font-family: 'Oswald', sans-serif;
 }
 
-#foto-perfil {
+.foto-perfil {
   width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
   height: 100%; /* Asegura que la imagen ocupe todo el alto del contenedor */
   object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor sin distorsionarse */

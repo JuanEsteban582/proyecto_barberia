@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<<<<<<< HEAD
 <body>
     
 <form action="/registrar_horarios" method="POST">
@@ -38,5 +39,142 @@
     </div>
     <button type="submit">Guardar Horarios</button>
 </form>
+=======
+<body id="body">
+    <style>
+.mensaje-error {
+text-align: left;
+color: rgb(204, 190, 190);
+display: block;
+        }
+    </style>
+    <header>
+        
+        <div id="icono-menu">
+            <i class="lni lni-menu" id="btn-menu"></i>
+        </div>
+        
+    </header>
+    <nav>
+
+        <div id="menu-lateral" class="menu__side">
+    
+            <div class="icono-cerrar-menu" id="icono-cerrar-menu">
+                <i class="lni lni-close" id="btn-cerrar-menu"></i>
+            </div>
+    
+            <div class="options__menu">	
+    
+                <a href="/principal_propietario">
+                    <div class="option">
+                        <i class="fas fa-home" title="Inicio"></i>
+                        <h4>Inicio</h4>
+                    </div>
+                </a>
+    
+                <a href="/perfil_propietario">
+                    <div class="option">
+                        <i class="fa-solid fa-user" title="Perfil"></i>
+                        <h4>Perfil</h4>
+                    </div>
+                </a>
+                
+                <a href="/perfil_barberia">
+                    <div class="option">
+                        <i class="fa-solid fa-building-user" title="Perfil Barberia"></i>
+                        <h4>Perfil Barbería</h4>
+                    </div>
+                </a>
+                
+                
+                <a href="/barberia_registro">
+                    <div class="option">
+                        <i class="fa fa-plus-square" tittle="Registra tú barberia"></i>
+    
+                        <h4>Registra tú barberia</h4>
+                    </div>
+                </a>
+    
+                <a href="/registrar_horarios" class="selected">
+                    <div class="option">
+                        <i class="fas fa-clock"title="Registra el horario de tu barbería"></i>
+                        <h4>Registra el horario de tú barberia </h4>
+                    </div>
+                </a>
+
+                <a href="/registrar_servicios">
+                    <div class="option">
+                        <i class="fas fa-scissors"title="Registra los servicios de tu barbería"></i>
+                        <h4>Registra los servicios de tú barberia </h4>
+                    </div>
+                </a>
+
+
+                <a href="#" id="btn-cerrar-sesion">
+                    <div class="option">
+                        <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
+                        <h4>Cerrar sesión</h4>
+                    </div>
+                </a>
+    
+            </div>
+    
+        </div>
+        
+    </nav>
+    <main>
+        
+        <div id="contenedor-logo">
+            <div id="logo">
+                <img  src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo_barber_locate">
+            </div>
+        </div>
+
+        <div id="datos-form">
+            <div id="txt">
+                <p>Registra los horarios</p>
+            </div>
+            
+            <form action="/registrar_horarios" method="POST" id="datos-registro">
+                <div class="campos">
+                    
+                    <select name="dia_inicio" id="dia_inicio">
+                        <option value="" selected disabled>Elige el día de inicio</option>
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+                    <div id="dia_inicio-error" class="mensaje-error"></div>
+
+                    
+                    <input type="time" id="hora_inicio" name="hora_inicio" placeholder="Hora apertura" required>
+                    
+
+                    
+                    <select name="dia_fin" id="dia_fin">
+                        <option value="" selected disabled>Elige el día de fin</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+                    <div id="dia_fin-error" class="mensaje-error"></div>
+
+                    
+                    <input type="time" id="hora_fin" name="hora_fin" placeholder="Hora cierre" required>
+                    <div id="hora_fin-error" class="mensaje-error" ></div>
+                </div>
+                <button type="submit" id="btn-submit">Guardar</button>
+            </form>
+            <p class="mensaje-error">{{meage}}</p>
+            <p class="mensaje-error">{{message}}</p>
+        </div>
+    </main>
+>>>>>>> 522a921b3cc8ff24f76a6b83921750a5a369c80a
 </body>
 </html>
