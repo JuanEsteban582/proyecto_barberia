@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/barberia/escoger_barberia.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/home-propietario.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
 
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
@@ -64,13 +64,12 @@
         </div>
 
     </nav>
-    <body>
         <main>
             <h2 id="tlo">Barberias disponibles</h2>
             <section id="info-barberos">
+                {% for barberia in barberias %}
                 <div class="tarjeta-barbero">
     
-                    {% for barberia in barberias %}
                     <figure class="contenedor-img-barbero">
                         {% if barberia[13] %}
                         <img class="img-barberia" src="{{ url_for('uploaded_file', filename=barberia[13]) }}" alt="Foto de la barbería">
@@ -81,13 +80,15 @@
     
                     <div class="contenedor-datos-barbero">
                         <p class="nom-barbero">{{ barberia[0] }}</p>
-                        <a href="{{ url_for('perfil_barberias', codigo=barberia[0]) }}" class="btn-actividad-barbero" type="button">Ver perfil</a>
-                        <button class="bt-escoger-barbero" type="button">Agendar cita</button>
+                        <button type="button" class="btn-actividad-barbero">
+
+                            <a href="{{ url_for('perfil_barberias', codigo=barberia[0]) }}" type="button">Ver perfil</a>
+                        </button>
                     </div>
-                    {% endfor %}
                     
                 </div>
-    
+                {% endfor %}
+                
             </section>
            
         </main>

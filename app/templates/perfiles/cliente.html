@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>perfil cliente</title>
+  <title>Perfil</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/barberia/perfil_barberia.css') }}">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
   <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
   <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
+  <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
+  <script src="{{ url_for('static', filename='js/cerrar_sesion.js') }}"></script>
     
  
   <style>
@@ -58,17 +62,56 @@ ul{
 </style>
 
 </head>
-<body>
+<body id="body">
+  <header>
+        
+    <div id="icono-menu">
+        <i class="lni lni-menu" id="btn-menu"></i>
+    </div>
+    
+</header>
+<nav>
+
+    <div id="menu-lateral" class="menu__side">
+
+        <div class="icono-cerrar-menu" id="icono-cerrar-menu">
+            <i class="lni lni-close" id="btn-cerrar-menu"></i>
+        </div>
+
+        <div class="options__menu">	
+
+            <a href="/principal_cliente">
+                <div class="option">
+                    <i class="fas fa-home" title="Inicio"></i>
+                    <h4>Inicio</h4>
+                </div>
+            </a>
+
+            <a href="/perfil_usuario" class="selected">
+                <div class="option">
+                    <i class="fa-solid fa-user" title="Perfil"></i>
+                    <h4>Perfil</h4>
+                </div>
+            </a>
+            
+
+
+            <a href="#" id="btn-cerrar-sesion">
+                <div class="option">
+                    <i class="fa-solid fa-right-to-bracket" title="cerrar_sesion"></i>
+                    <h4>Cerrar sesión</h4>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
 
     <main class="container">
 
-      <div id="volver">
-        <a href="/principal_cliente">
-            <i class="lni lni-arrow-left"></i>
-        </a>
-    </div>
-
-        <header class="seccion-perfil-usuario">
+        <div class="seccion-perfil-usuario">
               <div class="perfil-usuario-avatar">
                 {% if datos_usuario[9] %}
                 <img class="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_usuario[9]) }}" alt="foto_de_perfil">
@@ -88,7 +131,7 @@ ul{
             </div>
               
              
-        </header>
+        </div>
 
          <div class="nombre-admin">
           <p>{{ datos_usuario[1] }} {{ datos_usuario[2] }}</p>
