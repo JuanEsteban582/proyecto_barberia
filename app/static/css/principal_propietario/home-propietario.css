@@ -7,11 +7,13 @@
 
 a {
     color: #fff6e6;
+    text-decoration: none;
 }
 
 body, html {
     margin: 0;
     padding: 0;
+    background-color: #2f2519;
 }
 
 body {
@@ -56,6 +58,23 @@ section#info-barberos {
 
 
 /* ---------- Clases ---------- */
+
+#volver {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px; /* Añade un poco de espacio alrededor del botón para evitar que esté pegado a los bordes */
+}
+
+#volver i {
+    color: #EDA05a;
+    font-size: 2.0em;
+    display: block;
+}
+
+#volver a {
+    text-decoration: none;
+}
 
 button.btn-actividad-barbero{
     background: #d35b22;

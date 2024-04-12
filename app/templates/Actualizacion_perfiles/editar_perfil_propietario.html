@@ -19,9 +19,45 @@
         <button type="submit">Guardar Cambios</button>
     </form>
 
+<<<<<<< HEAD
     <br>
     
     <br>
     <a href="/perfil_propietario">Cancelar</a>
+=======
+            <div id="txt">
+
+                <p>*Solo puedes cambiar estos dos datos*</p>
+
+            </div>
+            
+            <form action="/editar_propietario" method="POST" id="datos-registro">
+                    
+                    <div id="" class="">
+                        <div class="campos">
+                            
+                            <input type="hidden" name="ced_P" value="{{ datos_propietario[0] }}">
+                            <input type="tel" name="Celular_P" id="celular" placeholder="Número de celular" maxlength="10" value="{{ datos_propietario[4] }}">
+                            <div id="celular-error" class="mensaje-error"></div>
+
+                            <input type="text" name="Ciudad_P" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off" value="{{datos_propietario[8]}}">
+                            <div id="ciudad-error" class="mensaje-error"></div>
+
+                    
+                        </div>
+
+            
+                    </div> 
+                        <div class="enlaces">
+
+                    
+                            <button type="submit" id="btn-submit">Guardar cambios</button>
+
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </main>
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
 </body>
 </html>

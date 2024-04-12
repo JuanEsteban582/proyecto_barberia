@@ -11,7 +11,7 @@ import os
 app = Flask(__name__)
 mysql = MySQL()
 app.secret_key=str(randint(10000,99999))  # Necesario para controlar la creación única de sesiones
-app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes = 30)
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=45)
 
 app.config['MYSQL_DATABASE_HOST'] ='localhost'
 app.config['MYSQL_DATABASE_PORT'] = 3306 #servidor

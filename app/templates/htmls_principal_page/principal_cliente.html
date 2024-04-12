@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/home-propietario.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
+
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +33,7 @@
             <h4>BarberLocate</h4>
         </div>
 
+<<<<<<< HEAD
         <div class="options__menu">	
 
             <a href="#" class="selected">
@@ -96,3 +104,36 @@
     <script src="{{ url_for('static', filename='js/principal_page.js') }}"></script>
 </body>
 </html>
+=======
+    </nav>
+        <main>
+            <h2 id="tlo">Barberias disponibles</h2>
+            <section id="info-barberos">
+                {% for barberia in barberias %}
+                <div class="tarjeta-barbero">
+    
+                    <figure class="contenedor-img-barbero">
+                        {% if barberia[13] %}
+                        <img class="img-barberia" src="{{ url_for('uploaded_file', filename=barberia[13]) }}" alt="Foto de la barbería">
+                    {% else %}
+                        <img class="img-barberia" src="{{ url_for('static', filename='img/icono-usuario.png') }}" alt="Icono de barbería">
+                    {% endif %}
+                    </figure>
+    
+                    <div class="contenedor-datos-barbero">
+                        <p class="nom-barbero">{{ barberia[0] }}</p>
+                        <button type="button" class="btn-actividad-barbero">
+
+                            <a href="{{ url_for('perfil_barberias', codigo=barberia[0]) }}" type="button">Ver perfil</a>
+                        </button>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+                
+            </section>
+           
+        </main>
+    </body>
+    </html>
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f

@@ -1,12 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
+=======
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>perfil barbero</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/barberia/perfil_barberia.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
+  <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
+  <script src="{{ url_for('static', filename='js/cerrar_sesion.js') }}"></script>
+  <style>
+      
+.lni {
+  flex-direction:column;
+  font-size: 23px;
+   text-align: center;
+   
+  
+}
+
+.icono{
+  display: flex;
+  position:relative;
+  bottom: 23%;
+  left: 26%;
+  flex-direction: column; 
+}
+
+.icono{
+  font-size: 1.5rem;
+  color: #e78655;
+}
+
+
+ul{
+  list-style-type: none;
+}
+
+#volver {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px; /* Añade un poco de espacio alrededor del botón para evitar que esté pegado a los bordes */
+}
+
+#volver i {
+    color: #EDA05a;
+    font-size: 2.0em;
+    display: block;
+}
+
+#volver a {
+    text-decoration: none;
+}
+</style>
+
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
 </head>
-<body>
+<body id="body">
+
+  <header>
+        
+    <div id="icono-menu">
+        <i class="lni lni-menu" id="btn-menu"></i>
+    </div>
+    
+</header>
+<nav>
+
+    <div id="menu-lateral" class="menu__side">
+
+        <div class="icono-cerrar-menu" id="icono-cerrar-menu">
+            <i class="lni lni-close" id="btn-cerrar-menu"></i>
+        </div>
+
+        <div class="options__menu">	
+
+            <a href="/principal_barbero">
+                <div class="option">
+                    <i class="fas fa-home" title="Inicio"></i>
+                    <h4>Inicio</h4>
+                </div>
+            </a>
+
+            <a href="/perfil_barbero" class="selected">
+                <div class="option">
+                    <i class="fa-solid fa-user" title="Perfil"></i>
+                    <h4>Perfil</h4>
+                </div>
+            </a>
+            
+            <a href="/registrar_horarios_barbero">
+                <div class="option">
+                    <i class="fas fa-clock"title="Registra tus horarios de disponibilidad"></i>
+                    <h4>Registra tus horarios de disponibilidad</h4>
+                </div>
+            </a>
+
+            <a href="#" id="btn-cerrar-sesion">
+                <div class="option">
+                    <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
+                    <h4>Cerrar sesión</h4>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
 
     <!-- Agrega aquí la estructura del cuerpo del perfil según tus necesidades -->
     <h1>Datos del Perfil</h1>
@@ -17,10 +129,86 @@
     <p>Ciudad: {{ datos_barbero[5] }}</p>
     <p>Fecha de Nacimiento: {{ datos_barbero[6] }}</p>
 
+<<<<<<< HEAD
     <a href="/editar_barbero">Editar Información</a>
     
     <br> <br>
     <a href="/principal_barbero">Regresar</a>
     
+=======
+
+        <div class="seccion-perfil-usuario">
+              <div class="perfil-usuario-avatar">
+                {% if datos_barbero[15] %}
+                <img class="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_barbero[15]) }}" alt="foto_de_perfil">
+            {% else %}
+            <img  class="foto-perfil" src="{{ url_for('static', filename='img/principal_propietario/profile-icon.jpg') }}" alt="Logo_perfil">
+            {% endif %}
+
+              <form action="/subir_foto_barbero" method="POST" enctype="multipart/form-data">
+              <input type="file" id="input-foto" name="foto_perfil" accept="image/*" style="display: none;">
+              
+              <div class="enviarf">
+                <button class="subirf" type="submit">Subir foto</button>
+              </div>
+            </form>
+              <label for="input-foto" class="boton-avatar"><i class="lni lni-plus"></i></label> 
+              
+            </div>
+              
+             
+        </div>
+
+         <div class="nombre-admin">
+          <p>{{ datos_barbero[1] }} {{ datos_barbero[2] }}</p>
+         </div>
+         <div class="lineaC"></div>
+         
+       <section class="perfil-usuario-footer">
+        
+        <button class="editarPerfil" onclick="window.location.href='/editar_barbero'">
+
+          <i class="lni lni-pencil"></i>
+        </button>
+
+     
+        <br>
+        <ul class="lista-datos">
+          
+          <li><span class="inform">Barbero</span></li>
+          <li><span class="inform">{{ datos_barbero[0] }}</span></li>
+          <li><span class="inform">{{ datos_barbero[4] }}</span></li> 
+          <li><span class="inform">{{ datos_barbero[5] }}</span></li>
+          <li><span class="inform">{{ datos_barbero[6] }}</span></li>
+       </ul>
+      
+       <div class="icono">
+        <div class="icon"><i class="lni lni-user"></i></div>
+        <div class="icon"><i class="fas fa-id-card"></i></div>
+        <div class="icon"><i class="lni lni-phone"></i></div>
+        <div class="icon"><i class="fas fa-city"></i></div>
+        <div class="icon"><i class="fa fa-birthday-cake"></i></div>
+       </section>
+      </main>
+
+  <script>
+
+     // cargar la foto con el ID 'input-foto'
+    document.getElementById('input-foto').addEventListener('change', function(event) {
+        var imagen = event.target.files[0];
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            document.getElementById('foto-perfil').src = e.target.result;
+        }
+        
+    reader.readAsDataURL(imagen);
+});
+
+
+
+
+</script>
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
 </body>
 </html>

@@ -45,10 +45,69 @@
                 <label for="hora_C">Hora de cierre (HH:mm):</label>
                 <input type="time" id="hora_C" name="hora_C" pattern="[0-9]{2}:[0-9]{2}" placeholder="HH:mm" class="campo" required>
     
+<<<<<<< HEAD
                 <div id="container_boton">
                     <a href="/principal_propietario" class="btn-atras">X</a>
                     <button type="submit" class="btn-accion">Registrar negocio</button>
                 </div>
+=======
+                    <div id="momento-1">
+                        <div class="campos">
+                            <input type="text" name="nombre_barberia" id="nombre" placeholder="Nombre de tú barberia" minlength="3" maxlength="25" autocomplete="off">
+                            <div id="nombre-error" class="mensaje-error"></div>
+
+                            <input type="text" name="direccion_barberia" id="direccion" placeholder="Dirección" minlength="3" maxlength="25" autocomplete="off">
+                            <div id="direccion-error" class="mensaje-error"></div>
+
+                            <input type="tel" name="telefono_negocio" id="celular" placeholder="Número celular del negocio" maxlength="10" autocomplete="off">
+                            <div id="celular-error" class="mensaje-error"></div>
+                        </div>
+                        <button id="btn-siguiente-1" type="button">Siguiente</button>
+                    </div>
+                    
+                    <div id="momento-2" class="hidden">
+                        <div class="campos">
+
+                            <input type="text" name="Pais_negocio" id="pais" placeholder="País" minlength="4" maxlength="23" autocomplete="off">
+                            <div id="pais-error" class="mensaje-error"></div> 
+
+                            <input type="text" name="departamento_negocio" id="departamento" placeholder="Departamento" minlength="4" maxlength="18" autocomplete="off">
+                            <div id="departamento-error" class="mensaje-error"></div>
+
+                            <input type="text" name="ciudad_negocio" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off">
+                            <div id="ciudad-error" class="mensaje-error"></div> 
+                            
+                        </div>
+
+                        <div class="enlaces">
+
+                            <span id="atras-momento-2" class="atras">Atrás</span>
+                            <button id="btn-siguiente-2" type="button">Siguiente</button>
+
+                        </div>
+                    </div>
+
+                    <div id="momento-3" class="hidden">
+                        <div class="campos">
+
+                            <input type="time" name="hora_A" id="hora-apertura" placeholder="Hora apertura">
+                            <div id="apertura-error" class="mensaje-error"></div>
+                            <span class="aclaracion">* Hora de apertura de tu negocio</span>
+
+                            <input type="time" name="hora_C" id="hora-cierre" placeholder="Hora cierre">
+                            <div id="cierre-error" class="mensaje-error"></div>
+                            <span class="aclaracion">* Hora de cierre de tu negocio </span>
+                        </div>
+
+                        <div id="aviso-error" class="mensaje-error"></div>
+                        <div class="enlaces">
+
+                            <span id="atras-momento-3" class="atras">Atrás</span>
+                            <button type="submit" id="btn-submit">Registrar barbería</button>
+
+                        </div>
+                    </div>
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
             </form>
 
             <h2>{{ mensaje }}</h2>

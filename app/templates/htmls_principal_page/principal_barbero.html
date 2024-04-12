@@ -19,6 +19,7 @@
         </div>
     </header>
 
+<<<<<<< HEAD
     <div class="menu__side" id="menu_side">
 
         <div class="name__page">
@@ -32,6 +33,73 @@
                 <div class="option">
                     <i class="fas fa-home" title="Inicio"></i>
                     <h4>Inicio</h4>
+=======
+        <div id="menu-lateral" class="menu__side">
+    
+            <div class="icono-cerrar-menu" id="icono-cerrar-menu">
+                <i class="lni lni-close" id="btn-cerrar-menu"></i>
+            </div>
+    
+            <div class="options__menu">	
+    
+                <a href="/principal_barbero" class="selected">
+                    <div class="option">
+                        <i class="fas fa-home" title="Inicio"></i>
+                        <h4>Inicio</h4>
+                    </div>
+                </a>
+    
+                <a href="/perfil_barbero">
+                    <div class="option">
+                        <i class="fa-solid fa-user" title="Perfil"></i>
+                        <h4>Perfil</h4>
+                    </div>
+                </a>
+                
+                <a href="/registrar_horarios_barbero">
+                    <div class="option">
+                        <i class="fas fa-clock"title="Registra tus horarios de disponibilidad"></i>
+                        <h4>Registra tus horarios de disponibilidad</h4>
+                    </div>
+                </a>
+
+                <a href="#" id="btn-cerrar-sesion">
+                    <div class="option">
+                        <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
+                        <h4>Cerrar sesión</h4>
+                    </div>
+                </a>
+    
+            </div>
+    
+        </div>
+
+    </nav>
+    
+    <main>
+        <h2 id="tlo">Citas Pendientes</h2>
+        <form action="/principal_barbero" method="get" id="form-cita">
+            <div id="campo-fecha">
+
+                <label for="fecha">Selecciona una fecha:</label>
+                <input type="date" id="fecha" name="fecha">
+                
+            </div>
+            <button type="submit">Mostrar citas</button>
+        </form>
+            <section id="info-barberos">
+                {% for cita in citas %}
+                <div class="tarjeta-barbero">
+                    <figure class="contenedor-img-barbero">
+                        <img class="img-barberia" src="{{ url_for('static', filename='img/icono-usuario.png') }}" alt="Icono de barbería">
+                    </figure>
+                    <div class="contenedor-datos-barbero">
+                        <p class="nom-barbero">{{ cita[0] }} {{ cita[1] }}</p> <!-- Nombre y apellido del cliente -->
+                        <p class="info">Hora: {{ cita[2] }}</p>
+                        <p class="info">Fecha: {{ cita[3] }}</p>
+                        <p class="info">Teléfono: {{ cita[4] }}</p>
+                    </div>
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
                 </div>
             </a>
 

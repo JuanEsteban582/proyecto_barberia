@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/cliente/barberos_disponibles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/home-propietario.css') }}">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +10,15 @@
 </head>
 <body>
     <main>
+        <div id="volver">
+            <a href="/principal_cliente">
+                <i class="lni lni-arrow-left"></i>
+            </a>
+        </div>
         <h2 id="tlo">Barberos disponibles</h2>
         <section id="info-barberos">
+            {% for barbero in barberos %}
             <div class="tarjeta-barbero">
-                {% for barbero in barberos %}
                 <figure class="contenedor-img-barbero">
                     {% if barbero[8] %}
                     <img class="img-barbero" src="{{ url_for('uploaded_file', filename=barbero[8]) }}" alt="Foto de perfil">
@@ -24,13 +29,25 @@
 
                 <div class="contenedor-datos-barbero">
                     <p class="nom-barbero">{{ barbero[1] }} {{ barbero[2] }}</p>
-                    <a href="{{ url_for('mostrar_horarios_disponibles', cedula_barbero=barbero[0]) }}" class="btn-actividad-barbero" type="button">Elegir</a>
+                    <div class="btones">
 
-                    <a href="{{ url_for('perfilC_barbero', cedula_barbero=barbero[0]) }}" class="bt-escoger-barbero" type="button">Ver Perfil</a>
+                        <button type="button" class="btn-actividad-barbero">
+    
+                            <a href="{{ url_for('mostrar_horarios_disponibles', cedula_barbero=barbero[0]) }}"  type="button">Elegir</a>
+                        </button>
+    
+                        <button type="button" class="btn-actividad-barbero">
+    
+                            <a href="{{ url_for('perfilC_barbero', cedula_barbero=barbero[0]) }}" type="button">Ver Perfil</a>
+    
+                        </button>
+
+                    </div>
+
                 </div>
-                {% endfor %}
                 
             </div>
+            {% endfor %}
 
             
                 
