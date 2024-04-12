@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
+<<<<<<< HEAD
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
+=======
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>perfil barbero</title>
@@ -59,6 +65,7 @@ ul{
 }
 </style>
 
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
 </head>
 <body id="body">
 
@@ -113,8 +120,22 @@ ul{
 
 </nav>
 
-    <main class="container">
+    <!-- Agrega aquí la estructura del cuerpo del perfil según tus necesidades -->
+    <h1>Datos del Perfil</h1>
+    <p>Cedula: {{ datos_barbero[0] }}</p>
+    <p>Nombre: {{ datos_barbero[1] }}</p>
+    <p>Apellidos: {{ datos_barbero[2] }}</p>
+    <p>Celular: {{ datos_barbero[4] }}</p>
+    <p>Ciudad: {{ datos_barbero[5] }}</p>
+    <p>Fecha de Nacimiento: {{ datos_barbero[6] }}</p>
 
+<<<<<<< HEAD
+    <a href="/editar_barbero">Editar Información</a>
+    
+    <br> <br>
+    <a href="/principal_barbero">Regresar</a>
+    
+=======
 
         <div class="seccion-perfil-usuario">
               <div class="perfil-usuario-avatar">
@@ -188,5 +209,6 @@ ul{
 
 
 </script>
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
 </body>
 </html>

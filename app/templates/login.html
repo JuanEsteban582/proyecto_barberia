@@ -5,27 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ url_for('static', filename='js/login.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
     <title>Iniciar sesión</title>
 </head>
 <body>
-
-
     <main>
         <div id="contenedor-logo">
-            <div id="logo">
-                <img src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo BarberLocate">
-            </div>
+            <div id="logo"></div>
         </div>
         <div id="datos-form">
             <form action="/login" method="POST" id="datos-log">
                 <div id="campos">
-                    <input type="text" name="correo_user" id="email" placeholder="ejemplo@ejemplo.com" autocomplete="off" required>
+                    <input type="text" name="correo_user" id="email" placeholder="CORREO ELECTRÓNICO" autocomplete="off" required>
                     <div id="email-error" class="mensaje-error"></div>
-                    <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" autocomplete="off" required>
+                    <input type="password" name="contrasena" id="contrasena" placeholder="CONTRASEÑA" required>
                     <div id="contra-error" class="mensaje-error"></div>
                 </div>
-                <button type="submit" id="btn">Ingresar</button>
+                <button type="submit" id="btn">Entrar</button>
             </form>
             <div id="texto-cuenta">
                 <a href="/registro"><p>Crear cuenta</p></a>

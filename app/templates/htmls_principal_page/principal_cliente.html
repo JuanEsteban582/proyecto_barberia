@@ -1,68 +1,110 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
+<<<<<<< HEAD
+=======
     <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/home-propietario.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
 
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="{{ url_for('static', filename='js/principal_propietario/home-propietario.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
-    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
-    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/cerrar_sesion.js') }}"></script>
-    <title>Inicio</title>
+    <title>BarberLocate</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_page.css') }}">
+
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
+
 </head>
 <body id="body">
     
-
-
-
     <header>
-        
-        <div id="icono-menu">
-            <i class="lni lni-menu" id="btn-menu"></i>
+        <div class="icon__menu">
+            <i class="fas fa-bars" id="btn_open"></i>
         </div>
-        
     </header>
-    <nav>
 
-        <div id="menu-lateral" class="menu__side">
-    
-            <div class="icono-cerrar-menu" id="icono-cerrar-menu">
-                <i class="lni lni-close" id="btn-cerrar-menu"></i>
-            </div>
-    
-            <div class="options__menu">	
-    
-                <a href="/principal_cliente" class="selected">
-                    <div class="option">
-                        <i class="fas fa-home" title="Inicio"></i>
-                        <h4>Inicio</h4>
-                    </div>
-                </a>
-    
-                <a href="/perfil_usuario">
-                    <div class="option">
-                        <i class="fa-solid fa-user" title="Perfil"></i>
-                        <h4>Perfil</h4>
-                    </div>
-                </a>
-                
+    <div class="menu__side" id="menu_side">
 
-
-                <a href="#" id="btn-cerrar-sesion">
-                    <div class="option">
-                        <i class="fa-solid fa-right-to-bracket" title="cerrar_sesion"></i>
-                        <h4>Cerrar sesión</h4>
-                    </div>
-                </a>
-    
-            </div>
-    
+        <div class="name__page">
+            <i class="fab fa-youtube"></i>
+            <h4>BarberLocate</h4>
         </div>
 
+<<<<<<< HEAD
+        <div class="options__menu">	
+
+            <a href="#" class="selected">
+                <div class="option">
+                    <i class="fas fa-home" title="Inicio"></i>
+                    <h4>Inicio</h4>
+                </div>
+            </a>
+
+            <a href="/perfil_usuario">
+                <div class="option">
+                    <i class="fa-solid fa-user" title="Perfil"></i>
+                    <h4>Perfil</h4>
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="option">
+                    <i class="fa-solid fa-map-location-dot"title="Mapa"></i>
+                    <h4>Mapa</h4>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="option">
+                    <i class="fa-solid fa-calendar-days"title="Calendario"></i>
+                    <h4>Calendario</h4>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="option">
+                    <i class="fa-solid fa-city" title="Notificaciones"></i>
+                    <h4>Notificaciones</h4>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="option">
+                    <i class="far fa-address-card" title="Nosotros"></i>
+                    <h4>Nosotros</h4>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+    <main>
+        <h1>Barberías Registradas</h1>
+        {% for barberia in barberias %}
+        <div class="barberia">
+            <h2>{{ barberia[1] }}</h2> <!-- Nombre de la barbería -->
+            <p><strong>Dirección:</strong> {{ barberia[2] }}</p> <!-- Dirección de la barbería -->
+            <p><strong>Ciudad:</strong> {{ barberia[3] }}</p> <!-- Ciudad de la barbería -->
+            <p><strong>Teléfono:</strong> {{ barberia[4] }}</p> <!-- Teléfono de la barbería -->
+            <p><strong>País:</strong> {{ barberia[5] }}</p> <!-- País de la barbería -->
+            <p><strong>Correo:</strong> {{ barberia[6] }}</p> <!-- Correo de la barbería -->
+            <!-- Enlaces -->
+            <a href="#">Ir</a>
+            <a href="#">Ver detalles</a>
+            <a href="#">Agendar cita</a>
+            <!-- Puedes agregar más información si es necesario -->
+        </div>
+        {% endfor %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/principal_page.js') }}"></script>
+</body>
+</html>
+=======
     </nav>
         <main>
             <h2 id="tlo">Barberias disponibles</h2>
@@ -94,3 +136,4 @@
         </main>
     </body>
     </html>
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f

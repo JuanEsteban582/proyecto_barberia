@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Servicios</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <main class="contenedor">
+    
+    <form action="/guardar_cita" method="POST">
+        <input type="hidden" name="cedula_barbero" id="cedula_barbero" value="{{ cedula_barbero }}">
+
+        <label for="nombre">Nombre:</label>
+        <input class="nom-info" type="text" id="nombre" name="nombre">
+        <label for="apellidos">Apellidos:</label>
+        <input class="nom-info" type="text" id="apellidos" name="apellidos">
+        <label for="telefono">Teléfono:</label>
+        <input class="nom-info" type="tel" id="telefono" name="telefono">
+        {% for servicio in servicios %}
+        <div>
+            <input class="cheks-servi" type="checkbox" name="servicios_seleccionados" value="{{ servicio[1] }}">
+
+            <label>{{ servicio[2] }} - {{ servicio[3]}}</label>
+        </div>
+        {% endfor %}
+
+        <label for="fecha">Fecha:</label>
+        <input class="nom-info" type="date" id="fecha" name="fecha">
+        <label for="hora">Hora:</label>
+        <input class="nom-info" type="time" id="hora" name="hora">
+
+        <button id="btn-guardar" type="submit">Guardar Cita</button>
+    </form>
+   </main>
+</body>
+</html>

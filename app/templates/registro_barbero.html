@@ -2,172 +2,78 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/estilos-registro-barbero.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/mensaje_flash.css') }}">
-    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <script src="{{ url_for('static', filename='js/registro/validaciones_momento-1.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/registro/validaciones_momento-2.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/registro/validaciones_momento-3.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
-    <title>Registro de barbero</title>
-
-
-    <style>
-        .modal {
-    display: none; /* Oculta la ventana modal por defecto */
-    position: fixed; /* Fija la posición de la ventana modal */
-    z-index: 1; /* Asegura que la ventana modal esté por encima de otros elementos */
-    left: 0;
-    top: 0;
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Altura completo */
-    overflow: auto; /* Permite el desplazamiento si es necesario */
-    background-color: rgba(0,0,0,0.4); /* Fondo oscuro con transparencia */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* Centra la ventana modal */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Ancho de la ventana modal */
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-.mensaje-error {
-text-align: left;
-color: rgb(204, 190, 190);
-display: block;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro barberos</title>
     
-    </style>
 </head>
 <body>
 
-
-
-    <main>
-
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p id="modal-message"></p>
-            </div>
-        </div>
+    <main id="inicio">
         
-
-        <div id="volver">
-            <a href="/principal_propietario">
-                <i class="lni lni-arrow-left"></i>
-            </a>
-        </div>
-        
-        <div id="contenedor-logo">
-            <div id="logo">
-                <img  src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo_barber_locate">
-            </div>
-        </div>
-
-        <div id="datos-form">
-
-            <div id="txt">
-
-                <p>Ingresa la información del barbero</p>
-
-            </div>
+        <section id="lado_izq"></section>
             
-            <form action="/Registro_barbero" method="POST" id="datos-registro">
+        <section id="lado_dere">
     
-                    <div id="momento-1">
-                        <div class="campos">
-                            <input type="text" name="nombre_barberoP" id="nombre" placeholder="Nombre" minlength="3" maxlength="25" autocomplete="off">
-                            <div id="nombre-error" class="mensaje-error"></div>
+    <form id="forma_acceso" name="forma_acceso" action="/Registro_barbero" method="POST">
 
-                            <input type="text" name="apellidos_barberoP" id="apellidos" placeholder="Apellido" minlength="3" maxlength="25" autocomplete="off">
-                            <div id="apellidos-error" class="mensaje-error"></div>
+        <h1 id="titulo"> Registra tú equipo de trabajo </h1>
+        
+        <label for="cedula_barbero">Cedula del trabajador:</label>
+        <input type="number" id="cedula"  class="campo" name="cedula_barberoP" class="ancho-full" 
+        place holder="Cedula del trabajador"  required>
+        <br>
+        <label for="nombre_barbero">Nombres del trabajador:</label>
+        <input type="text" id="nombre"  class="campo" name="nombre_barberoP" class="ancho-full" 
+        place holder="Nombre del trabajador"  required>
+        <br>
+        <label for="apellidos_barbero">Apellidos del trabajador:</label>
+        <input type="text" id="apellidos" name="apellidos_barberoP" class="campo" class="ancho-full" 
+        place holder="Apellidos del trabajador" required>
+        <br>
+        <label for="celular_usuario">Celular del trabajador:</label>
+        <input type="tel" id="celular" name="celular_barberoP" class="campo" class="ancho-full" 
+        place holder="Celular del trabajador" required>
+        <br>
+        <label for="ciudad_U">Ciudad:</label>
+        <select id="ciudad" name="ciudad_barberoP" class="campo" class="ancho-full">
+            <option value="Buga">Guadalajara de Buga</option>
+            <option value="Bugalagrande">Bugalagrande</option>
+            <option value="Santiago de cali">Santiago de cali</option>
+        </select>
+        <br>
+        
+            <label for="f_nacimiento_U">Fecha de Nacimiento del trabajador:</label>
+            <input type="date" id="f_nacimiento_barberoP" class="campo" class="ancho-full" 
+            name="f_nacimiento_bP"  required>
+            <br>
+            <label for="correo_trabajador">Correo Electrónico del trabajador:</label>
+            <input type="email" id="correo"class="campo" class="ancho-full" 
+            name="correo_barberoP" required>
+            <br>
+            <label for="contrasena">Contraseña del trabajador:</label>
+            <input type="password" id="contrasena" class="campo" class="ancho-full" 
+            name="contrasena_barberoP" required>
+            <br>
+            <label for="confir_contra">Confirmar Contraseña:</label>
+            <input type="password" id="contrasena" class="campo" class="ancho-full"
+            name="confir_contra_barberoP" required>
+            <br>
+    <div id="container_boton">
+        <a href="/principal_propietario" class="btn-atras"> X </a>
+        <button  type="submit" class="btn-accion">Registrarse</button>
+    </div>
+    </form>
 
-                            <input type="text" name="cedula_barberoP" id="cedula" placeholder="Número de identificación" minlength="6" maxlength="12" autocomplete="off">
-                            <div id="cedula-error" class="mensaje-error"></div>
+    <h2>{{mensaje}}</h2>
+    <h2>{{mensaje_exito}}</h2>
+    <h2>{{msjedad}}</h2>
+    <h2>{{error_correo}}</h2>
+    <h2>{{error_contra}}</h2>
 
-                            <input type="date" name="f_nacimiento_bP" id="f_nacimiento">
-                            <div id="f_nacimiento-error" class="mensaje-error"></div>
-                            <span class="aclaracion">* Fecha de nacimiento</span>
-                        </div>
-                        <button id="btn-siguiente-1" type="button">Siguiente</button>
-                    </div>
-                    
-                    <div id="momento-2" class="hidden">
-                        <div class="campos">
-                            <input type="text" name="departamento_barberoP" id="departamento" placeholder="Departamento" minlength="4" maxlength="18" autocomplete="off">
-                            <div id="departamento-error" class="mensaje-error"></div>
-
-                            <input type="text" name="ciudad_barberoP" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off">
-                            <div id="ciudad-error" class="mensaje-error"></div> 
-
-                            <input type="tel" name="celular_barberoP" id="celular" placeholder="Número de celular" maxlength="10">
-                            <div id="celular-error" class="mensaje-error"></div>
-                        </div>
-
-                        <div class="enlaces">
-
-                            <span id="atras-momento-2" class="atras">Atrás</span>
-                            <button id="btn-siguiente-2" type="button">Siguiente</button>
-
-                        </div>
-                    </div>
-
-                    <div id="momento-3" class="hidden">
-                        <div class="campos">
-
-                            <input type="email" name="correo_barberoP" id="correo" placeholder="Correo electrónico">
-                            <div id="correo-error" class="mensaje-error"></div>
-
-                            <input type="password" name="contrasena_barberoP" id="contrasena" placeholder="Contraseña">
-                            <ul id="requer-contra" class="mensaje-error">
-                                <li id="long-min">Debe tener mínimo 8 caracteres.</li>
-                                <li id="mayus">Debe contener al menos 1 letra mayúscula.</li>
-                                <li id="minus">Debe contener al menos 1 letra minúscula.</li>
-                                <!-- <li id="numero">Debe contener al menos 1 número.</li>
-                                <li id="car-especial">Debe contener al menos un caracter especial.</li> -->
-                            </ul>
-
-                            <input type="password" name="confir_contra_barberoP" id="confirmar-contrasena" placeholder="Confirmar contraseña">
-                            <div id="conf-contrasena-error" class="mensaje-error"></div>
-                        </div>
-
-                        <div id="aviso-error" class="mensaje-error"></div>
-                        <div class="enlaces">
-
-                            <span id="atras-momento-3" class="atras">Atrás</span>
-                            <button type="submit" id="btn-submit">Registrar barbero</button>
-
-                        </div>
-                    </div>
-            </form>
-            <p class="mensaje-error">{{msj}}</p>
-            <p class="mensaje-error">{{msjB}}</p>
-            <p class="mensaje-error">{{error_correo_B}}</p>
-            <p class="mensaje-error">{{error_correo_P}}</p>
-            <p class="mensaje-error">{{error_correo_U}}</p>
-            <p class="mensaje-error">{{mensaje_edad}}</p>
-            <p class="mensaje-error">{{msj_error_propietario}}</p>
-            <p class="mensaje-error">{{msj_error_cliente}}</p>
-        </div>
-    </main>
+    <h2>{{msj}}</h2>
+    
+</section>
+</main> 
 </body>
-</html>       
+</html>
+    

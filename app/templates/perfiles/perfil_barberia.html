@@ -1,212 +1,26 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil barbería</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/barberia/perfil_barberia.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
-  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-  <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
-  <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
-  <script src="{{ url_for('static', filename='js/cerrar_sesion.js') }}"></script>
-  <style>
-      
-.lni {
-  flex-direction:column;
-  font-size: 23px;
-   text-align: center;
-   
-  
-}
-
-.icono{
-  display: flex;
-  position:relative;
-  bottom: 23%;
-  left: 26%;
-  flex-direction: column; 
-}
-
-.icono{
-  font-size: 1.5rem;
-  color: #e78655;
-}
-
-
-ul{
-  list-style-type: none;
-}
-
-#volver {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px; /* Añade un poco de espacio alrededor del botón para evitar que esté pegado a los bordes */
-}
-
-#volver i {
-    color: #EDA05a;
-    font-size: 2.0em;
-    display: block;
-}
-
-#volver a {
-    text-decoration: none;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <title>Perfil de la Barbería</title>
+    
 </head>
-<body id="body">
-  <header>
-        
-    <div id="icono-menu">
-        <i class="lni lni-menu" id="btn-menu"></i>
-    </div>
-    
-</header>
-<nav>
+<body>
+    <h1>Perfil de la Barbería</h1>
+    <p>Nombre: {{ datos_barberia[1] }}</p>
+    <p>Dirección: {{ datos_barberia[2] }}</p>
+    <p>Teléfono: {{ datos_barberia[6] }}</p>
+    <p>Ciudad: {{ datos_barberia[3] }}</p>
+    <p>Departamento: {{ datos_barberia[4] }}</p>
+    <p>País: {{ datos_barberia[5]}}</p>
+    <br>
 
-    <div id="menu-lateral" class="menu__side">
+    <a href="/principal_propietario">REGRESAR</a>
+    <br>
+    <a href="/registrar_horarios">REGISTRA LOS HORARIOS DE TU NEGOCIO</a>
+    <br>
+    <a href="/mostrar_horarios_barberia">VER HORARIOS</a>
 
-        <div class="icono-cerrar-menu" id="icono-cerrar-menu">
-            <i class="lni lni-close" id="btn-cerrar-menu"></i>
-        </div>
-
-        <div class="options__menu">	
-
-            <a href="/principal_propietario">
-                <div class="option">
-                    <i class="fas fa-home" title="Inicio"></i>
-                    <h4>Inicio</h4>
-                </div>
-            </a>
-
-            <a href="/perfil_propietario">
-                <div class="option">
-                    <i class="fa-solid fa-user" title="Perfil"></i>
-                    <h4>Perfil</h4>
-                </div>
-            </a>
-            
-            <a href="/perfil_barberia" class="selected">
-                <div class="option">
-                    <i class="fa-solid fa-building-user" title="Perfil Barberia"></i>
-                    <h4>Perfil Barbería</h4>
-                </div>
-            </a>
-            
-            
-            <a href="/barberia_registro">
-                <div class="option">
-                    <i class="fa fa-plus-square" tittle="Registra tú barberia"></i>
-
-                    <h4>Registra tú barberia</h4>
-                </div>
-            </a>
-
-            <a href="/registrar_horarios">
-                <div class="option">
-                    <i class="fas fa-clock"title="Registra el horario de tu barbería"></i>
-                    <h4>Registra el horario de tú barberia </h4>
-                </div>
-            </a>
-
-            <a href="/registrar_servicios">
-                <div class="option">
-                    <i class="fas fa-scissors"title="Registra los servicios de tu barbería"></i>
-                    <h4>Registra los servicios de tú barberia </h4>
-                </div>
-            </a>
-
-
-            <a href="#" id="btn-cerrar-sesion">
-                <div class="option">
-                    <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
-                    <h4>Cerrar sesión</h4>
-                </div>
-            </a>
-
-        </div>
-
-    </div>
-    
-</nav>
-
-    <main class="container">
-
-        <div class="seccion-perfil-usuario">
-              <div class="perfil-usuario-avatar">
-                {% if datos_barberia[13] %}
-                <img class="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_barberia[13]) }}" alt="foto_de_perfil">
-            {% else %}
-            <img class="foto-perfil" src="{{ url_for('static', filename='img/principal_propietario/profile-icon.jpg') }}" alt="Logo_perfil">
-            {% endif %}
-
-              <form action="/subir_foto_barberia" method="POST" enctype="multipart/form-data">
-              <input type="file" id="input-foto" name="foto_perfil" accept="image/*" style="display: none;">
-              
-              <div class="enviarf">
-                <button class="subirf" type="submit">Subir foto</button>
-              </div>
-            </form>
-              <label for="input-foto" class="boton-avatar"><i class="lni lni-plus"></i></label> 
-              
-            </div>
-              
-             
-        </div>
-
-         <div class="nombre-admin">
-          <p>{{ datos_barberia[1] }}</p>
-         </div>
-         <div class="lineaC"></div>
-         
-       <section class="perfil-usuario-footer">
-        
-
-     
-        <br>
-        <ul class="lista-datos">
-          
-          <li><span class="inform">Barberia</span></li>
-          <li><span class="inform">{{ datos_barberia[2] }}</span></li>
-          <li><span class="inform">{{ datos_barberia[6] }}</span></li> 
-          <li><span class="inform">{{ datos_barberia[3] }}</span></li>
-          <li><span class="inform">{{ datos_barberia[4] }}</span></li>
-       </ul>
-      
-       <div class="icono">
-        <div class="icon"><i class="lni lni-user"></i></div>
-        <div class="icon"><i class="fa fa-map-marker"></i></div>
-        <div class="icon"><i class="lni lni-phone"></i></div>
-        <div class="icon"><i class="fas fa-building"></i></div>
-        <div class="icon"><i class="fas fa-city"></i></div>
-       </section>
-
-
-      </main>
-
-  <script>
-
-     // cargar la foto con el ID 'input-foto'
-    document.getElementById('input-foto').addEventListener('change', function(event) {
-        var imagen = event.target.files[0];
-        var reader = new FileReader();
-        
-        reader.onload = function(e) {
-            document.getElementById('foto-perfil').src = e.target.result;
-        }
-        
-    reader.readAsDataURL(imagen);
-});
-
-
-
-
-</script>
 </body>
 </html>

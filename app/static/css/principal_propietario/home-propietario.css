@@ -111,19 +111,22 @@ button#btn-administrar-barberos {
     background: #d35b22;
     border: transparent;
     border-radius: 4px;
+    bottom: 20px;
     color: #fff6e6;
     cursor: pointer;
     font-family: 'Oswald', sans-serif;
     font-size: 1em;
     font-weight: 600;
-    margin-bottom: 20px;
+    left: 50%;
     padding: 3px 7px;
+    position: absolute;
+    transform: translate(-50%, -50%);
 }
     button#btn-administrar-barberos:hover {
-        transform: translateY(-7px);
+        transform: translate(-50%, -50%) translateY(-7px);
     }
     button#btn-administrar-barberos:active {
-        transform: translateY(-1px);
+        transform: translate(-50%, -50%) translateY(-1px);
     }
 
 button.btn-eliminar-barbero {
@@ -132,7 +135,6 @@ button.btn-eliminar-barbero {
     border: transparent;
     border-radius: 4px;
     color: #fff6e6;
-    cursor: pointer;
     display: flex;
     font-size: 20px;
     height: 35px;
@@ -189,8 +191,8 @@ button.esconder {
 
 @media screen and (min-width: 700px) {
     button#btn-agregar-barbero {
-        top: 0;
-        position: relative;
+        top: 96px;
+        position: absolute;
     }
     button.btn-eliminar-barbero {
         left: 72px;
@@ -199,8 +201,8 @@ button.esconder {
         width: 400px;
     }
     h2#tlo {
-        position: relative;
-        top: 0;
+        position: absolute;
+        top: 20px;
     }
     main {
         justify-content: center;

@@ -4,76 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos-restaurar.css') }}">
-    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
-    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/restaurar.js') }}"></script>
-    <title>Restaurar contraseña</title>
+    <title>Actualizar contraseña</title>
 </head>
 <body>
-     <style>
-        .mensaje-error {
-            text-align: left;
-            color: rgb(204, 190, 190);
-            display: block;
-        }
-    </style>
-    <main>
-
-        <div id="volver">
-            <a href="/">
-                <i class="lni lni-arrow-left"></i>
-            </a>
-        </div>
+    
+    <form action="/recuperar_contra" method="POST">
         
-        <div id="contenedor-logo">
+        <main>
+            <div id="volver">
+                <a href="../LOGIN/login.html">
+                    <i class="lni lni-arrow-left"></i>
+                </a>
+            </div>
+            <div id="contenedor-logo">
+                
+                <div id="logo"></div>
+    
+            </div>
             
-            <div id="logo">
-                <img src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo BarberLocate">
+            <div id="formulario">
+                <div id="txt">
+    
+                    <p>Ingresa los siguientes datos</p>
+    
+                </div>
+                <form action="" method="get" id="datos-res">
+                    <input type="number" name="cedula_user" id="cedula_user" placeholder="Tú número de identificación"required>
+                    <input type="date" name="nacimiento_user" placeholder="Tú fecha de nacimiento" required>
+                    <input type="password" name="nueva_contra" placeholder="Tú nueva contraseña" required>
+                    <input type="password" name="conf_nue_contra"  name="conf_nue_contra"  placeholder="Confirma la contraseña">
+                    <br> 
+                    
+                    <button type="submit" id="btn">Actualizar contraseña</button>
+                </form>
             </div>
     
-        </div>
+        </main>
+    
 
-        <div id="formulario">
-
-            <div id="txt">
-
-                <p>Restauración de contraseña</p>
-
-            </div>
-
-            <form action="/recuperar_contra" method="POST" id="datos-res">
-
-                <div id="campos">
-
-                    <input type="text" name="cedula_user" id="cedula_user" placeholder="Número de identificación" minlength="6" maxlength="15" required autocomplete="off">
-                    <div id="cedula-error" class="mensaje-error"></div>
-
-                    <input type="date" name="nacimiento_user" id="f_nacimiento">
-                    <div id="f_nacimiento-error" class="mensaje-error"></div>
-
-                    <input type="password" name="nueva_contra" id="contrasena" placeholder="Contraseña" required>
-                    <ul id="requer-contra" class="mensaje-error">
-                        <li id="long-min">Debe tener mínimo 8 caracteres.</li>
-                        <li id="mayus">Debe contener al menos 1 letra mayúscula.</li>
-                        <li id="minus">Debe contener al menos 1 letra minúscula.</li>
-                        <!-- <li id="numero">Debe contener al menos 1 número.</li>
-                        <li id="car-especial">Debe contener al menos un caracter especial.</li> -->
-                    </ul>
-
-                    <input type="password" name="confirmar-contra" id="confirmar-contra" placeholder="Confirmar contraseña" required>
-                    <div id="confirmar-contra-error" class="mensaje-error"></div>
-
-                </div>
-
-                <div id="aviso-error" class="mensaje-error"></div>
-
-                <button type="submit" id="btn">Restaurar</button>
-            </form>
-            <p class="mensaje-error">{{invalidados}}</p>
-        </div>
-
-         
-            
-    </main>
+        <h2>{{exito}}</h2>
+        <h2>{{invalidados}}</h2>
 </body>
 </html>

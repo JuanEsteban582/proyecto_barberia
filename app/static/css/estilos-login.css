@@ -6,7 +6,7 @@
 }
 a {
     text-decoration: none;
-    color: #faebd7;
+    color: rgba(255, 246, 230, 0.7);
 }
 p{
     font-size: 0.9em;
@@ -38,18 +38,17 @@ img {
 /* ---------- Etiquetas HTML ---------- */
 
 button {
-    font-size: 18px;
+    font-size: 1.05em;
     font-weight: 600;
     font-family: 'Oswald', sans-serif;
     width: 100px;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 5px 23px;
     border: transparent;
-    background: #d55025;
-    color: #faebd7;
+    background: #d35b22;
+    color: rgb(255, 246, 230);
     border-radius: 4px;
-    margin-top: 40px;
-    text-align: center;
+    margin-top: 20px;
 }
     button:hover {
         transform: translateY(-7px);
@@ -63,19 +62,19 @@ div#datos-form {
     align-items: center;
     flex-direction: column;
     text-align: center;
-    color: #faebd7;
+    color: rgb(255, 246, 230);
 }
 div#contenedor-logo {
     align-items: center;
     display: flex;
     justify-content: center;
-    height: 150px;
-    margin-bottom: 50px;
-    width: 150px;
+    height: 200px;
+    margin-bottom: 16px;
+    width: 200px;
 }
 
 div#logo {
-    background: url(img/logo3.png) center center / cover no-repeat;
+    background: url(../img/logo.png) center center / cover no-repeat;
     height: 100%;
     width: 100%;
 }
@@ -88,7 +87,7 @@ div#campos input {
     height: 3.5em;
     width: 200px;
     margin-top: 20px;
-    color: #faebd7;
+    color: rgb(255, 246, 230);
     flex-direction: column;
     border: 0;
     background-color: #403422;
@@ -111,8 +110,7 @@ div#campos select {
     font-family: 'Oswald', sans-serif;
     height: 3.5em;
     width: 200px;
-    margin-top: 20px;
-    color: #faebd7;
+    color: rgb(255, 246, 230);
     flex-direction: column;
     border: 0;
     background-color: #403422;
@@ -161,7 +159,6 @@ main {
         font-size: 21px;
     }
     button{
-        font-size: 21px;
         margin-top: 50px;
         width: 150px;
     }
@@ -174,9 +171,9 @@ main {
         width: 40vw;
     }
     div#contenedor-logo {
-        height: 180px;
+        height: 250px;
         margin-bottom: 64px;
-        width: 180px;
+        width: 250px;
     }
 }
 @media screen and (min-width: 1000px) {
@@ -193,8 +190,8 @@ main {
         margin: 0;
     }
     div#logo {
-        height: 220px;
-        width: 220px;
+        height: 350px;
+        width: 350px;
     }
     div#datos-form {
         justify-content: center;

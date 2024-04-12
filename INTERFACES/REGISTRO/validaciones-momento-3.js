@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const momento2 = document.getElementById("momento-2");
     const momento3 = document.getElementById("momento-3");
 
+    const campoRol = document.getElementById("rol");
+    const rolError = document.getElementById("rol-error");
+
     const campoCorreo = document.getElementById("correo");
     const correoError = document.getElementById("correo-error");
     
@@ -85,6 +88,14 @@ document.addEventListener("DOMContentLoaded", function() {
     formulario.addEventListener("submit", function(event) {
         event.preventDefault();
         let formValido = true;
+
+        // Validación para el campo de selección de rol
+        if (campoRol.value === "") {
+            rolError.textContent = "Por favor, seleccione un rol.";
+            formValido = false;
+        } else {
+            rolError.textContent = ""; // Limpiar mensaje de error si es válido
+        }
 
         // Validación para el campo de correo electrónico
         const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -31,6 +31,12 @@
     border-radius: 12%;
 }
 
+.lista-datos {
+  position: absolute;
+  left: 39%;
+  color: antiquewhite;
+}
+
 .perfil-usuario-avatar img {
     width: 100px;
     height: 100px;

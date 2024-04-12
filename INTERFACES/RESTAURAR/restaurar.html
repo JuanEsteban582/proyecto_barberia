@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="estilos-restaurar.css">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="restaurar.js"></script>
+    <title>Restaurar contraseña</title>
+</head>
+<body>
+    <main>
+
+        <div id="volver">
+            <a href="../LOGIN/login.html">
+                <i class="lni lni-arrow-left"></i>
+            </a>
+        </div>
+
+        <div id="contenedor-logo">
+            
+            <div id="logo"></div>
+
+        </div>
+        
+        <div id="formulario">
+
+            <div id="txt">
+
+                <p>Restauración de contraseña</p>
+
+            </div>
+
+            <form action="" method="post" id="datos-res">
+
+                <div id="campos">
+                    
+                    <select name="rol" id="rol">
+                        <option value="" selected disabled>Elige tu rol</option>
+                        <option value="cliente">CLIENTE</option>
+                        <option value="barbero">BARBERO</option>
+                        <option value="propietario">PROPIETARIO</option>
+                    </select>
+                    <div id="rol-error" class="mensaje-error"></div>
+
+                    <input type="text" name="cedula" id="cedula" placeholder="Número de identificación" minlength="6" maxlength="15" required autocomplete="off">
+                    <div id="cedula-error" class="mensaje-error"></div>
+
+                    <input type="date" name="f_nacimiento" id="f_nacimiento">
+                    <div id="f_nacimiento-error" class="mensaje-error"></div>
+
+                    <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+                    <ul id="requer-contra" class="mensaje-error">
+                        <li id="long-min">Debe tener mínimo 8 caracteres.</li>
+                        <li id="mayus">Debe contener al menos 1 letra mayúscula.</li>
+                        <li id="minus">Debe contener al menos 1 letra minúscula.</li>
+                        <!-- <li id="numero">Debe contener al menos 1 número.</li>
+                        <li id="car-especial">Debe contener al menos un caracter especial.</li> -->
+                    </ul>
+
+                    <input type="password" name="confirmar-contra" id="confirmar-contra" placeholder="Confirmar contraseña" required>
+                    <div id="confirmar-contra-error" class="mensaje-error"></div>
+
+                </div>
+
+                <div id="aviso-error" class="mensaje-error"></div>
+
+                <button type="submit" id="btn">Restaurar</button>
+            </form>
+        </div>
+
+    </main>
+</body>
+</html>

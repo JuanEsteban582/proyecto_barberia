@@ -2,30 +2,29 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/estilos-registro-barbero.css') }}">
-    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" >
-   
-    <script src="{{ url_for('static', filename='js/principal_propietario/perfil/validaciones-momento-2.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
-    <title>Editar perfil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil Propietarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
 </head>
 <body>
-    <main>
 
-        <div id="volver">
-            <a href="/perfil_propietario">
-                <i class="lni lni-arrow-left"></i>
-            </a>
-        </div>
-        
-        <div id="contenedor-logo">
-            <div id="logo">
-                <img  src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo_barber_locate">
-            </div>
-        </div>
-        <div id="datos-form">
+    <!-- Formulario de edición de perfil -->
+    <h1>Editar Perfil</h1>
+    <form action="/editar_propietario" method="POST">
+        <input type="hidden" name="ced_P" value="{{ datos_propietario[0] }}">
+        <label for="Tel_U">Celular:</label>
+        <input type="text" id="Tel_U" name="Celular_P" value="{{ datos_propietario[4] }}">
+        <label for="ciudad_U">Ciudad:</label>
+        <input type="text" id="ciudad_U" name="Ciudad_P" value="{{ datos_propietario[8] }}">
+        <button type="submit">Guardar Cambios</button>
+    </form>
 
+<<<<<<< HEAD
+    <br>
+    
+    <br>
+    <a href="/perfil_propietario">Cancelar</a>
+=======
             <div id="txt">
 
                 <p>*Solo puedes cambiar estos dos datos*</p>
@@ -59,5 +58,6 @@
             </form>
         </div>
     </main>
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
 </body>
-</html>       
+</html>

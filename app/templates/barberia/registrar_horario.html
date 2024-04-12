@@ -1,23 +1,45 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/estilos-registro-barbero.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
-    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css">
-    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/barberia/registro-horario.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
-    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
-    <script src="{{ url_for('static', filename='js/cerrar_sesion.js') }}"></script>
-    <title>Registrar Horarios</title>
+    <title>Document</title>
 </head>
+<<<<<<< HEAD
+<body>
+    
+<form action="/registrar_horarios" method="POST">
+    <div>
+        <label for="dia_inicio">Día de Inicio:</label>
+        <select id="dia_inicio" name="dia_inicio">
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+            <option value="Domingo">Domingo</option>
+        </select>
+        <label for="dia_fin">Día de Fin:</label>
+        <select id="dia_fin" name="dia_fin">
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+            <option value="Domingo">Domingo</option>
+        </select>
+    </div>
+    <div>
+        <label for="hora_inicio">Hora de Inicio:</label>
+        <input type="time" id="hora_inicio" name="hora_inicio">
+        <label for="hora_fin">Hora de Fin:</label>
+        <input type="time" id="hora_fin" name="hora_fin">
+    </div>
+    <button type="submit">Guardar Horarios</button>
+</form>
+=======
 <body id="body">
     <style>
 .mensaje-error {
@@ -153,5 +175,6 @@ display: block;
             <p class="mensaje-error">{{message}}</p>
         </div>
     </main>
+>>>>>>> 522a921b3cc8ff24f76a6b83921750a5a369c80a
 </body>
 </html>

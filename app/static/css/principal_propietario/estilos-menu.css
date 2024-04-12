@@ -102,9 +102,7 @@ div#icono-cerrar-menu i{
 .options__menu .option{
     display: flex;
     align-items: center;
-    height: 73px;
     position: relative;
-    width: 190px;
 }
 
 .options__menu .option i{

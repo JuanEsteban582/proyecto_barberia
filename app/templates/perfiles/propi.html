@@ -4,179 +4,177 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>perfil propietario</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/perfil.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/principal_propietario/estilos-menu.css') }}">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
-  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-  <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
-  <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/cerrar_sesion.js') }}"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"> 
+  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" > 
+
+  
     
  
   <style>
       
-   
-.lni {
-  flex-direction:column;
-  font-size: 23px;
-   text-align: center;
-   
+    .seccion-perfil-usuario {
+    display: flex;
+    background-color: #e0871b;;
+    text-align: center; /* Centra el contenido horizontalmente */
   
+    
 }
 
-.icono{
-  display: flex;
-  position:relative;
-  bottom: 23%;
-  left: 26%;
-  flex-direction: column; 
-}
-
-.icono{
-  font-size: 1.5rem;
-  color: #e78655;
-}
-
-
-ul{
-  list-style-type: none;
-}
-
-#volver {
+.perfil-usuario-avatar {
+    width: 190px;
+    height: 190px;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #e78655;
+    background-image: url(profile-icon.jpg);
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
     position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px; /* Añade un poco de espacio alrededor del botón para evitar que esté pegado a los bordes */
+    top: 4%;
+    left: calc(-60%  90px);
+    margin-left: 80px;
+    z-index: 0;
 }
 
-#volver i {
-    color: #EDA05a;
-    font-size: 2.0em;
-    display: block;
+
+.perfil-usuario-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+ .boton-avatar {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    border: 0;
+    background-color: #e78655;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    border-radius: 50%;
+    
+   }
+
+.perfil-usuario-footer{
+    
+    font-size: 1.2rem;
+    display: flex;
+    position: relative;
+    bottom: -40px;
+    background-color: #2f2519;
+    text-align: center; /* Centra el contenido horizontalmente */
+    padding-top: 48px; /* Ajusta el espaciado superior */
+    flex-direction: column;
+    align-self: flex-end;
 }
 
-#volver a {
-    text-decoration: none;
+.lista-datos {
+   padding: 10px;
 }
+
+.lista-datos li {
+    margin-bottom: 20px;
+    color: antiquewhite;
+}
+
+.lista-datos .icono {
+  margin-right: 15px; /* Ajusta el espacio entre el ícono y el texto */
+  font-size: 1.6rem;
+  color: #e78655;
+  bottom: -80;
+  text-align: left;
+} 
+
+
+.lni {
+  margin-right: 15px; /* Ajusta el espacio entre el ícono y el texto */
+  font-size: 1.6rem;
+  color: #e78655;
+  bottom: -80;
+  text-align: left;
+}
+
+.editarPerfil {
+  position: relative;
+  left: 83%;
+  width: 30px;
+  font-size: 1.4rem;
+  color: #e78655;
+
+}
+.masopciones{
+  width: 10%;
+  height: 5%;
+  position: relative;
+  top: -29%;
+  left: 86%;
+  z-index: 1;
+  background-color: antiquewhite;
+}
+
+.nombre-admin{
+  position: relative;
+  bottom: -13px;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: antiquewhite;
+  display: flex;
+  background-color: #2f2519;
+
+}
+
 </style>
-
 </head>
-<body id="body">
-    <header>
+<body>
+    <div class="container">
+     <div class="shape">
+    </div>
+    <button class="editarPerfil" onclick="window.location.href='/editar_propietario'">
+      <i class="fas fa-pencil-alt"></i>
+  </button>
+  
+
         
-        <div id="icono-menu">
-            <i class="lni lni-menu" id="btn-menu"></i>
-        </div>
-        
-    </header>
-    <nav>
+        <section class="seccion-perfil-usuario">
+          <div class="perfil-usuario-header">
 
-        <div id="menu-lateral" class="menu__side">
-    
-            <div class="icono-cerrar-menu" id="icono-cerrar-menu">
-                <i class="lni lni-close" id="btn-cerrar-menu"></i>
-            </div>
-    
-            <div class="options__menu">	
-    
-                <a href="/principal_propietario">
-                    <div class="option">
-                        <i class="fas fa-home" title="Inicio"></i>
-                        <h4>Inicio</h4>
-                    </div>
-                </a>
-    
-                <a href="/perfil_propietario" class="selected">
-                    <div class="option">
-                        <i class="fa-solid fa-user" title="Perfil"></i>
-                        <h4>Perfil</h4>
-                    </div>
-                </a>
-                
-                <a href="/perfil_barberia">
-                    <div class="option">
-                        <i class="fa-solid fa-building-user" title="Perfil Barberia"></i>
-                        <h4>Perfil Barbería</h4>
-                    </div>
-                </a>
-                
-                
-                <a href="/barberia_registro">
-                    <div class="option">
-                        <i class="fa fa-plus-square" tittle="Registra tú barberia"></i>
-    
-                        <h4>Registra tú barberia</h4>
-                    </div>
-                </a>
-    
-                <a href="/registrar_horarios">
-                    <div class="option">
-                        <i class="fas fa-clock"title="Registra el horario de tu barbería"></i>
-                        <h4>Registra el horario de tú barberia </h4>
-                    </div>
-                </a>
+                  <div class="perfil-usuario-avatar">
+                    {% if datos_propietario[13] %}
+    <img id="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_propietario[13]) }}" alt="">
+{% else %}
+    <img id="foto-perfil" src="{{ url_for('static', filename='default_profile_image.jpg') }}" alt="">
+{% endif %}
+                    <form action="/subir_foto_perfil" method="POST" enctype="multipart/form-data">
+                      <input type="file" name="foto_perfil" id="input-foto" accept="image/*" style="display: none;">
+                      <button type="submit" >Subir foto de perfil</button>
+                  </form>
+                    <label for="input-foto" class="boton-avatar"><i class="far fa-image"></i></label>  
+                  </div>
 
-                <a href="/registrar_servicios">
-                    <div class="option">
-                        <i class="fas fa-scissors"title="Registra los servicios de tu barbería"></i>
-                        <h4>Registra los servicios de tú barberia </h4>
-                    </div>
-                </a>
-
-
-                <a href="#" id="btn-cerrar-sesion">
-                    <div class="option">
-                        <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
-                        <h4>Cerrar sesión</h4>
-                    </div>
-                </a>
-    
-            </div>
-    
-        </div>
-        
-    </nav>
-    <main class="container">
-
-        <div class="seccion-perfil-usuario">
-              <div class="perfil-usuario-avatar">
-                {% if datos_propietario[13] %}
-                <img class="foto-perfil" src="{{ url_for('uploaded_file', filename=datos_propietario[13]) }}" alt="foto_de_perfil">
-            {% else %}
-            <img class="foto-perfil" src="{{ url_for('static', filename='img/principal_propietario/profile-icon.jpg') }}" alt="Logo_perfil">
-            {% endif %}
-
-              <form action="/subir_foto_perfil" method="POST" enctype="multipart/form-data">
-              <input type="file" id="input-foto" name="foto_perfil" accept="image/*" style="display: none;">
-              
-              <div class="enviarf">
-                <button class="subirf" type="submit">Subir foto</button>
-              </div>
-            </form>
-              <label for="input-foto" class="boton-avatar"><i class="lni lni-plus"></i></label> 
-              
-            </div>
-              
-             
-        </div>
-
-         <div class="nombre-admin">
-          <p>{{ datos_propietario[1] }} {{ datos_propietario[2] }}</p>
-         </div>
-         <div class="lineaC"></div>
-         
-       <section class="perfil-usuario-footer">
-        
-        <button class="editarPerfil" onclick="window.location.href='/editar_propietario'">
-          <i class="lni lni-pencil"></i>
-        </button>
-
-     
-        <br>
-        <ul class="lista-datos">
+                  <h1 class="nombre-admin">{{ datos_propietario[1] }} {{ datos_propietario[2] }}</h1>
+          </div>
           
+<<<<<<< HEAD
+        </section>
+        <section class="perfil-usuario-footer">
+         <div class= lista-datos-usuario>
+          <ul class="lista-datos">
+            <p>Cedula: {{ datos_propietario[0] }}</p>
+
+            <li><i class="lni lni-sketch"></i><span id="tipo">Propietario</span></li>
+
+            <li><i class="lni lni-phone"></i><span id="telefono">{{ datos_propietario[4] }}</span></li>
+            <li><i class="lni lni-home"></i><span >{{ datos_propietario[8] }}</span></li>
+            <li><i class="lni lni-sketch"></i><span > {{ datos_propietario[9] }}</span></li>
+          </ul>
+        </div>
+      </div>
+      </section>
+=======
           <li><span class="inform">Propietario</span></li>
           <li><span class="inform">{{ datos_propietario[0] }}</span></li>
           <li><span class="inform">{{ datos_propietario[4] }}</span></li> 
@@ -192,6 +190,7 @@ ul{
         <div class="icon"><i class="fa fa-birthday-cake"></i></div>
        </section>
       </main>
+>>>>>>> 1026ce622a8082985d0fd487ce4e1fe5649bbe3f
 
   <script>
 
@@ -206,9 +205,6 @@ ul{
         
     reader.readAsDataURL(imagen);
 });
-
-
-
 
 </script>
 </body>

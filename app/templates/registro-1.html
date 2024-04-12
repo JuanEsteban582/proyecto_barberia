@@ -3,36 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/barbero/estilos-registro-barbero.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registro.css') }}">
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     
     <script src="{{ url_for('static', filename='js/registro/validaciones_momento-1.js') }}"></script>
     <script src="{{ url_for('static', filename='js/registro/validaciones_momento-2.js') }}"></script>
     <script src="{{ url_for('static', filename='js/registro/validaciones_momento-3.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var msjError = document.querySelector('.mensaje-error');
-            if (msjError) {
-                msjError.style.display = 'block';
-                setTimeout(function() {
-                    msjError.style.display = 'none';
-                }, 5000);
-            }
-        });
-    </script>
-    <title>Registro</title>
+    
+    <title>Bienvenido Registrate</title>
 </head>
 <body>
-
-    <style>
-        .mensaje-error {
-            text-align: left;
-            color: rgb(204, 190, 190);
-            display: block;
-        }
-    </style>
     <main>
         <div id="volver">
             <a href="/">
@@ -41,9 +22,7 @@
         </div>
         
         <div id="contenedor-logo">
-            <div id="logo">
-                <img  src="{{ url_for('static', filename='img/logo3.png') }}" alt="Logo_barber_locate">
-            </div>
+            <div id="logo"></div>
         </div>
 
         <div id="datos-form">
@@ -51,8 +30,7 @@
             <div id="txt">
 
                 <p>Registro</p>
-                
-        
+
             </div>
             
             <form action="/registro" method="POST" id="datos-registro">
@@ -76,11 +54,20 @@
                     
                     <div id="momento-2" class="hidden">
                         <div class="campos">
-                            
-                            <input type="text" name="departamento" id="departamento" placeholder="Departamento" minlength="4" maxlength="18" autocomplete="off">
+                             <select name="departamento" id="departamento">
+                                <option value="" selected disabled>Elige tu departamento</option>
+                                <option value="antioquia">ANTIOQUIA</option>
+                                <option value="valle-del-cauca">VALLE DEL CAUCA</option>
+                                <option value="bogota">BOGOTÁ</option>
+                            </select> 
                             <div id="departamento-error" class="mensaje-error"></div>
 
-                            <input type="text" name="ciudad_usuario" id="ciudad" placeholder="Ciudad" minlength="4" maxlength="23" autocomplete="off">
+                            <select name="ciudad_Usuario" id="ciudad">
+                                <option value="" selected disabled>Elige tu ciudad</option>
+                                <option value="buga">BUGA</option>
+                                <option value="tulua">TULUÁ</option>
+                                <option value="cali">CALI</option>
+                            </select> 
                             <div id="ciudad-error" class="mensaje-error"></div> 
                             
 
@@ -103,7 +90,7 @@
                             <input type="email" name="correo_usuario" id="correo" placeholder="Correo electrónico">
                             <div id="correo-error" class="mensaje-error"></div>
 
-                            <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" autocomplete="off">
+                            <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
                             <ul id="requer-contra" class="mensaje-error">
                                 <li id="long-min">Debe tener mínimo 8 caracteres.</li>
                                 <li id="mayus">Debe contener al menos 1 letra mayúscula.</li>
@@ -112,7 +99,7 @@
                                 <li id="car-especial">Debe contener al menos un caracter especial.</li> -->
                             </ul>
 
-                            <input type="password" name="confir_contra" id="confirmar-contrasena" placeholder="Confirmar contraseña" autocomplete="off">
+                            <input type="password" name="confir_contra" id="confirmar-contrasena" placeholder="Confirmar contraseña">
                             <div id="conf-contrasena-error" class="mensaje-error"></div>
                         </div>
 
@@ -125,11 +112,10 @@
                         </div>
                     </div>
             </form>
-            <p class="mensaje-error">{{msjedad}}</p>
-            <p class="mensaje-error">{{msj_C}}</p>
-            <p class="mensaje-error">{{msj}}</p>
         </div>
         
+            <h2>{{ msj }}</h2>
+            <h2>{{ msj_C }}</h2>
     </main>
 
    

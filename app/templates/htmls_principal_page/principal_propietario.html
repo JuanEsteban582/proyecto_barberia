@@ -9,12 +9,9 @@
     <script src="{{ url_for('static', filename='js/principal_propietario/home-propietario.js') }}"></script>
     <script src="{{ url_for('static', filename='js/principal_propietario/menu.js') }}"></script>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="BarberLocate"></script>
-    <script src="{{ url_for('static', filename='js/bloqueo_boton_navegador.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/cerrar_sesion.js') }}"></script>
     <title>Inicio</title>
 </head>
 <body id="body">
-    
     <header>
         
         <div id="icono-menu">
@@ -32,7 +29,7 @@
     
             <div class="options__menu">	
     
-                <a href="/principal_propietario" class="selected">
+                <a href="#" class="selected">
                     <div class="option">
                         <i class="fas fa-home" title="Inicio"></i>
                         <h4>Inicio</h4>
@@ -48,11 +45,10 @@
                 
                 <a href="/perfil_barberia">
                     <div class="option">
-                        <i class="fa-solid fa-building-user" title="Perfil Barberia"></i>
+                        <i class="fas fa-store" title="Perfil-Barberia"></i>
                         <h4>Perfil Barbería</h4>
                     </div>
                 </a>
-                
                 
                 <a href="/barberia_registro">
                     <div class="option">
@@ -62,24 +58,21 @@
                     </div>
                 </a>
     
-                <a href="/registrar_horarios">
+    
+    
+                
+    
+                <a href="/horarios_barberia">
                     <div class="option">
-                        <i class="fas fa-clock"title="Registra el horario de tu barbería"></i>
-                        <h4>Registra el horario de tú barberia </h4>
+                        <i class="fas fa-clock"title="Mapa"></i>
+                        <h4>Horarios</h4>
                     </div>
                 </a>
 
-                <a href="/registrar_servicios">
-                    <div class="option">
-                        <i class="fas fa-scissors"title="Registra los servicios de tu barbería"></i>
-                        <h4>Registra los servicios de tú barberia </h4>
-                    </div>
-                </a>
 
-
-                <a href="#" id="btn-cerrar-sesion">
+                <a href="#">
                     <div class="option">
-                        <i class="fa-solid fa-right-to-bracket" title="Cerrar sesión"></i>
+                        <i class="fa-solid fa-right-to-bracket" title="cerrar_sesion"></i>
                         <h4>Cerrar sesión</h4>
                     </div>
                 </a>
@@ -87,11 +80,10 @@
             </div>
     
         </div>
-        
+
     </nav>
     <main>
         <h2 id="tlo">Barberos asociados</h2>
-        <button id="btn-administrar-barberos" type="button">Administrar barberos</button>
         <button id="btn-agregar-barbero" class="esconder" type="button"><a href="/Registro_barbero">Agregar barbero</a></button>
         <section id="info-barberos">
             {% for persona in barberos %}
@@ -111,6 +103,7 @@
             {% endfor %}
             
         </section>
+        <button id="btn-administrar-barberos" type="button">Administrar barberos</button>
     </main>
 </body>
 </html>
