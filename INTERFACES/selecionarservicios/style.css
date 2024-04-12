@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+
+    transition: all 0.3s ease-in-out;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-height: 100vh;
+    background: #2f2519;
+}
+
+.contenedor{
+    justify-content: center;
+    position: relative;
+    display: flex;
+    padding: 0 20px;
+    min-height: 200vh;
+}
+
+.nom-info{
+    margin: 30px;
+    border-radius: 4px;
+    display: flex;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    height: 3.5em;
+    width: 200px;
+    color: rgb(255, 246, 230);
+    flex-direction: column;
+    border: 0;
+    background-color: #403422;
+    outline-offset: 3px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.25s;
+}
+label{
+    margin: 30px;
+    color: #fff;
+
+}
+
+button#btn-guardar{
+    position: relative;
+    left: 30%;
+    font-size: 0.7em;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    width: 70px;
+    cursor: pointer;
+    padding: 4px 10px;
+    border: transparent;
+    background: #d35b22;
+    color: rgb(255, 246, 230);
+    border-radius: 4px;
+    
+}
+    button:hover {
+        transform: translateY(-7px);
+    }
+    button:active {
+        transform: translateY(-1px);
+}
+
+.cheks-servi{
+    position: relative;
+    left: 30%;
+    font-size: 0.7em;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    width: 90px;
+    cursor: pointer;
+    padding: 4px 10px;
+    border: transparent;
+    background: #d35b22;
+    color: rgb(255, 246, 230);
+    border-radius: 4px;
+}
+
