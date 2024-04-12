@@ -104,32 +104,12 @@ ul{
          </div>
          <div class="lineaC"></div>
          
-       <section class="perfil-usuario-footer">
-        
-
-     
-        <br>
-        <ul class="lista-datos">
-          
-          <li><span class="inform">Barberia</span></li>
-          <li><span class="inform">{{ datos_barberia[2] }}</span></li>
-          <li><span class="inform">{{ datos_barberia[6] }}</span></li> 
-          <li><span class="inform">{{ datos_barberia[3] }}</span></li>
-          <li><span class="inform">{{ datos_barberia[4] }}</span></li>
-       </ul>
-      
-       <div class="icono">
-        <div class="icon"><i class="lni lni-user"></i></div>
-        <div class="icon"><i class="fa fa-map-marker"></i></div>
-        <div class="icon"><i class="lni lni-phone"></i></div>
-        <div class="icon"><i class="fas fa-building"></i></div>
-        <div class="icon"><i class="fas fa-city"></i></div>
-       </section>
-
-       <a href="{{ url_for('mostrar_barberos', codigo_barberia=datos_barberia[0]) }}" class="butonfab">Elegir Barbero</a>
-
-      
        
+       <button class="btn-enlac"> 
+       <a class="elegir-barber" href="{{ url_for('mostrar_barberos', codigo_barberia=datos_barberia[0]) }}" class="butonfab">Elegir Barbero</a>
+       </button> 
+
+      
 
        <h2 class="color">Servicios Ofrecidos</h2>
         {% for servicio in servicios %}
@@ -140,12 +120,18 @@ ul{
        
 
         {% for horario in horarios %}
-        <p class="color">Abre de {{ horario[3] }} a {{ horario[4] }} de {{ horario[1] }} a {{ horario[2] }}</p>
+        <p class="color">Abierto de {{ horario[3] }} a {{ horario[4] }} de {{ horario[1] }} a {{ horario[2] }}</p>
         {% else %}
         <p>No hay horarios disponibles.</p>
         {% endfor %}
 
-        <a href="{{ datos_barberia[14] }}" target="_blank" >¿Cómo llegar?</a>
+        <button  class="enlac-btn">
+          <p><a href="{{ datos_barberia[14] }}" target="_blank" >¿Cómo llegar?</a></p>
+       </button>
+        
+         
+
+      
       </main>
 
 

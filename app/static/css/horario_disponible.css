@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
+* {
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+    transition: all 0.3s ease-in-out;
+}
+
+a.enlace {
+    text-decoration: none;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: #2f2519;
+}
+
+main{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.contenedor{
+    justify-content: center;
+    position: relative;
+    padding: 0 10px;
+    box-shadow: #000;
+}
+
+.ttlo-select{
+    margin: 30px;
+    color: #cc6c3a;
+    text-align: center;
+}
+.bton-mostrar{
+    margin: 30px;
+    border-radius: 4px;
+    display: flex;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    height: 3.5em;
+    width: 150px;
+    color: rgb(255, 246, 230);
+    cursor: pointer;
+    flex-direction: column;
+    border: 0;
+    background-color:#d55925;
+    outline-offset: 3px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.25s;
+}
+button:hover {
+    transform: translateY(-7px);
+}
+button:active {
+    transform: translateY(-1px);
+}
+
+.dat-calenda{
+margin: 30px;
+    text-align: center;
+    border-radius: 4px;
+    display: flex;
+    font-weight: 600;
+    font-family: 'Oswald', sans-serif;
+    height: 3.5em;
+    width: 150px;
+    color: rgb(255, 246, 230);
+    flex-direction: column;
+    border: 0;
+    background-color: #403422;
+    outline-offset: 3px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.25s;
+    
+}
+
+.selecciona-fecha{
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    left: 30;
+    border: #000;
+
+}
+
+.form-datos{
+    height: 200px;
+    width: 190px;
+    align-items: center;
+}
+
+button.btn-actividad-barbero{
+    background: #d35b22;
+    border: transparent;
+    border-radius: 4px;
+    color: #fff6e6;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7em;
+    font-weight: 600;
+    padding: 3px 7px;
+}

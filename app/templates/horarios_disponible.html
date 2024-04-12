@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mostrar Horarios Disponibles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/horario_disponible.css') }}">
 </head>
 <body>
-    <h2>Selecciona una Fecha</h2>
-    <form action="{{ url_for('mostrar_horarios_disponibles') }}" method="POST">
-        <input type="hidden" name="cedula_barbero" value="{{ cedula_barbero }}">
-        <input type="date" name="fecha" id="fecha">
-        <button type="submit">Mostrar Horarios</button>
-    </form>
+    <main class="contenedor">
+     
+    <div class="selecciona-fecha">
+        <h2 class="ttlo-select">Selecciona una Fecha</h2>
+        <form class="form-datos" action="{{ url_for('mostrar_horarios_disponibles') }}" method="POST">
+            <input class="dat-calenda" type="hidden" name="cedula_barbero" value="{{ cedula_barbero }}">
+            <input  class="dat-calenda" type="date" name="fecha" id="fecha">
+            <button class="bton-mostrar" type="submit">Mostrar Horarios</button>
+        </form>
+    </div>
 
 
     {% if horarios %}
@@ -24,11 +29,10 @@
     {% elif error %}
     <p>{{ error }}</p>
     {% endif %}
+    <button class="btn-actividad-barbero" type="button">
+        <a class="enlace" href="{{ url_for('seleccionar_servicios', cedula_barbero=cedula_barbero) }}">selecciona los servicios</a>
 
-   
-
-    <br>
-    <a href="{{ url_for('seleccionar_servicios', cedula_barbero=cedula_barbero) }}" class="btn-actividad-barbero" type="button">selecciona los servicios</a>
-
+    </button>
+ </main> 
 </body>
 </html>

@@ -4,35 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleccionar Servicios</title>
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/servicio.css') }}">
 </head>
 <body>
+    <main class="contenedor">
     
     <form action="/guardar_cita" method="POST">
         <input type="hidden" name="cedula_barbero" id="cedula_barbero" value="{{ cedula_barbero }}">
 
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre">
-        <label for="apellidos">Apellidos:</label>
-        <input type="text" id="apellidos" name="apellidos">
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono">
+        <h1 class="titlo-datos">Escribe tus datos</h1>
+        <input class="nom-info" type="text" id="nombre" name="nombre" placeholder="Nombre">
+        <input class="nom-info" type="text" id="apellidos" name="apellidos"  placeholder="Apellido">
+        <input class="nom-info" type="tel" id="telefono" name="telefono"  placeholder="Telefono">
         {% for servicio in servicios %}
         <div>
-            <input type="checkbox" name="servicios_seleccionados" value="{{ servicio[1] }}">
+            
+            <h3 class="servicios">Servicios</h3>
+            <input class="cheks-servi" type="checkbox" name="servicios_seleccionados" value="{{ servicio[1] }}">
 
             <label>{{ servicio[2] }} - {{ servicio[3]}}</label>
         </div>
         {% endfor %}
 
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha">
-        <label for="hora">Hora:</label>
-        <input type="time" id="hora" name="hora">
+        <input class="nom-info" type="date" id="fecha" name="fecha">
+        
+        <h4 class="servicios">Hora</h4>
+        <input class="nom-info" type="time" id="hora" name="hora">
 
-        <button type="submit">Guardar Cita</button>
+        <button id="btn-guardar" type="submit">Guardar Cita</button>
     </form>
-    
-
+    </main>
 </body>
 </html>
