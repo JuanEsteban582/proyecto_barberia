@@ -64,7 +64,6 @@ min-width: 100vw;
   
  }
 
-<<<<<<< HEAD
    
 
 
@@ -76,36 +75,6 @@ min-width: 100vw;
   color: antiquewhite;
   display: flex;
   background-color: #2f2519;
-=======
- .subirf{
-  background-color:  #d55025;
-  border: none;
-  border-radius: 4px;
- }
-
-
-.editarPerfil {
-position: absolute;
-left: 70%;
-bottom: 50%;
-width: 30px;
-height: 30px;
-font-size: 1.4rem;
-color: antiquewhite;
-background-color: #cc6c3A;
-border-radius: 4px;
-
-}
-
-.nombre-admin{
-position: absolute;
-bottom: 60%;
-justify-content: center;
-font-size: 1.5rem;
-color: antiquewhite;
-display: flex;
-background-color: #2f2519;
->>>>>>> b99f72929f6c74025868f8f806bff50c53ad382f
 
 }
 
@@ -124,7 +93,6 @@ background-color: #2f2519;
 
 
 .lista-datos {
-<<<<<<< HEAD
     position: absolute;
     left: 39%;
     color: antiquewhite;
@@ -177,25 +145,6 @@ background-color: #2f2519;
  }
 
  
-=======
-  position: absolute;
-  left: 39%;
-  color: antiquewhite;
-}
-
-.lineaC{
-  position: absolute;
-  width: 500px;
-  height: 2px;
-  background-color: #cc6c3A;
-  bottom: 59%;
-}
-.icono{
-position: absolute;
-bottom: 40px;
-}
-
->>>>>>> b99f72929f6c74025868f8f806bff50c53ad382f
 /* para pantallas de computadora */
 @media screen and (min-width: 768px) {
 .container {
